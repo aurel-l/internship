@@ -2,6 +2,7 @@
 
 %packages
 \usepackage[utf8]{inputenc}
+\usepackage{mathtools}
 
 %document
 \begin{document}
@@ -63,14 +64,53 @@ The first pattern can be seen in the figure (REF!!!) and is a non-linear gradien
 % or "realisation", "analysis pipeline"
 
 % run management (local, cluster, NeSI)
+\section{Run management}
 The fact that many simulations are required to be able to infer meaningful information from the model imply that they cannot be run on a single desktop computer. The only case
 
 % data processing from model output
 % data storage, adding and querying data
-% analysis
-%% comparisons
-%% visualisations
+\section{Data processing, storage and query}
+
+
+\section{Analysis}
+
+
+\subsection{Comparisons}
+To be able to compare two different scenarios, one has to define comparison functions that will be able to provide a value of similarity or dissimilarity when provided with observable values that characterise the scenarios. In this case, the comparison is done between the real observed data and the output of one simulation.
+Every simulation output has to be treated to be of the same form than the observed data so that it can be compared. The observed data does not include values for specific islands that are included in the simulations, namely Alor, Tanimbar and Aru in eastern Indonesia. The admixture values for mitochondrion and Y-chromosome are also not available for every island.
+Those values in the models can then be dropped as they cannot be compared.
+
+Many different comparison functions have been tested. Two functions have been selected that can hold different information about a comparison. The mean square distance (MSD) and the partial Mantel test have been selected as they do not have a good correlation when applying them to random admixture values, meaning that they do not carry the same information, they are complementary, and using them both gives a better overview of the comparison.
+
+\subsubsection{Mean square distance}
+The mean square distance is the mean value of all the distances between values of admixture for every islands.
+
+\begin{equation}
+MSS = \frac{\sum\limits_{i=1}^{n} (Real_i - Simulated_i)) ^ 2}{n}
+\end{equation}
+
+It gives a distance value, with 0 meaning that the two observed values are absolutely identical. In this specific context, with the fact that an admixture value is compared and because of the values observed in the real data, the higher possible value will be around $0.8$.
+
+
+\subsubsection{Partial Mantel test}
+The Mantel test has been developed to be able to compare two matrices with the same information, the partial version of this test also uses a third matrix, holding geographical distances for the cells of the matrices to be able to weight the values according to the actual geographical distance of the points \cite{Smo01}.
+
+In this case, the matrices contain the values of distances of admixtures between every islands in the graph and a matrix $M$ is calculated as
+\begin{equation}
+	M = \begin{bmatrix}
+		D(A_0, A_0)	& \cdots & D(A_0, A_n) 	\\
+		\vdots		& \ddots & \vdots		\\
+		D(A_n, A_0) & \cdots & D(A_n, A_n)
+	\end{bmatrix}
+\end{equation}
+were $D$ is the function returning the distance between the two arguments and $A$ the admixtures of the $n$ islands of the graph.
+
+the partial Mantel test returns a correlation value that is between -1 and 1 with a value of 0 meaning that the two matrices are not correlated at all and 1 that they are completely correlated.
+
+\subsection{Visualisations}
+
 % ABC framework
+
 
 
 \chapter{Results}
