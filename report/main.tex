@@ -1,8 +1,9 @@
-\documentclass[a4paper,11pt]{report}
+\documentclass[a4paper,12pt]{report}
 
 %packages
 \usepackage[utf8]{inputenc}
 \usepackage{mathtools}
+\usepackage[onehalfspacing]{setspace}
 
 %document
 \begin{document}
@@ -37,6 +38,9 @@
   \hfill\bfseries{Year 2014-2015}\hfill\null 
 \end{titlepage}
 
+% to be removed...
+%\setcounter{tocdepth}{1}
+% ...until here
 \tableofcontents
 
 \chapter*{Introduction}
@@ -54,10 +58,20 @@ Two specific patterns can be seen, one is the non linear gradient of Asian admix
 \chapter{Project presentation}
 The project consists of developing a model of the Austronesian expansion throughout the ISEA that could reproduce the same two patterns observed in the real data.
 The first pattern can be seen in the figure (REF!!!) and is a non-linear gradient in Asian admixture that declines abruptly around the eastern part of Indonesia. The second one, represented in the figure (REF!!!), is a 
+
+\section{Type of values observed}
+
+\section{Model used}
+\subsubsection{Comparison to other models}
+\subsubsection{Parameters}
 % model details
 % previous works
 %% previous models
 %% previous analyses
+
+\section{Statistical analysis framework}
+\subsubsection{Previous works}
+\subsubsection{Specific needs}
 
 
 \chapter{Implementation}
@@ -65,7 +79,20 @@ The first pattern can be seen in the figure (REF!!!) and is a non-linear gradien
 
 % run management (local, cluster, NeSI)
 \section{Run management}
-The fact that many simulations are required to be able to infer meaningful information from the model imply that they cannot be run on a single desktop computer. The only case
+The fact that many simulations are required to be able to infer meaningful information from the model imply that they cannot be run on a single desktop computer. In fact, running them in a single computer, the time to run enough simulations to be statistically relevant could be counted in years.
+Luckily, every simulation being independent from the others, there are multiple ways to generate more results in less time.
+Firstly, since nowadays most of the computers have multiple processors, one computer can run multiple simulation concurrently. Also, a cluster of computers can be used and the wanted simulations can be dispatched among the nodes of the cluster so that they each run the simulations they were assigned and when all the nodes have ended their runs, their outputs can be aggregated and/or stored
+
+Since running a lot of simulations, with a lot of different parameters, can generate a lot of output files whose original parameters can be hard to track, a way to keep them organised was needed. Doing so, it would also be possible to use results from different batches and to analyse them together, thus avoiding to redo simulations for parameters already tested.
+
+The organised way to store this is naturally in a database. The choice has been made to use a relational database, specifically MariaDB (a fork of Oracle's MySQL). The structure has been designed so that the parameters can be efficiently queried. The tables and relations between them can be seen in the figure \ref{db}. It has first been developed and tested locally and then, once it was working properly, it was deployed on a server provided by Massey University for research purposes.
+
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.7]{data/DB.png}
+	\caption{Structure of the database storing the results of the simulations and the corresponding parameters}
+	\label{db}
+\end{figure}
 
 % data processing from model output
 % data storage, adding and querying data
@@ -98,12 +125,12 @@ The Mantel test has been developed to be able to compare two matrices with the s
 In this case, the matrices contain the values of distances of admixtures between every islands in the graph and a matrix $M$ is calculated as
 \begin{equation}
 	M = \begin{bmatrix}
-		D(A_0, A_0)	& \cdots & D(A_0, A_n) 	\\
+		d(A_0, A_0)	& \cdots & d(A_0, A_n) 	\\
 		\vdots		& \ddots & \vdots		\\
-		D(A_n, A_0) & \cdots & D(A_n, A_n)
+		d(A_n, A_0) & \cdots & d(A_n, A_n)
 	\end{bmatrix}
 \end{equation}
-were $D$ is the function returning the distance between the two arguments and $A$ the admixtures of the $n$ islands of the graph.
+were $d$ is the function returning the distance between the two arguments and $A$ the admixtures of the $n$ islands of the graph.
 
 the partial Mantel test returns a correlation value that is between -1 and 1 with a value of 0 meaning that the two matrices are not correlated at all and 1 that they are completely correlated.
 
@@ -116,21 +143,55 @@ the partial Mantel test returns a correlation value that is between -1 and 1 wit
 \chapter{Results}
 \section{Grid search analysis}
 
+\subsubsection{Stability analysis}
+
+
+\subsubsection{Sensitivity analysis}
+
 
 \section{ABC Framework}
+
+\subsection{Priors definition}
+
+
+\subsection{Posterior distribution}
+
+
 
 
 \chapter{Discussion}
 % optimisations
+\section{Optimisations}
+Some key steps in the analysis framework need to be efficient enough so that time is not lost waiting for results to be treated or for graphs to be plotted and that the computation can be done without needing a computer.
+This project has seen a few important refactoring processes to be able to cope with the quantity of data to be treated. The most important have been to treat the simulation results as a stream of values instead of loading the whole dataset in memory. This changed the memory complexity from linear to constant and it actually improved the time complexity from sub-quadratic to linear for the treatment part and from sub-quadratic to linearithmic for the analysis part. The improvement in time has been made possible by assuming that the results of one simulation are always together in the result stream, that way saving the cost of searching results in a big block of memory when they are actually next to each other.
+Actual execution times have been recorded and can be seen in the graph (REF!!!).\
+
+The stream approach also allows the different steps of an analysis to be run simultaneously, by piping each step to the next, effectively making the whole process run in parallel. This is useful only if the computer used has at least $n$ cores if $n$ processes need to be run in parallel. In this case, the time of the whole process is the time needed to run the longest step.
+
+
 % other visualisations
+\section{Other visualizations}
 % more complex model
+\section{More complex model}
 
 
 \chapter*{Conclusion}
 \addcontentsline{toc}{chapter}{Conclusion}
 
 \bibliography{main}
-\bibliographystyle{plain}
+\bibliographystyle{apalike}
+
+\appendix
+\addtocontents{toc}{\protect\setcounter{tocdepth}{-1}}
+% example visualisations
+%\addtocontents{toc}{\setcounter{tocdepth}{-1}}
+\chapter{Examples of visualisation}
+%\addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
+
+\section{Stability}
+\section{Sensitivity}
+
+% overview
 
 \end{document}
 
