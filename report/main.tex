@@ -3,7 +3,11 @@
 %packages
 \usepackage[utf8]{inputenc}
 \usepackage{mathtools}
+\usepackage{amsfonts}
 \usepackage[onehalfspacing]{setspace}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
 
 %document
 \begin{document}
@@ -41,7 +45,10 @@
 % to be removed...
 %\setcounter{tocdepth}{1}
 % ...until here
-\tableofcontents
+\begin{spacing}{1.2}
+ \tableofcontents
+\end{spacing}
+%\addtocontents{toc}{\protect\enlargethispage{\baselineskip}}
 
 \chapter*{Introduction}
 \addcontentsline{toc}{chapter}{Introduction}
@@ -62,8 +69,40 @@ The first pattern can be seen in the figure (REF!!!) and is a non-linear gradien
 \section{Type of values observed}
 
 \section{Model used}
+
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.55]{../data/nodesOnMap.png}
+	\caption{Nodes of a model superimposed on the map of the modelled region. White nodes are the Asian nodes at the beginning of the simulation and the black ones are the Melanesian ones}
+	\label{nodesOnMap}
+\end{figure}
+
+Because of the stochasticity of the models, a simulation can have non-usable outputs. For example, if an island end up being completely empty, the admixture values yielded by this specific simulation will be \texttt{NaN} (not a number). In such extreme cases, the model can be considered as failed and can either be discarded or given the worst possible score, depending on the current analysis. Arbitrarily, rules have been set to define a simulation as failed:
+\begin{itemize}
+	\item If a deme has a population of less than 10\% of the most populous deme in the network, it is considered as empty;
+	\item If more than 25\% of the demes in any of the islands are empty, the model is considered as failed.
+\end{itemize}
+
 \subsubsection{Comparison to other models}
 \subsubsection{Parameters}
+
+\begin{table}
+	\centering
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+ 		Parameter & Values & Estimated & Comment \\ \hline
+        Migration probability & $\mathbb{R}_{0 \leq x \leq 1}$ & $\mathbb{R}_{0 < x \leq 0.8}$ & probability to start migrating \\ \hline
+        Starting distribution & \{...\} & \{...\} & starting admixtures \\ \hline
+        Fecundity & $\mathbb{R}_{\geq 0}$ & $\mathbb{R}_{2.3 < x < 6}$ & Poisson law mean \\ \hline
+        Number of agents & $\mathbb{Z}_{\geq 0}$ & $\mathbb{Z}_{50 < x < 400}$ & population in each deme, initially \\ \hline
+        Graph & \{...\} & \{...\} & graph nodes and edges \\ \hline
+        Growth rate & $\mathbb{R}_{0 \leq x \leq 1}$ & $\mathbb{R}_{0 < x < 0.001}$ & limiting rate of population growth \\ \hline
+        Model rules & \{...\} & \{...\} & mainly, marriages rules \\ \hline
+        Marriage threshold & $\mathbb{R}_{0 \leq x \leq 1}$ & $\mathbb{R}_{0 < x < 0.5}$ & affects marriages rules \\ \hline
+	\end{tabular}
+	\caption{changing parameters of the model}
+	\label{parameters}
+\end{table}
 % model details
 % previous works
 %% previous models
@@ -81,22 +120,61 @@ The first pattern can be seen in the figure (REF!!!) and is a non-linear gradien
 \section{Run management}
 The fact that many simulations are required to be able to infer meaningful information from the model imply that they cannot be run on a single desktop computer. In fact, running them in a single computer, the time to run enough simulations to be statistically relevant could be counted in years.
 Luckily, every simulation being independent from the others, there are multiple ways to generate more results in less time.
-Firstly, since nowadays most of the computers have multiple processors, one computer can run multiple simulation concurrently. Also, a cluster of computers can be used and the wanted simulations can be dispatched among the nodes of the cluster so that they each run the simulations they were assigned and when all the nodes have ended their runs, their outputs can be aggregated and/or stored
+Firstly, since nowadays most of the computers have multiple processors, one computer can run multiple simulation concurrently. Also, a cluster of computers can be used and the wanted simulations can be dispatched among the nodes of the cluster so that they each run the simulations they were assigned and when all the nodes have ended their runs, their outputs can be aggregated and/or stored.
 
+Different levels have been used. First, running the simulations locally (figure \ref{network:local}), on a single computer, then using the three computers in the office has a cluster of compute nodes (figure \ref{network:office}), for more heavy batches. Also, since Massey University just made an agreement with Microsoft Azure, that provides computing "in the cloud", simulations have been run adding virtual machines on the Microsoft Azure system to the cluster of computers in the office transparently (figure \ref{network:azure}).
+Finally, when the computation requirements were to high, for really huge batches, the NeSI\footnote{New Zealand eScience Infrastructure}'s High Performance Computing (HPC) facilities have been used (figure \ref{network:nesi}). They provide servers specially designed for scientific computation and can be tasked with hundred of parallel jobs at a time. Each node is an IBM Power755 machine.
+
+The most powerful level used for this study is obviously using the HPC but a trade-off of using this system is that, since it is shared by multiple users and is managed by a third-party, it requires specific settings and it cannot be used exactly as can be a custom cluster of computers. The batches have to be submitted to a load leveller to the system and thus slight changes have been made to the way the model and the Repast framework are launched. Runs ran on this HPC used several nodes (usually around 4) with each 32 threads available for the simulations. This configuration leads to the parallel simulation more than a hundred of scenarios at the same time.
+
+\begin{figure}
+	\centering
+	\begin{subfigure}[t]{0.48\textwidth}
+		\centering
+		\includegraphics[scale=0.6]{../data/network:local.png}
+		\caption{local}
+		\label{network:local}
+	\end{subfigure}
+	~
+	\begin{subfigure}[t]{0.48\textwidth}
+		\centering
+		\includegraphics[scale=0.6]{../data/network:office.png}
+		\caption{local network}
+		\label{network:office}
+	\end{subfigure}
+	\\
+	\begin{subfigure}[t]{0.48\textwidth}
+		\centering
+		\includegraphics[scale=1]{../data/network:azure.png}
+		\caption{local network and Azure}
+		\label{network:azure}
+	\end{subfigure}
+	~
+	\begin{subfigure}[t]{0.48\textwidth}
+		\centering
+		\includegraphics[scale=1]{../data/network:nesi.png}
+		\caption{NeSI}
+		\label{network:nesi}
+	\end{subfigure}
+	\caption{Different set-ups to run the model}
+	\label{network}
+\end{figure}
+
+% data processing from model output
+% data storage, adding and querying data
+\section{Data processing, storage and query}
 Since running a lot of simulations, with a lot of different parameters, can generate a lot of output files whose original parameters can be hard to track, a way to keep them organised was needed. Doing so, it would also be possible to use results from different batches and to analyse them together, thus avoiding to redo simulations for parameters already tested.
 
 The organised way to store this is naturally in a database. The choice has been made to use a relational database, specifically MariaDB (a fork of Oracle's MySQL). The structure has been designed so that the parameters can be efficiently queried. The tables and relations between them can be seen in the figure \ref{db}. It has first been developed and tested locally and then, once it was working properly, it was deployed on a server provided by Massey University for research purposes.
 
 \begin{figure}
 	\centering
-	\includegraphics[scale=0.7]{data/DB.png}
+	\includegraphics[scale=0.8]{../data/DB.png}
 	\caption{Structure of the database storing the results of the simulations and the corresponding parameters}
 	\label{db}
 \end{figure}
 
-% data processing from model output
-% data storage, adding and querying data
-\section{Data processing, storage and query}
+The interaction with the database can be done through phpMyAdmin but 2 scripts have been done to interact with it, one that adds the model outputs to the database and an other one that queries the database. The scripts have been written in Python3, using the PyMySQL module to access the MariaDB database, and internally using an other script, in R, that treats the data before adding them to the DB.
 
 
 \section{Analysis}
@@ -110,11 +188,12 @@ Those values in the models can then be dropped as they cannot be compared.
 Many different comparison functions have been tested. Two functions have been selected that can hold different information about a comparison. The mean square distance (MSD) and the partial Mantel test have been selected as they do not have a good correlation when applying them to random admixture values, meaning that they do not carry the same information, they are complementary, and using them both gives a better overview of the comparison.
 
 \subsubsection{Mean square distance}
-The mean square distance is the mean value of all the distances between values of admixture for every islands.
+The mean square distance is the mean value of all the distances between values of admixture for every $n$ island.
 
 \begin{equation}
-MSS = \frac{\sum\limits_{i=1}^{n} (Real_i - Simulated_i)) ^ 2}{n}
+MSD = \frac{\sum\limits_{i=1}^{n} \sqrt{(AdReal_i - AdSim_i) ^ 2}}{n}
 \end{equation}
+where $AdReal$ is the array of admixture data observed in the real values and $AdSim$ the corresponding values in the simulated model.
 
 It gives a distance value, with 0 meaning that the two observed values are absolutely identical. In this specific context, with the fact that an admixture value is compared and because of the values observed in the real data, the higher possible value will be around $0.8$.
 
@@ -125,12 +204,15 @@ The Mantel test has been developed to be able to compare two matrices with the s
 In this case, the matrices contain the values of distances of admixtures between every islands in the graph and a matrix $M$ is calculated as
 \begin{equation}
 	M = \begin{bmatrix}
-		d(A_0, A_0)	& \cdots & d(A_0, A_n) 	\\
-		\vdots		& \ddots & \vdots		\\
-		d(A_n, A_0) & \cdots & d(A_n, A_n)
+		d(Ad_0, Ad_0)	& \cdots & d(Ad_0, Ad_n) \\
+		\vdots			& \ddots & \vdots		 \\
+		d(Ad_n, Ad_0)	& \cdots & d(Ad_n, Ad_n)
 	\end{bmatrix}
 \end{equation}
-were $d$ is the function returning the distance between the two arguments and $A$ the admixtures of the $n$ islands of the graph.
+were $d$ is the function returning the distance between the two arguments and $A$ the admixtures of the $n$ islands of the graph. With the corresponding matrices for the simulation data, the real data and also the geographical distances, the partial Mantel test can be done as such
+\begin{equation}
+	correlation = partial.Mantel(M_{Simulated}, M_{Real}, M_{geographical})
+\end{equation}
 
 the partial Mantel test returns a correlation value that is between -1 and 1 with a value of 0 meaning that the two matrices are not correlated at all and 1 that they are completely correlated.
 
@@ -160,6 +242,16 @@ the partial Mantel test returns a correlation value that is between -1 and 1 wit
 
 
 \chapter{Discussion}
+
+\section{Importance of randomness}
+One important aspect that has been discovered while working with the Repast framework was the way it handles randomness. For a stochastic simulation, randomness is key, as starting two simulations with the same random seed and the same parameters would lead to the same succession of events in the simulation and thus to the same outcome. These two simulations would actually be the same one.
+
+When looking at the results with a statistical point of view, one cannot use two identical simulations as two distinct values, that would simply make no sense and lead to biased interpretations of the values.
+
+The problem with Repast is that it uses the current time to generate a random seed. While this can be acceptable when the program is run in one thread on a single computer, since the time at which one simulation will always be different from one other simulation, it leads to problems if the simulations are run in parallel using multiple threads on the same machine and/or using different machines and they happen to start at the same time. The risk of both the random seed and the parameter set used for the simulations colliding, while not probable, is still possible thus not acceptable. Actually, even though the random seed is supposed to be a 32 bits signed integer, meaning that there are more that 4 billions possibilities, collisions happened more than once during this project.
+
+The first way to handle this has been to alert the user when this happened, letting him remove the specific simulations if needed. Secondly, a way has been found to generate the random seeds beforehand using Unix's random source, \texttt{/dev/urandom/}, that can generate pseudo-random values that can be used for cryptographic purposes, meaning that it is good enough to avoid collision.
+
 % optimisations
 \section{Optimisations}
 Some key steps in the analysis framework need to be efficient enough so that time is not lost waiting for results to be treated or for graphs to be plotted and that the computation can be done without needing a computer.
