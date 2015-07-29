@@ -8,6 +8,7 @@
 \usepackage{graphicx}
 \usepackage{caption}
 \usepackage{subcaption}
+\usepackage[hidelinks]{hyperref}
 
 %document
 \begin{document}
@@ -72,32 +73,38 @@ The first pattern can be seen in the figure (REF!!!) and is a non-linear gradien
 
 \begin{figure}
 	\centering
-	\includegraphics[scale=0.55]{../data/nodesOnMap.png}
-	\caption{Nodes of a model superimposed on the map of the modelled region. White nodes are the Asian nodes at the beginning of the simulation and the black ones are the Melanesian ones}
+	\includegraphics[scale=0.45]{../data/ISEA-node-map.png}
+	\caption{Nodes of a model superimposed on the map of the modelled region. White nodes are the Asian nodes at the beginning of the simulation and black nodes are the Melanesian ones, according to one of the starting distributions used as parameter}
 	\label{nodesOnMap}
 \end{figure}
 
-Because of the stochasticity of the models, a simulation can have non-usable outputs. For example, if an island end up being completely empty, the admixture values yielded by this specific simulation will be \texttt{NaN} (not a number). In such extreme cases, the model can be considered as failed and can either be discarded or given the worst possible score, depending on the current analysis. Arbitrarily, rules have been set to define a simulation as failed:
+Because of the stochasticity of the models, a simulation can end up having non-usable outputs. For example, if an island end up being completely empty, the admixture values yielded by this specific simulation will be \texttt{NaN} (not a number). In such extreme cases, the model can be considered as failed and can either be discarded or given the worst possible score, depending on the current analysis. Arbitrarily, rules have been set to define a simulation as failed:
 \begin{itemize}
 	\item If a deme has a population of less than 10\% of the most populous deme in the network, it is considered as empty;
 	\item If more than 25\% of the demes in any of the islands are empty, the model is considered as failed.
 \end{itemize}
 
 \subsubsection{Comparison to other models}
+This model is one of the types of models that could have been chosen. For example, other models can have the single unit of time defined as a generation (roughly equivalent to 20 years), here the unit of time have been defined as one year to have more precise time steps in the model and to be closer to reality due to the higher time-resolution.
+
+Coalescent models also exist, they take the problem the other way around by trying to rebuild the past, the ancestry of the individuals, based on present data. They it this way to try to reduce the amount of computation needed, that way, they don't have to simulate agents whose line would have been extinct. In that case though, it is not really suited for this agent-based model where parameters vary among agents.
 \subsubsection{Parameters}
 
 \begin{table}
-	\centering
+	%\centering
+	\hspace*{-1cm}
 	\begin{tabular}{|c|c|c|c|}
 		\hline
  		Parameter & Values & Estimated & Comment \\ \hline
-        Migration probability & $\mathbb{R}_{0 \leq x \leq 1}$ & $\mathbb{R}_{0 < x \leq 0.8}$ & probability to start migrating \\ \hline
-        Starting distribution & \{...\} & \{...\} & starting admixtures \\ \hline
-        Fecundity & $\mathbb{R}_{\geq 0}$ & $\mathbb{R}_{2.3 < x < 6}$ & Poisson law mean \\ \hline
-        Number of agents & $\mathbb{Z}_{\geq 0}$ & $\mathbb{Z}_{50 < x < 400}$ & population in each deme, initially \\ \hline
-        Graph & \{...\} & \{...\} & graph nodes and edges \\ \hline
-        Growth rate & $\mathbb{R}_{0 \leq x \leq 1}$ & $\mathbb{R}_{0 < x < 0.001}$ & limiting rate of population growth \\ \hline
-        Model rules & \{...\} & \{...\} & mainly, marriages rules \\ \hline
+        Migration prob. & $\mathbb{R}_{0 \leq x \leq 1}$ & $\mathbb{R}_{0 < x \leq 0.8}$ & prob. to start migrating for a Melanesian agent \\ \hline
+        Migration prob. ratio & $\mathbb{R}_{x 0 \geq x}$ & $\mathbb{R}_{1 \leq x \leq 4}$ & corresponding ratio for an Asian agent \\ \hline
+        Fecundity & $\mathbb{R}_{\geq 0}$ & $\mathbb{R}_{2.3 < x < 6}$ & Poisson law mean for a Melanesian agent \\ \hline
+        Fecundity ratio & $\mathbb{R}_{x 0 \geq x}$ & $\mathbb{R}_{1 \leq x \leq 1.5}$ & corresponding ratio for an Asian agent \\ \hline
+        Starting distribution & \{...\} & \{...\} & distribution of pop. in the graph \\ \hline
+        Number of agents & $\mathbb{Z}_{\geq 0}$ & $\mathbb{Z}_{50 < x < 400}$ & pop. size in each deme, initially \\ \hline
+        Graph & \{...\} & \{...\} & composition of the graph (nodes and edges) \\ \hline
+        Growth rate & $\mathbb{R}_{0 \leq x \leq 1}$ & $\mathbb{R}_{0 < x < 0.001}$ & limiting rate of pop. growth \\ \hline
+        Model rules & \{...\} & \{...\} & different model rules, mainly marriages rules \\ \hline
         Marriage threshold & $\mathbb{R}_{0 \leq x \leq 1}$ & $\mathbb{R}_{0 < x < 0.5}$ & affects marriages rules \\ \hline
 	\end{tabular}
 	\caption{changing parameters of the model}
@@ -109,6 +116,7 @@ Because of the stochasticity of the models, a simulation can have non-usable out
 %% previous analyses
 
 \section{Statistical analysis framework}
+
 \subsubsection{Previous works}
 \subsubsection{Specific needs}
 
@@ -168,8 +176,8 @@ Since running a lot of simulations, with a lot of different parameters, can gene
 The organised way to store this is naturally in a database. The choice has been made to use a relational database, specifically MariaDB (a fork of Oracle's MySQL). The structure has been designed so that the parameters can be efficiently queried. The tables and relations between them can be seen in the figure \ref{db}. It has first been developed and tested locally and then, once it was working properly, it was deployed on a server provided by Massey University for research purposes.
 
 \begin{figure}
-	\centering
-	\includegraphics[scale=0.8]{../data/DB.png}
+	\hspace*{-1cm}
+	\includegraphics[scale=0.87]{../data/DB.png}
 	\caption{Structure of the database storing the results of the simulations and the corresponding parameters}
 	\label{db}
 \end{figure}
@@ -181,6 +189,7 @@ The interaction with the database can be done through phpMyAdmin but 2 scripts h
 
 
 \subsection{Comparisons}
+\label{subsection:comparisons}
 To be able to compare two different scenarios, one has to define comparison functions that will be able to provide a value of similarity or dissimilarity when provided with observable values that characterise the scenarios. In this case, the comparison is done between the real observed data and the output of one simulation.
 Every simulation output has to be treated to be of the same form than the observed data so that it can be compared. The observed data does not include values for specific islands that are included in the simulations, namely Alor, Tanimbar and Aru in eastern Indonesia. The admixture values for mitochondrion and Y-chromosome are also not available for every island.
 Those values in the models can then be dropped as they cannot be compared.
@@ -191,7 +200,7 @@ Many different comparison functions have been tested. Two functions have been se
 The mean square distance is the mean value of all the distances between values of admixture for every $n$ island.
 
 \begin{equation}
-MSD = \frac{\sum\limits_{i=1}^{n} \sqrt{(AdReal_i - AdSim_i) ^ 2}}{n}
+MSD = \frac{\sum\limits_{i=1}^{n} (AdReal_i - AdSim_i) ^ 2}{n}
 \end{equation}
 where $AdReal$ is the array of admixture data observed in the real values and $AdSim$ the corresponding values in the simulated model.
 
@@ -225,19 +234,51 @@ the partial Mantel test returns a correlation value that is between -1 and 1 wit
 \chapter{Results}
 \section{Grid search analysis}
 
+In order to reduce the parameter space, a grid search as been done. It consists of going through the possible parameter sets by setting parameter values at regular steps throughout the space and to run $n$ mulitple simulations for every point in the space in order to have statistically useful results for every point. A hypothetical parameter grid search can be seen in figure \ref{grid}.
+
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.7]{../data/grid.png}
+	\caption{Visual representation of a grid search on three hypothetical parameters, $\alpha$, $\beta$ and $\gamma$. Each point represents a set of those parameters, that will be used for $n$ different simulations}
+	\label{grid}
+\end{figure}
+
+Depending on the number of parameter and the size of the steps, this holds an important computational cost but it has been considered a necessary step in order to reduce the parameter space for the next analysis, the ABC analysis, that would be even more computationally consuming if run over an huge parameter space. The resulting parameter space after the grid search analysis being defined manually after selecting interesting and meaningful values can be either a smaller space or even be set at a specific value.
+
 \subsubsection{Stability analysis}
+There was multiple way to analyse outputs from simulations with grid searches. The first one was to look at a specific point of the grid and assess the stability of the output generated with this parameter set.
 
 
 \subsubsection{Sensitivity analysis}
+When looking at multiple points of the grid, one can analyse the sensitivity of the output to the changes in the parameters.
+Firstly, this analysis was done by looking at a single parameter changing while the others were fixed at one value, this was called a one-dimensional sweep. Then, this could be done on a two-dimensional sweep but, even though it was possible, no higher dimension was analysed because of the difficulty to further visualise the results. Indeed, the visualisation choices would have needed three or higher-dimensional visualisations.
 
 
 \section{ABC Framework}
 
-\subsection{Priors definition}
+Once a subspace of parameters have been defined, it can be used to feed the ABC framework used later on. ABC stands for Approximate Bayesian Computation and, instead of a standard Bayesian analysis where one can infer one best value for every parameter, here the ABC gives a distribution of parameters corresponding to the best values. This let appreciate the shape of the distributions and allow better understanding of the output values of highly stochastic models ran a high number of times. This technique, although quite recent, has been described in numerous studies (\cite{Sun01}, \cite{Csi02}) and used in several population simulation studies similar to this project (\cite{Keh01}, \cite{Gui01}).
 
+Here, after using the R package “ABC” \cite{Csi01}, custom code inspired by it has been written but adapted to the specifics of this project.
 
-\subsection{Posterior distribution}
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.55]{../data/abc-landscape.png}
+	\caption{Visual representation of the different steps of an ABC inference framework}
+	\label{abc}
+\end{figure}
 
+The whole framework encompasses from the choice of the parameter sets to the inference of the posterior distribution. The figure \ref{abc} summarises the successive steps of this process with hypothetical parameters $\alpha$, $\beta$ and $\gamma$ and summary statistics $SS1$ and $SS2$. In this project, the parameters used are the one defined in the table \ref{parameters} even though, the one fixed after the grid search analyses will be ignored as they are defined once and will not change. The summary statistics are the 4 results of the comparison functions defined in the section \ref{subsection:comparisons}.
+
+\subsection{Priors definition and posterior distribution}
+
+The priors are defined as a set of distributions, one for each observed parameter. The distributions can be of any type but it is necessary to know them when doing the inference of the posterior distributions as, depending on the type chosen, they can induce a bias that will need to be corrected. Here, the distributions chosen are all uniform and they only bias can be if the correct parameters lay outside of the boundaries of the distributions (thus the importance of the previous grid search analysis). A visualisation of the simulation parameter sets that can be generated by the first step of an ABC framework can be seen in the figure \ref{abc-space}.
+
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.7]{../data/abc-space.png}
+	\caption{Visual representation of 5.000 sets of three hypothetical parameters, $\alpha$, $\beta$ and $\gamma$ drawn from independent uniform distributions}
+	\label{abc-space}
+\end{figure}
 
 
 
