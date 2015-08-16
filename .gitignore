@@ -4,6 +4,11 @@
 *.toc
 *.bbl
 *.blg
+*.ac?
+*.alg
+*.gl?
+*.ist
+*.xdy
 *~
 *.out
 *.dvi
