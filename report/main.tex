@@ -53,7 +53,7 @@
   \begin{minipage}{\dimexpr\linewidth-2\fboxsep-2\fboxrule} 
     \centering\Large\bfseries 
     \vskip1cm 
-    Project report: statistical analysis pipeline for genetic data from a human population settlement model\par 
+    Project report: statistical analysis pipeline for admixture data from a human population settlement model\par 
     \vskip1cm \kern0pt 
   \end{minipage}%
   }%
@@ -84,9 +84,9 @@ Two groups of populations can be identified in the Islands of South-East Asia (I
 
 The exact path these populations followed is unclear though, and it is believed they might have come through Taiwan, the Malay Peninsula, or from both places around the same time.
 
-Nowadays, people living in this area have mixed genomic ancestry and markers can be identified as either from an Asian ancestry or a Melanesian one. These markers are based on single nucleotid polymorphisms (SNPs) located in different chromosomes and 52 markers can be used to define accurately the \gls{admixture} of the Asian ancestry in every individuals \cite{Cox01}.
+Nowadays, people living in this area have mixed genomic ancestry and markers can be identified as either from an Asian ancestry or a Melanesian one. These markers are based on single nucleotid polymorphisms (SNPs) located in different chromosomes and 52 markers can be used to define accurately the \gls{admixture} of the Asian ancestry in every individual \cite{Cox01}.
 
-The choice of these SNPs is a result of previous studies the resulting set is defined as highly informative and allows to define the ancestry of a person based on a small quantity of markers that are highly discriminant.
+The choice of this set of SNPs is the result of previous studies and the resulting set is defined as highly informative and allows to define the ancestry of a person based on a small quantity of markers that are highly discriminant.
 
 Two specific patterns can be seen \cite{Lan01}. One is the non-linear gradient of Asian \gls{admixture} along the longitudinal axis in the different islands in the area, that could correspond more or less to how the Austronesian expansion wave propagated from the mainland. The second is the difference of \gls{admixture} when looking at specific parts of the genomes associated with male or female ancestry, implying a gender-biased expansion.
 % first papers
@@ -95,14 +95,15 @@ Two specific patterns can be seen \cite{Lan01}. One is the non-linear gradient o
 
 
 \chapter{Project presentation}
-The project follows other studies made jointly at Massey University, the University of Arizona, the Santa Fe Institute, and the Eijkman Institute. These studies provide the set of SNPs used, determined after the sequencing of 1.430 individuals from 60 populations. The data and discoveries made led to other questions, like different \gls{admixture} patterns, and this project tries to find answers to them.
+The project follows other studies made jointly at Massey University, the University of Arizona, the Santa Fe Institute, and the Eijkman Institute. These studies provide the set of SNPs used, determined after the sequencing of 1.430 individuals from 60 populations. The data and discoveries made led to further questioning, such as trying to explain the different \gls{admixture} patterns, and this project tries to find answers to them.
+
 This project consists of developing a model of the Austronesian expansion throughout the ISEA that could reproduce the same two patterns observed in the real data.
-The first pattern can be seen in the figure \ref{cox-image} and is a non-linear gradient in Asian \gls{admixture} that declines abruptly around the eastern part of Indonesia. The second one, represented in the figure \ref{lansing-image}, shows the differences of \glspl{admixture} on distinct parts of the DNA for different islands. These differences would tend to appear in a context where marriages between Asian women and Melanesian men would be favoured.
+The first pattern can be seen in the figure \ref{cox-image} and is a non-linear gradient in Asian \gls{admixture} that declines abruptly around the eastern part of Indonesia. The second one, represented in the figure \ref{lansing-image}, shows the differences of \glspl{admixture} on distinct parts of the DNA for different islands. These last differences would tend to appear in a context where marriages between Asian women and Melanesian men would be favoured.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{../data/cox-image.jpg}
-	\caption{Local admixture rates across the Indo-Pacific region. (a) Pie charts showing mean regional admixture rates (Asian component in white; Melanesian component in black). Wallace's biogeographic line is shown as a dotted line. Regional admixture rates are shown for data reduction purposes; (b) Change in Asian admixture rates calculated from all SNPs combined (black line). Regions with no data indicated by a dashed line (exact gradient unknown). Asian admixture estimated from autosomal and X-chromosomal SNPs are indicated by black and grey points, respectively. Note the decline in Asian admixture beginning in eastern Indonesia, as well as preferential retention of X-chromosomal (grey) versus autosomal (black) diversity. Reproduced unmodified from \cite{Cox01}.}
+	\caption{Local admixture rates across the Indo-Pacific region. (a) Pie charts showing mean regional admixture rates (Asian component in white; Melanesian component in black). Wallace’s biogeographic line is shown as a dotted line. Regional admixture rates are shown for data reduction purposes; (b) Change in Asian admixture rates calculated from all SNPs combined (black line). Regions with no data indicated by a dashed line (exact gradient unknown). Asian admixture estimated from autosomal and X-chromosomal SNPs are indicated by black and grey points, respectively. Note the decline in Asian admixture beginning in eastern Indonesia, as well as preferential retention of X-chromosomal (grey) versus autosomal (black) diversity. Reproduced unmodified from \cite{Cox01}.}
 	\label{cox-image}
 \end{figure}
 
@@ -116,15 +117,15 @@ The first pattern can be seen in the figure \ref{cox-image} and is a non-linear 
 The whole idea of the project is thus to try to reproduce the same patterns and to determine which sets of parameters led to outputs similar to what is observed. The model is set to run from the beginning of the Austronesian expansion, around 4.500 years ago, to nowadays.
 
 \section{Simulated data}
-The simulated data from the model will be the \glspl{admixture} of the populations among the area covered by the model. The \glspl{admixture} will be measured for five parts of the DNA, the whole DNA, the mitochondrial DNA, the autosomal DNA and the X and the Y-chromosomal DNA. These \gls{admixture} values will only be for the last step of the simulation, since they will be the only values comparable to the real observed \glspl{admixture}.
+The simulated data from the model will be the \glspl{admixture} of the populations among the area covered by the model. The \glspl{admixture} will be measured for five parts of the DNA, the whole DNA, the mitochondrial DNA, the autosomal DNA and the X and Y-chromosomal DNAs. These \gls{admixture} values will only be for the last step of the simulation, since they will be the only values comparable to the real observed \glspl{admixture}.
 
 \section{Agent-Based Model}
-The model will an Agent-Based Model that will comprise a graph of nodes, each node corresponding to a \gls{deme}, and each edge corresponding to a possible migration route between \glspl{deme} (see figure \ref{nodesOnMap}). The agents of the model will be people living in the graph, in every node, and these agents will be able to migrate and to form families. The graph and the agents living in it will respond to a set of basic rules regulated by parameters and the goal is then to observe the emerging behaviours arising from it.
+The model will an Agent-Based Model that will comprise a graph of nodes, each node corresponding to a \gls{deme}, and each edge corresponding to a possible migration route between \glspl{deme} (see figure \ref{nodesOnMap}). The agents of the model will be people living in the graph, in every node, and these agents will be able to migrate and to create families. The graph and the agents living in it will respond to a set of basic rules regulated by parameters and the goal is then to observe the emerging behaviours arising from it.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{../data/ISEA-node-map.png}
-	\caption{Nodes of a model superimposed on the map of the modelled region. White nodes are the Asian nodes at the beginning of the simulation and black nodes are the Melanesian ones, according to one of the starting distributions used as parameter}
+	\caption{Nodes of a model superimposed onto the map of the modelled region. White nodes are the Asian nodes at the beginning of the simulation and black nodes are the Melanesian ones, according to one of the starting distributions used as parameter}
 	\label{nodesOnMap}
 \end{figure}
 
@@ -134,17 +135,17 @@ Because of the stochasticity of the model, and because the parameters used might
 	\item If more than 25\% of the \glspl{deme} in any of the islands are empty, the simulation is considered as failed.
 \end{itemize}
 
-\subsubsection{Comparison to other models}
+\subsubsection{Other existing models}
 This model is one of the types of models that could have been chosen. For example, other models can have their time unit defined as a generation (roughly equivalent to 20 years), here the unit of time has been defined as one year to have more precise time steps in the model and to be closer to the reality due to the higher time resolution.
 
-Coalescent models also exist, they take the problem the other way around by trying to rebuild the past, the ancestry of the individuals, based on present data. They do it this way to try to reduce the amount of computation needed, they therefore don’t have to simulate agents whose line would have ended up extinct. It is not really suited for this agent-based model though because parameters vary among agents and this is not trivial to do with coalescence.
+Coalescent models also exist, they take the problem the other way around by trying to rebuild the past, the ancestry of the individuals, based on the present data. They do it this way to try to reduce the amount of computation needed, they therefore don’t have to simulate agents whose lineage would have ended up extinct. It is not really suited for this agent-based model though because parameters vary among agents and this is not trivial to do with coalescence.
 
 \subsubsection{Parameters}
-Numerous parameters can be set in the model. Some of them are defined once and for all and the fact that they are immutable have been done to simplify the actual use of the model by limiting the number of parameters to set. Changing them would actually not hold any meaning nor output realistic values.
+Numerous parameters can be set in the model. Some of them are defined once and for all and the fact that they are immutable is to simplify the actual use of the model by limiting the number of parameters to set. Changing them would actually not hold any meaning nor output realistic values.
 
 The parameters that can actually be adjusted are listed in the table \ref{parameters} and can be put into different groups. Most of them are continuous parameters, whose values are numbers, and a few of them are discrete. The discrete parameters are the graphs used and the starting distributions. While the former corresponds to the topography of the graph used in the model, comprising the nodes and the edges between them, the latter is the distribution of the Melanesian and Asian populations in the graph at the initial step of the model.
 
-The model can actually work with a lot of different parameter values, those corresponds to the “values” columns in the table \ref{parameters}, but knowing what we are dealing with and the context of the model, an estimation of possible realistic values can be found easily and will need to be refined later on during the analysis processes (see \ref{section:analysis}) and based on values suggested by other anthropological studies.
+The model can work with a lot of different parameter values, those corresponds to the “values” columns in the table \ref{parameters}, but knowing the context of the model, especially using previous anthropological studies, an estimation of possible realistic values can be found easily and will need to be refined later on during the analysis processes (see \ref{section:analysis}).
 
 \begin{table}
 	\hspace*{-1.75cm}
@@ -173,15 +174,17 @@ The model can actually work with a lot of different parameter values, those corr
 \section{Statistical analysis framework}
 Given that the model will be run numerous times, with a lot of different changing values for the parameters, a robust statistical analysis framework needs to be implemented in order to be able to extract meaningful information from the high quantity of generated data.
 
-A fairly recent statistical analysis framework has been used more and more in the context of population simulations. This framework is called Approximate Bayesian Computation (ABC). Its use is recommended when the high quantity of data and the high dimensionality of it makes difficult the use of standard statistical framework. It still relies highly on standard statistical tools but instead of giving one best result, it tries to give a distribution of best possible parameters. It answers the question of, given a set of parameter distribution, that are called “\glspl{prior}”, what are the distributions, subsets of the priors, that gives best results. This set of outputted distributions are then called “\glspl{posterior}”.
+A fairly recent statistical analysis framework has been used more and more in the context of population simulations. This framework is called Approximate Bayesian Computation (ABC). Its use is recommended when the high quantity of data and the high dimensionality of it make difficult the use of standard statistical frameworks. It still relies highly on standard statistical tools but instead of giving one best result, it tries to give a distribution of best possible parameters. It answers the question of, given a set of parameter distributions, that are called “\glspl{prior}”, what are the distributions, subsets of the priors, that give best results. This set of outputted distributions are then called “\glspl{posterior}”.
 
-Its use has been increasing recently and some examples of papers using the ABC in similar contexts are \cite{Gui01} or \cite{Keh01}.
+Its use has been increasing recently and some examples of recent papers using the ABC in similar contexts are \cite{Gui01} or \cite{Keh01}.
 
 \chapter{Implementation}
-The model itself has been developed in Java using the Repast Simphony framework \cite{Nor01}, a cross-platform framework made to write flexible agent-based models. The agents corresponds either to a single person or a couple that evolve in the \glspl{deme}. Each \gls{deme} is a node in a graph and possible migration path between \glspl{deme} are edges of this graph. Therefore, the implementation consists of agents evolving in a graph.
+\section{Overview}
+The model itself has been developed in Java using the Repast Simphony framework \cite{Nor01}, a cross-platform framework made to write flexible agent-based models. The agents corresponds either to a single person or a couple that evolve in the \glspl{deme}. Each \gls{deme} is a node in a graph and possible migration path between \glspl{deme} are edges of this graph. Therefore, the implementation of the model consists of agents evolving in a graph.
 
-The different parts of the implementation are detailed in the next sections. A global overview of the pipeline is available in the figure \ref{workflow-2}.
-% or "realisation", "analysis pipeline"
+The different parts of the statistical analysis pipeline implementation are detailed in the next sections. A global overview of the pipeline is available in the figure \ref{workflow-2} and presents the different modules of the pipeline, the language in which they were written as well as the formats of the intermediary storage steps. The modular design is necessary because the analysis pipeline requires high flexibility. The arrows in the figure only represent a few of the possible ways the pipeline can be used and, depending on what is necessary, some intermediary steps can be bypassed. Also, with the same idea of flexibility and ease of use, every script can be called independently and provides command line parameters defined in a standard way (POSIX guidelines) and a corresponding help option to detail them.
+
+The model here has been simplified to a single step in the pipeline even though it is fairly complex. This is because the implementation of the model, while really important for the project, does not enter in the scope of the internship. Its inner functioning and design is nevertheless required for the implementation of the rest of the pipeline.
 
 \begin{figure}[H]
 	\centering
@@ -190,16 +193,17 @@ The different parts of the implementation are detailed in the next sections. A g
 	\label{workflow-2}
 \end{figure}
 
-% run management (local, cluster, NeSI)
+
+
 \section{Run management}
 The fact that many simulations are required to be able to infer meaningful information from the model imply that they cannot be run sequentially on a single desktop computer in a reasonable amount of time.
 Luckily, every simulation being independent from the others, there are multiple ways to generate more results in less time.
-Firstly, since nowadays most of the computers have multiple processors, one computer can run multiple simulation concurrently. Also, a cluster of computers can be used and the simulations needed can be dispatched among the nodes of the cluster so that they each run the simulations they were assigned. When all of the nodes have ended their runs, their outputs can be aggregated and/or stored.
+Firstly, if the computer used has multiple processors, it can run multiple simulation concurrently. Also, a cluster of computers can be used and the simulations needed can be dispatched among the nodes of the cluster so that they each run the simulations they were assigned. When all of the nodes have ended their runs, their outputs can be aggregated and/or stored.
 
 Different levels have been used. First, running the simulations locally (figure \ref{network:local}), on a single computer, then using the three computers in the office as a cluster of compute nodes (figure \ref{network:office}), for more heavy batches. Also, since Massey University just made an agreement with Microsoft Azure, that provides computing “in the cloud”, simulations have been run transparently adding virtual machines on the Microsoft Azure system to the cluster of computers in the office (figure \ref{network:azure}).
-Finally, when the computation requirements were to high, for really huge batches, the NeSI\footnote{New Zealand eScience Infrastructure}’s High Performance Computing (HPC) facilities have been used (figure \ref{network:nesi}). They provide servers specially designed for scientific computation and can be tasked with hundreds of parallel jobs at a time and multiple batches can be queued so they will be run as soon as computational power is available. Each node is an IBM Power755 machine.
+Finally, when the computation requirements were too high, for really huge batches, the NeSI\footnote{New Zealand eScience Infrastructure}’s High Performance Computing (HPC) facilities have been used (figure \ref{network:nesi}). They provide servers specially designed for scientific computation and can be tasked with hundreds of parallel jobs at a time and multiple batches can be queued so they will be run as soon as computational power is available. Each node is an IBM Power755 machine.
 
-The most powerful level used for this study is obviously using the HPC but a trade-off of using this system is that, since it is shared by multiple users and is managed by a third-party, it requires specific settings and it cannot be used exactly as can be a custom cluster of computers. The batches have to be submitted through a \gls{job-scheduler}, in the case the software is called LoadLeveler. Because of this, slight changes have been made to the way the model and the Repast framework are launched. Simulations run on this HPC use several nodes, with each of these nodes having multiple threads available for the simulations. This configuration leads to the parallel simulation of more than a hundred of scenarios at the same time. In this case 4 nodes were used, each of those having 32 threads.
+The most powerful level used for this study is obviously using the HPC but a trade-off of using this system is that, since it is shared by multiple users and is managed by a third-party, it requires specific settings and it cannot be used exactly as can be a custom cluster of computers. The batches have to be submitted through a \gls{job-scheduler}, in this case the software is called LoadLeveler. Because of this, slight changes have been made to the way the model and the Repast framework are launched. Simulations run on this HPC use several nodes, with each of these nodes having multiple threads available for the simulations. This configuration leads to the parallel simulation of more than a hundred of scenarios at the same time. In this case 4 nodes were used, each of those having 32 threads.
 
 \begin{figure}[H]
 	\centering
@@ -237,7 +241,7 @@ The most powerful level used for this study is obviously using the HPC but a tra
 % data processing from model output
 % data storage, adding and querying data
 \section{Data processing, storage and query}
-Since running a lot of simulations, with a lot of different parameters, can generate a lot of output files whose original parameters can be hard to track, a way to keep them organised was needed. Doing so, it would also be possible to use results from different batches and to analyse them together, thus avoiding to redo simulations for parameter values already tested.
+Since running a lot of simulations, with a lot of different parameters, can generate a lot of output files whose original parameters can be hard to track, a way to keep them organised was needed. Doing so, it would also be possible to use results from different batches and to analyse them together, thus avoiding to redo simulations for parameter values already tested and reducing the computation resources used.
 
 The organised way to store this is naturally in a database. The choice has been made to use a relational database. The structure and indices have been designed so that the parameters can be efficiently queried. The tables and relations between them can be seen in the figure \ref{db}. It has first been developed and tested locally and then, once it was working properly, it was deployed on a MySQL database server provided by Massey University for research purposes.
 
@@ -247,52 +251,44 @@ The organised way to store this is naturally in a database. The choice has been 
 	\label{db}
 \end{figure}
 
-The use of the database can be done through phpMyAdmin but two scripts have been done to interact with it, one that adds the model outputs to the database and an other one that queries the database. The scripts have been written in Python3, using the PyMySQL module to access the MySQL database, and internally using an other script, in R, that processes the data before adding them to the DB.
+The use of the database can be done through phpMyAdmin but two scripts have been developed to interact with it.
+The first one reads the two files outputted by the model, the \gls{admixture} data and the corresponding parameter values, merges them and adds the resulting data to the database. The other one queries the database according to conditions provided by the user and returns already merged parameter and admixture values.
+The scripts have been written in Python3, using the PyMySQL module to access the MySQL database. Internally, the first script to add data to the database uses an other script, in R, that processes the data before actually adding them. This way one process, the Python script, handles the connection with the database while an other process, the R script, does the actual data processing at the same time, in parallel.
 
 
 \section{Analysis}
 \label{section:analysis}
 \subsection{Comparisons}
 \label{subsection:comparisons}
-To be able to compare two different scenarios, comparison functions have to be defined. These functions will be able to provide a value of similarity or dissimilarity when provided with observable values that characterise the scenarios. In this case, the comparison is done between the real observed data and the output of one simulation.
-Every simulation output has to be treated to be of the same form than the observed data. Doing so allows them to be compared. The observed data does not include values for specific islands that are included in the simulations (see table \ref{islands}). The \gls{admixture} values for mitochondrion and Y-chromosome are also not available for every island.
-Those values in the models can then be dropped as they cannot be compared.
+To be able to compare two different scenarios, comparison functions had to be defined. These functions will be able to provide a value of similarity or dissimilarity when provided with observable values that characterise the scenarios. In this case, the comparison is done between the real observed data and the output of one simulation.
+Every simulation output has to be treated to be of the same form than the observed data. Doing so allows them to be compared. The observed data does not include values for specific islands that, in change, are included in the simulations (see table \ref{islands}). This is because nodes had to be placed in the model so that the agents could be able to migrate, even though the studies didn’t get samples from the corresponding areas. The \gls{admixture} values for mitochondrion and Y-chromosome are also not available for every island.
+Those values in the model outputs can thus be dropped as they cannot be compared.
 
 \begin{table}
 	\centering
-	\begin{tabular}{|l|c|c|c|}
+	\begin{tabular}{|l|c|c||l|c|c|}
 		\hline
- 		Island & Simulated & Observed & Both \\ \hline
-    Alor & \checkmark &  &  \\ \hline
-    Aru & \checkmark &  &  \\ \hline
-    Bali & \checkmark &  &  \\ \hline
-    Borneo & \checkmark &  &  \\ \hline
-    China & \checkmark &  &  \\ \hline
-    Flores & \checkmark &  &  \\ \hline
-    Halmahera & \checkmark &  &  \\ \hline
-    Java & \checkmark &  &  \\ \hline
-    Laos & \checkmark &  &  \\ \hline
-    Malaysia & \checkmark &  &  \\ \hline
-    Papua New-Guinea & \checkmark &  &  \\ \hline
-    Philippines & \checkmark &  &  \\ \hline
-    Sera & \checkmark &  &  \\ \hline
-    Sulawesi & \checkmark &  &  \\ \hline
-    Sumatra & \checkmark &  &  \\ \hline
-    Sumba & \checkmark &  &  \\ \hline
-    Taiwan & \checkmark &  &  \\ \hline
-    Tanimbar & \checkmark &  &  \\ \hline
-    Thailand & \checkmark &  &  \\ \hline
-    Timor & \checkmark &  &  \\ \hline
-    Vanuatu &  & \checkmark &  \\ \hline
-    Vietnam & \checkmark &  &  \\ \hline
+ 	  Island & Simulated & Observed & Island & Simulated & Observed \\ \hline
+    Alor & \checkmark & \checkmark & Philippines & \checkmark & \checkmark \\ \hline
+    Aru & \checkmark &  & Seram & \checkmark & \\ \hline
+    Bali & \checkmark & \checkmark & Sulawesi & \checkmark & \checkmark \\ \hline
+    Borneo & \checkmark & \checkmark & Sumatra & \checkmark & \checkmark \\ \hline
+    Bougainville &  & \checkmark & Sumba & \checkmark & \checkmark \\ \hline
+    China & \checkmark & \checkmark & Taiwan & \checkmark & \checkmark \\ \hline
+    Flores & \checkmark & \checkmark & Tanimbar & \checkmark &  \\ \hline
+    Halmahera & \checkmark & \checkmark & Thailand & \checkmark &  \\ \hline
+    Java & \checkmark & \checkmark & Timor & \checkmark & \checkmark \\ \hline
+    Laos & \checkmark &  & Vanuatu &  & \checkmark \\ \hline
+    Malaysia & \checkmark & \checkmark & Vietnam & \checkmark & \checkmark \\ \hline
+    New-Guinea & \checkmark & \checkmark &  &  & \\ \hline
 	\end{tabular}
 	\caption{List of islands (or areas) in the model and in the reference data}
 	\label{islands}
 \end{table}
 
-The first, and most straightforward way two compare the two sets of data was to do a pairwise distance between real and simulated values. But doing so would mean dropping a lot of information, mainly regarding the relative geographical position of every island in the region. An other measure was needed that would keep this information and take it into account will comparing the data. Also, the idea came to also compare the whole matrix of differences of \glspl{admixture} among islands instead of the values island by island.
+The first, and most straightforward way two compare the two sets of data was to do a pairwise distance between real and simulated values. But doing so would mean dropping a lot of information, mainly regarding the relative geographical position of every island in the region. An other measure was needed that would keep this information and take it into account while comparing the data. Also, the idea came to also compare the whole matrix of differences of \glspl{admixture} among islands instead of the values island by island.
 
-16 comparison functions were tested with randomly generated data. These data had the structure of the data that would be later compared but the actual values, while still being \gls{admixture} values (a proportion value between zero and one), were completely random. When comparing the results of the comparison functions with the same random data, functions that would yield correlated results would convey the same information. It would thus make no sense to chose two functions whose results are correlated because it would mean to add dimensions to the comparison values while not actually adding any meaningful information.
+16 comparison functions were tested with randomly generated data. These data had the structure of the data that would be later compared but the actual values, while still being \gls{admixture} values (a proportion value between zero and one), were completely random. When comparing the results of the comparison functions with the same random data, functions that would yield correlated results would convey the same information. It would thus make no sense to chose two functions whose results are highly correlated because it would mean to add dimensions to the comparison values while not actually adding any meaningful information.
 
 Two of them have been selected that can hold different information about a comparison. The mean square distance (MSD) and the partial Mantel test have been selected as they do not have a good correlation when applying them to random \gls{admixture} values, thus meaning that they do not carry the same information. They are complementary, and using them both gives a better overview of the comparison.
 
@@ -304,11 +300,11 @@ MSD = \frac{\sum\limits_{i=1}^{n} (AdReal_i - AdSim_i) ^ 2}{n}
 \end{equation}
 where $AdReal$ is the array of \gls{admixture} data observed in the real values and $AdSim$ the corresponding values in the simulated model.
 
-It gives a distance value, with 0 meaning that the two observed values are absolutely identical. In this specific context, with the fact that the compared values are \gls{admixture} values, ranging from zero to one, and because of the values observed in the real data, the higher possible MSD value will be around $0.8$ (see reference cases lines in the upper part of figure \ref{app:sensit-comp-1d}).
+It gives a distance value, with zero meaning that the two observed values are absolutely identical. In this specific context, taking into account that the compared values are \gls{admixture} values, ranging from zero to one, and because of the values observed in the real data, the higher possible MSD value will be around $0.8$ (see reference cases lines in the upper part of figure \ref{app:sensit-comp-1d}).
 
 
 \subsubsection{Partial Mantel test}
-The Mantel tests have been developed to be able to compare two matrices with the same information. The partial Mantel test is one of them that also uses a third matrix, holding geographical distances of the cells of the matrices to be able to weight the values according to the actual geographical distance of the points \cite{Smo01}.
+The Mantel tests have been developed to be able to compare two matrices with the same information. The partial Mantel test is one of them that also uses a third matrix, holding geographical distances of the cells of the matrices in order to be able to weight the values according to the actual geographical distances between the points \cite{Smo01}.
 
 In this case, the matrices contain the values of distances of \glspl{admixture} between every islands in the graph and a matrix $M$ is calculated as
 \begin{equation}
@@ -323,16 +319,16 @@ where $d$ is the function returning the distance between the two arguments and $
 	correlation = partial.Mantel(M_{Simulated}, M_{Real}, M_{geographical})
 \end{equation}
 
-The partial Mantel test returns a correlation value that is between -1 and 1 with a value of 0 meaning that the two matrices are not correlated at all and of 1 if they are completely correlated.
+The partial Mantel test returns a correlation value between -1 and 1 with a value of 0 meaning that the two matrices are not correlated at all and of 1 if they are completely correlated.
 
 \subsection{Visualisations}
 As said in \cite{Wei01}, it is easy to represent data but hard to represent it so that the person visualising it does not need to dig into the huge quantity of data again to understand what is happening. It is important to represent it well so that it is useful to the user. A trade-off has been found between showing as much data as possible and doing visualisations easy to understand and showing what it is expected from a specific type of visualisation.
 
 For this, an important part was to try to avoid simplistic visualisations when they would not show enough information. For example, a simple mean or median value is not enough when there are alternative ways to represent this data. Whenever possible, notched box-plots were used to really try to show the distributions and shapes of the data. The box-plot centre of the box-plot represents the median, the interquartile range is represented by the box and outside of the whiskers are possible outliers from the data.
 
-In certain cases, too much box-plots would overwhelm the user so as an alternative, mean values are used but with additional error bars to be able to evaluate quickly the significance of the differences between the displayed values.
+In some cases, too much box-plots would overwhelm the user so, as an alternative, mean values are used but with additional error bars corresponding to the standard deviation in order to be able to evaluate quickly the significance of the differences between the displayed values.
 
-To let the viewer easily grasp diverse data, even though the values are and work differently, they share a single colour theme. For example, low distance values and high correlation values are both displayed in green colours, as a way to signal “good” values. Inversely, high distances and low or opposite correlations are displayed in red shades as a way to show that they represent “bad” values in the specific context of this project. The figure \ref{preview-heatmap} shows a part of an example visualisation showing both good and bad correlation values for the autosomal and X-chromosomal admixtures.
+To let the viewer easily grasp diverse data, even though the values are different and work differently, they share a single colour theme. For example, low distance values and high correlation values are both displayed in green colours, as a way to signal “good” values. Inversely, high distances and low or opposite correlations are displayed in red shades as a way to show that they represent “bad” values in the specific context of this project. The figure \ref{preview-heatmap} shows a part of an example visualisation showing both good and bad correlation values for the autosomal and X-chromosomal admixtures.
 
 \begin{figure}[H]
 	\centering
@@ -341,7 +337,9 @@ To let the viewer easily grasp diverse data, even though the values are and work
 	\label{preview-heatmap}
 \end{figure}
 
-Examples are available in the appendix (see \ref{app:ex-visu}) and are made in R using the ggplot2 library \cite{Wic01} to get nice looking graphs while having simpler code and thus more maintainable code. They will be detailed while presenting the results in chapter \ref{chapter-results}.
+Examples are available in the appendix (see \ref{app:ex-visu}) and are made in R using the ggplot2 library \cite{Wic01} to get nice looking graphs while having simpler and thus more maintainable code. They will be detailed while presenting the results in chapter \ref{chapter-results}.
+
+Also, a common theme have been defined for all the visualisations to be able to have consistent colours, fonts, and sizes among the different generated images. Finally, the images are saved in a raster format (PNG) but also in a vector format (PDF). This vectorial output allows to apply changes to the images for publication if a specific ratio is required or if changes need to be made to any part of the image, but more importantly, this is the only way to have a lossless format that can be resized without quality loss.
 
 \chapter{Results}
 \label{chapter-results}
@@ -355,12 +353,12 @@ In order to reduce the parameter space, a grid search has been done. It consists
 	\label{grid}
 \end{figure}
 
-Depending on the number of parameters and the size of the value steps, this holds an important computational cost. This has been considered a necessary step though, in order to reduce the parameter space for the next analysis, the ABC analysis, that would be even more computationally consuming if run over a huge parameter space. The resulting parameter space that will be used after the grid search analysis is defined manually after selecting interesting and meaningful values that can either be a smaller space or a specific value, thus making a parameter a non-changing parameter.
+Depending on the number of parameters and the size of the value steps, this holds an important computational cost. This has been considered a necessary step though, in order to reduce the parameter space for the next analysis, the ABC analysis, that would be even more computationally consuming if run over a huge parameter space. The resulting parameter space that will be used after the grid search analysis is defined manually after selecting interesting and meaningful values that can either be a smaller space or a specific value, thus making a parameter a non-changing one.
 
 \subsubsection{Stability analysis}
 There was multiple ways to analyse outputs from simulations with grid searches. The first one was to look at a specific point of the grid and assess the stability of the output generated with this parameter set.
 
-The stability analysis outputs different views on the data for this point in the grid. The first ones are 4 graphs, one for each type of observed DNA, wherein box-plots for the \gls{admixture} values of each island are displayed (partial view in fig. \ref {preview-boxplot}, complete view in fig. \ref{app:stability}). The size and spread of the box-plots represent the variability of the data among the different simulations with the same input parameters. With “correct” parameters, the \glspl{admixture} are supposed to be less stable in the contact zones between the different populations than in the extremities of the graph. Less stability is also expected when looking at \gls{admixture} values comprising less markers (mitochondrial and Y-chromosomal \glspl{admixture}). And finally, higher stability is expected from islands that include less \glspl{deme}, and thus lower population, like Alor, Aru or Bali that are composed of only one single \gls{deme} each. Any other behaviour leads to believe that the parameter set it comes from is not realistic, thus inducing abnormal model behaviours.
+The stability analysis outputs different views on the data for this point in the grid. The first ones are 4 graphs, one for each type of observed DNA, wherein box-plots for the \gls{admixture} values of each island are displayed (partial view in fig. \ref {preview-boxplot}, complete view in fig. \ref{app:stability}). The size and spread of the box-plots represent the variability of the data among the different simulations with the same input parameters. With “correct” parameters, the \glspl{admixture} are supposed to be less stable in the contact zones between the different populations than in the extremities of the graph, where the source populations live. Less stability is also expected when looking at \gls{admixture} values comprising less markers (mitochondrial and Y-chromosomal \glspl{admixture}). And finally, lower stability is expected from islands that include less \glspl{deme}, and thus lower population, like Alor, Aru or Bali that are composed of only one single \gls{deme} each. Any other behaviour leads to believe that the parameter set it comes from is not realistic, thus inducing abnormal model behaviours.
 
 \begin{figure}[H]
 	\centering
@@ -377,7 +375,7 @@ When looking at lines or planes of the grid, the sensitivity of the output to th
 
 At first, this analysis was done by looking at a single parameter changing while the others were fixed at one value, this was called a one-dimensional sweep and corresponds to parameters values aligned on a one-dimensional line in the grid. Then, this could be done on a two-dimensional sweep, corresponding to a plane.
 
-Even though it was technically possible, no higher dimension was analysed because of the difficulty to further visualise the results. Indeed, the visualisation choices would have needed three or higher-dimensional visualisations and those are less straightforward to analyse. There is absolutely no limitation to the dimensionality when running the simulations, and batches were actually regularly run with more than two dimensions. Only the visualisation has limitations with high numbers of dimensions, that is why a subset of the simulations were used when doing the visualisation part.
+Even though it was technically possible, no higher dimension was analysed because of the difficulty to further visualise the results. Indeed, the visualisation choices would have needed three or higher-dimensional visualisations and those are less straightforward to represent and to analyse. There is absolutely no limitation to the dimensionality when running the simulations, and batches were actually regularly run with more than two dimensions. Only the visualisation has limitations with high numbers of dimensions, that is why a subset of the simulations were used when doing the visualisation part.
 
 The first thing checked is the count of simulations for every point in the grid. This is done to be sure that, during the further steps, similar number of simulations will be compared. Otherwise, and especially when there are low numbers of simulations, results can be biased and the standard deviations can be not comparable. An example of this visualisation can be seen in the figure \ref{app:count-2d}.
 
@@ -387,7 +385,7 @@ Then, comparisons to the real data are done, for both the Autosomal and X-Chromo
 \section{ABC Framework}
 Once an interesting subspace of parameters have been defined, it can be used to feed the ABC framework used later on. Whereas a standard Bayesian analysis can be used to infer a single best value for every parameter, here the use of an ABC gives a posterior distribution of parameters corresponding to the best values. This lets appreciate the shape of the distributions and allows better understanding of the output values of highly stochastic models ran a high number of times. This technique, although quite recent, has been described in numerous studies (\cite{Sun01}, \cite{Csi02}).
 
-Here, after using the R package “ABC” \cite{Csi01}, custom code inspired by it has been written but adapted to the specifics of this project.
+At first, the R package “ABC” \cite{Csi01} has been used, to understand how it worked and to be sure that the framework was used correctly. But in the end, to simplify the pipeline and to cope with the specifics of the project, custom code inspired by the R package has been written. The main difference is that, instead of using the results of the comparison functions as summary statistics that would be fed into the package, these results are directly used to accept or reject a simulation. Also, changes have been done so that the ABC analysis fits better into the project and provides more useful information for this use case. For example, since the change to custom code there is no need to reshape the R data to run the rejection step, and the threshold for this step is also easier to change without rerunning the whole analysis.
 
 \begin{figure}[H]
 	\centering
@@ -396,10 +394,10 @@ Here, after using the R package “ABC” \cite{Csi01}, custom code inspired by 
 	\label{abc}
 \end{figure}
 
-The whole framework encompasses the steps from the choice of the parameter sets to the inference of the posterior distributions. The figure \ref{abc} summarises the successive steps of this process with hypothetical parameters $\alpha$, $\beta$ and $\gamma$ and summary statistics $SS1$ and $SS2$. In this project, the parameters used are the ones defined in the table \ref{parameters} even though, the ones set after the grid search analyses will be ignored as they are defined once and will not change. The summary statistics will be the 4 results of the comparison functions defined in the section \ref{subsection:comparisons}. These are the MSD and the correlation for both the X-chromosome and for the autosomes.
+The whole framework encompasses the steps from the choice of the parameter sets to the inference of the posterior distributions. The figure \ref{abc} summarises the successive steps of this process with hypothetical parameters $\alpha$, $\beta$ and $\gamma$ and summary statistics $SS1$ and $SS2$. In this project, the parameters used are the ones defined in the table \ref{parameters} even though, the ones set after the grid search analyses will be ignored by the ABC as they are defined once and will not change. They are simply not defined by a distribution as they are constant, and running them through the ABC is useless. The summary statistics will be the 4 results of the comparison functions defined in the section \ref{subsection:comparisons}. These are the MSD and the correlation for both the X-chromosome and for the autosomes.
 
-\subsection{Prior distributions and corresponding posterior distributions}
-The priors are defined as a set of distributions, one for each observed parameter. The distributions can be of any type but it is necessary to know them when doing the inference of the posterior distributions since, depending on the type chosen, they can induce a bias that will need to be corrected. Here, the distributions chosen are all uniform and the only bias can be if the correct parameters lay outside of the boundaries of the distributions (thus the importance of the previous grid search analysis). A visualisation of the hypothetical simulation parameter sets that can be generated by the first step of an ABC framework can be seen in the figure \ref{abc-space}.
+\subsection{Detailed steps of the ABC}
+The priors are defined as a set of distributions, one for each observed parameter. The distributions can be of any type but it is necessary to know them when doing the inference of the posterior distributions since, depending on the type chosen, they can induce a bias that will need to be corrected. Here, the distributions chosen are all uniform and the only bias can be if the correct parameters lay outside of the boundaries of the distributions (thus the importance of the previous grid search analysis). A visualisation of example simulation parameter sets that can be generated by the first step of an ABC framework can be seen in the figure \ref{abc-space}.
 
 \begin{figure}[H]
 	\centering
@@ -407,6 +405,12 @@ The priors are defined as a set of distributions, one for each observed paramete
 	\caption{Visual representation of 5.000 sets of three parameters, $migrationProb$, $poissonMean$ and $marriageModifier$ drawn from independent uniform distributions, as a result the points are evenly spread inside a cuboid. Each point represents one set of parameters that will be used for one single simulation}
 	\label{abc-space}
 \end{figure}
+
+The first step of the ABC consists of generating the \glspl{prior}. This is done via a custom Python3 script which uses a parameter file (YAML format) into which the distributions are defined. The script generates $n$ parameter sets that will be used as is by the model. The randomness of the generated values among the distributions is very important for the posterior inference so this aspect has been taken into account, otherwise the results could have been biased.
+
+After the model has generated results for every parameter set, the ABC framework needs to choose which simulations are the ones that are the closest to the reference data. In this case a rejection step with a tolerance has been implemented. For a tolerance $\tau=10\%$ for example, the ABC will keep the $10\%$ of the simulations whose results are closest to the reference. It is important to have a low tolerance taking into account that most of the parameter space is expected to give “bad” results. The tolerance can be adjusted for every analysis and no perfect tolerance exists, this has to be defined by the analyst using the ABC.
+
+After that, the parameter values for the selected simulations are retrieved and the corresponding distributions correspond to the \glspl{posterior}. These inferred distributions are the actual result of the ABC and can be used to deduce which parameter values, and which ranges, are more likely to yield results close to the reality.
 
 
 
@@ -422,7 +426,9 @@ The first way to handle this has been to alert the user when this happened, lett
 
 \section{Optimisations}
 Some key steps in the analysis framework need to be efficient enough so that time is not lost waiting for results to be treated or for graphs to be plotted and that the computation can be done without needing a supercomputer.
-This project has seen a few important refactoring steps to be able to cope with the quantity of data to be treated. The most important one has been to start treating the simulation results as a stream of values instead of loading the whole dataset in memory. This changed the memory complexity from linear to constant and it actually improved the time complexity from sub-quadratic to linear for the treatment part and from sub-quadratic to linearithmic for the analysis part. The improvement in time has been made possible by assuming that the results of one simulation are always together in the result stream, that way saving the cost of searching results in a big block of memory when they are actually next to each other.
+This project has seen a few important refactoring steps to be able to cope with the quantity of data to be treated. The most important one has been to start treating the simulation results as a stream of values instead of loading the whole dataset in memory. This was the only way to make the whole analysis process really scalable and to be able to handle a really high quantity of data.
+
+This changed the memory complexity from linear to constant and it actually improved the time complexity from sub-quadratic to linear for the treatment part and from sub-quadratic to linearithmic for the analysis part. The improvement in time has been made possible by assuming that the results of one simulation are always together in the result stream, that way saving the cost of searching results in a big block of memory when they are actually next to each other.
 Actual execution times have been recorded and can be seen in the appendix \ref{app:bench} in the graphs \ref{app:bench-merging-time} for the treatment step and \ref{app:bench-analysis-time} for the analysis step. The corresponding maximum memory use values are in the graphs \ref{app:bench-merging-mem} and \ref{app:bench-analysis-mem}.
 
 There is effectively still a great amount of room to improve in memory usage, especially seeing that the base memory usage is between 60 and 200 MiB just when loading libraries, functions, global variables and set-up code.
@@ -511,14 +517,14 @@ This appendix presents different visualisation examples that are generated by th
 \section{Merging}
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.39]{../data/merge-timeByNSimulations.png}
+	\includegraphics[scale=0.35]{../data/merge-timeByNSimulations.png}
 	\caption{Time used by the scripts in relation to the number of simulations merged. Corresponding, in the work-flow, to \texttt{merge.R}}
 	\label{app:bench-merging-time}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.39]{../data/merge-maxMemByNSimulations.png}
+	\includegraphics[scale=0.35]{../data/merge-maxMemByNSimulations.png}
 	\caption{Maximum memory used by the scripts in relation to the number of simulations analysed. Corresponding, in the work-flow, to \texttt{merge.R}}
 	\label{app:bench-merging-mem}
 \end{figure}
@@ -528,14 +534,14 @@ This appendix presents different visualisation examples that are generated by th
 note: update with latest changes (hopefully, better values)
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.39]{../data/analysis-timeByNSimulations.png}
+	\includegraphics[scale=0.35]{../data/analysis-timeByNSimulations.png}
 	\caption{Time used by the scripts in relation to the number of simulations analysed. Corresponding, in the work-flow, to \texttt{analysis.R}, \texttt{sensitivity.R} and the creation of the corresponding output files}
 	\label{app:bench-analysis-time}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.39]{../data/analysis-maxMemByNSimulations.png}
+	\includegraphics[scale=0.35]{../data/analysis-maxMemByNSimulations.png}
 	\caption{Maximum memory used by the scripts in relation to the number of simulations analysed. Corresponding, in the work-flow, to \texttt{analysis.R}, \texttt{sensitivity.R} and the creation of the corresponding output files}
 	\label{app:bench-analysis-mem}
 \end{figure}
