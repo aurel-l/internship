@@ -18,7 +18,7 @@ ax.scatter(xs, ys, zs, c='b', marker='.')
 
 ax.set_xlabel('migrationProb')
 ax.set_ylabel('poissonMean')
-ax.set_zlabel('marriageModifier')
+ax.set_zlabel('marriageThres')
 
 plt.show()
 
@@ -34,7 +34,7 @@ ax.scatter(xs, ys, zs, c='b', marker='.')
 
 ax.set_xlabel('migrationProb')
 ax.set_ylabel('poissonMean')
-ax.set_zlabel('marriageModifier')
+ax.set_zlabel('marriageThres')
 
 plt.show()
 
