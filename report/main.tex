@@ -111,7 +111,7 @@ The first pattern can be seen in Figure \ref{cox-image} and is a non-linear grad
 
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[width=1\textwidth]{../data/lansing-image.jpg}
+	\includegraphics{../data/lansing-image.jpg}
 	\caption{Fraction of Asian DNA in four genetic systems compared with model results for $\alpha = 0.02$ and 50 generations. Sample sizes: Flores = 453, Sumba = 639, Timor = 529. Reproduced unmodified from \cite{Lan01}.}
 	\label{lansing-image}
 \end{figure}
@@ -150,17 +150,17 @@ The parameters that can actually be adjusted are listed in Table \ref{parameters
 The model can work with a large number of different parameter values, corresponding to the “values” columns in Table \ref{parameters}. Knowing the context of the model, especially using previous anthropological studies, an estimation of possible realistic values can be found, but will need to be refined later on during the analysis processes (see Section \ref{section:analysis}).
 
 \begin{table}
-	\hspace*{-1.75cm}
+	\hspace*{-2cm}
 	\begin{tabular}{|c|l|l|l|}
 		\hline
  		Parameter & Values & Estimated & Comment \\ \hline
-        Migration prob. & $\mathbb{R}_{0 \leq x \leq 1}$ & $\mathbb{R}_{0 < x \leq 0.8}$ & prob. to start migrating for a Melanesian agent \\ \hline
+        Migration prob. & $\mathbb{R}_{0 \leq x \leq 1}$ & $\mathbb{R}_{0 < x \leq 1}$ & prob. to start migrating for a Melanesian agent \\ \hline
         Migration prob. ratio & $\mathbb{R}_{\geq 0}$ & $\mathbb{R}_{1 \leq x \leq 4}$ & corresponding ratio for an Asian agent \\ \hline
-        Fecundity & $\mathbb{R}_{\geq 0}$ & $\mathbb{R}_{2.3 < x < 6}$ & Poisson law mean for a Melanesian agent \\ \hline
-        Fecundity ratio & $\mathbb{R}_{\geq 0}$ & $\mathbb{R}_{1 \leq x \leq 1.5}$ & corresponding ratio for an Asian agent \\ \hline
-        Marriage threshold & $\mathbb{R}_{0 \leq x \leq 1}$ & $\mathbb{R}_{0 < x < 0.5}$ & affects marriages rules \\ \hline
+        Fecundity & $\mathbb{R}_{\geq 0}$ & $\mathbb{R}_{2.5 < x < 8}$ & Poisson law mean for a Melanesian agent \\ \hline
+        Fecundity ratio & $\mathbb{R}_{\geq 0}$ & $\mathbb{R}_{1 \leq x \leq 2}$ & corresponding ratio for an Asian agent \\ \hline
+        Marriage threshold & $\mathbb{R}_{-0.25 \leq x \leq 0.25}$ & $\mathbb{R}_{0 \leq x \leq 0.25}$ & affects marriages rules \\ \hline
         Growth rate & $\mathbb{R}_{0 \leq x \leq 1}$ & $\mathbb{R}_{0 < x < 0.001}$ & limiting rate of pop. growth \\ \hline
-        Number of agents & $\mathbb{Z}_{\geq 0}$ & $\mathbb{Z}_{50 < x < 400}$ & pop. size in each \gls{deme}, initially \\ \hline
+        Number of agents & $\mathbb{Z}_{\geq 0}$ & $\mathbb{Z}_{100 \leq x < 400}$ & pop. size in each \gls{deme}, initially \\ \hline
         Graph & \{...\} & \{...\} & composition of the graph (nodes and edges) \\ \hline
         Starting distribution & \{...\} & \{...\} & distribution of pop. in the graph \\ \hline
         % Model rules & \{...\} & \{...\} & different model rules, mainly marriages rules \\ \hline
@@ -168,13 +168,9 @@ The model can work with a large number of different parameter values, correspond
 	\caption{Summary of the changeable model parameters.}
 	\label{parameters}
 \end{table}
-% model details
-% previous works
-%% previous models
-%% previous analyses
 
 \section{Statistical analysis framework}
-Given that the model will be run numerous times, with a lot of different changing values for the parameters, a robust statistical analysis framework needs to be implemented to extract meaningful information from the high quantity of generated data.
+Because of the complexity of the model (number of agents, stochasticity, multiple parameters), it will need to be run thousands of times and with a lot of different changing values for the parameters. This will lead to the use of a robust statistical analysis framework to extract meaningful information from the high quantity of generated data.
 
 A fairly recent statistical analysis framework has been used more and more in the context of population simulations. This framework is called Approximate Bayesian Computation (ABC). Its use is recommended when using high dimensional data that makes it difficult to use standard statistical frameworks. ABC still relies highly on standard statistical tools but instead of giving one best result, it returns a distribution of best possible parameters. It answers the question: given a set of parameter distributions (called “\glspl{prior}”), what are the distributions (subsets of the \glspl{prior}), that give best results? This set of output distributions are then called “\glspl{posterior}”.
 
@@ -209,30 +205,30 @@ The most powerful level used for this study is obviously the HPC but a trade-off
 
 \begin{figure}[H]
 	\centering
-	\begin{subfigure}[t]{0.48\textwidth}
+	\begin{subfigure}[t]{0.4\textwidth}
 		\centering
-		\includegraphics[scale=0.6]{../data/network:local.png}
+		\includegraphics[scale=0.5]{../data/network:local.png}
 		\caption{local}
 		\label{network:local}
 	\end{subfigure}
 	~
-	\begin{subfigure}[t]{0.48\textwidth}
+	\begin{subfigure}[t]{0.4\textwidth}
 		\centering
-		\includegraphics[scale=0.6]{../data/network:office.png}
+		\includegraphics[scale=0.5]{../data/network:office.png}
 		\caption{local network}
 		\label{network:office}
 	\end{subfigure}
 	\\
-	\begin{subfigure}[t]{0.48\textwidth}
+	\begin{subfigure}[t]{0.4\textwidth}
 		\centering
-		\includegraphics[scale=1]{../data/network:azure.png}
+		\includegraphics[scale=0.8]{../data/network:azure.png}
 		\caption{local network and Azure}
 		\label{network:azure}
 	\end{subfigure}
 	~
-	\begin{subfigure}[t]{0.48\textwidth}
+	\begin{subfigure}[t]{0.4\textwidth}
 		\centering
-		\includegraphics[scale=1]{../data/network:nesi.png}
+		\includegraphics[scale=0.8]{../data/network:nesi.png}
 		\caption{NeSI}
 		\label{network:nesi}
 	\end{subfigure}
@@ -263,7 +259,7 @@ The scripts have been written in Python3, using the PyMySQL module to access the
 \subsection{Comparisons}
 \label{subsection:comparisons}
 To compare two different scenarios, comparison functions had to be defined. These functions will be able to provide a value of similarity or dissimilarity when provided with observable values that characterise the scenarios. In this case, the comparison is done between the real observed data and the output of one simulation.
-Every simulation output has to be treated in the same way than the observed data. Doing so allows them to be compared. The observed data does not include values for specific islands that are included in the simulations (see Table \ref{islands}). This is because nodes had to be placed in the model so that the agents could migrate, even though the empirical studies did not get samples from the corresponding areas. The \gls{admixture} values for mitochondrion and Y-chromosome are also not available for every island.
+Every simulation output has to be treated in the same way than the observed data. Doing so allows them to be compared. The observed data does not include values for specific islands even though they are included in the simulations (see Table \ref{islands}). This is because nodes had to be placed in the model so that the agents could migrate, even though the empirical studies did not get samples from the corresponding areas. The \gls{admixture} values for mitochondrion and Y-chromosome are also not available for every island.
 Those values in the model outputs can thus be dropped as they cannot be compared.
 
 \begin{table}
@@ -288,11 +284,13 @@ Those values in the model outputs can thus be dropped as they cannot be compared
 	\label{islands}
 \end{table}
 
-The first, and most straightforward way to compare the two sets of data was to do a pairwise distance between real and simulated values. But doing so would mean dropping a lot of information, mainly regarding the relative geographical position of every island in the region. Another measure was needed that would keep this information and take it into account while comparing the data. Also, the idea came to also compare the whole matrix of differences of \glspl{admixture} among islands instead of the values island by island.
+The first, and most straightforward way to compare the two sets of data was to do a pairwise distance between real and simulated values. But doing so would mean dropping a lot of information, mainly regarding the relative geographical position of every island in the region. Another measure was needed that would keep this information and take it into account while comparing the data. Also, the idea arose to compare the whole matrix of differences in \gls{admixture} among islands instead of the values island by island.
 
-16 comparison functions were tested with randomly generated data. These data had the structure of the data that would be later compared but the actual values, while still being \gls{admixture} values (a proportion value between zero and one), were completely random. When comparing the results of the comparison functions with the same random data, functions that would yield correlated results would convey the same information. It would thus make no sense to choose two functions whose results are highly correlated because it would mean adding dimensions to the comparison values while not adding any meaningful information.
+Sixteen comparison functions were tested with randomly generated data. Seven were distances, including weighted versions of the comparisons. Nine were correlation measurements, and different correlation coefficients were tested.
 
-Two measures have been selected that can hold different information about a comparison. The mean square distance (MSD) and the partial Mantel test have been selected as they do not have a good correlation when applying them to random \gls{admixture} values, thus meaning that they do not carry the same information. They are complementary, and using them both gives a better overview of the comparison.
+These randomly generated data had the same structure as the simulated data that would be later compared but the actual values, while still being \gls{admixture} values (a proportion value between zero and one), were completely random. When comparing the results of the comparison functions with the same random data, functions that would yield correlated results would convey the same information. It would thus make no sense to choose two functions whose results are highly correlated because it would mean adding dimensions to the comparison values while not adding any meaningful information.
+
+Two measures have been selected that can hold different information about a comparison: the mean square distance (MSD) and the partial Mantel test. They do not have a good correlation when applying them to random \gls{admixture} values, thus meaning that they do not carry the same information. They are complementary, and using them both gives a better overview of the comparison.
 
 \subsubsection{Mean square distance}
 The mean square distance is the mean value of all of the distances between observed and simulated values of \gls{admixture} for every $n$ island.
@@ -306,9 +304,9 @@ It gives a distance value, with zero meaning that the two observed values are ab
 
 
 \subsubsection{Partial Mantel test}
-The Mantel tests have been developed to compare two matrices with the same information. The partial Mantel test also uses a third matrix, holding constant geographical distances of the cells of the matrices in order to be able to weight the values according to the actual geographical distances between the points \cite{Smo01}.
+The Mantel tests have been developed to compare two matrices with the same information. The partial Mantel test also uses a third matrix, holding constant geographical distances in order to be able to weight the values according to the actual geographical distances between the points \cite{Smo01}.
 
-In this case, the matrices contain the values of distances in \gls{admixture} between every island in the graph and a matrix $M$ is calculated as
+In this case, the first two matrices contain the values of distances in \gls{admixture} between every island in the graph and a matrix $M$ is calculated as
 \begin{equation}
 	M = \begin{bmatrix}
 		d(Ad_0, Ad_0)	& \cdots & d(Ad_0, Ad_n) \\
@@ -316,7 +314,7 @@ In this case, the matrices contain the values of distances in \gls{admixture} be
 		d(Ad_n, Ad_0)	& \cdots & d(Ad_n, Ad_n)
 	\end{bmatrix}
 \end{equation}
-where $d$ is the function returning the distance between the two arguments and $Ad$ is the \gls{admixture} of the $n$\textsuperscript{th} island in the graph. With the corresponding matrices for the simulation data, the real data and also the geographical distances, the partial Mantel test can be done as such
+where $d$ is the function returning the distance between the two arguments and $Ad_{n}$ is the \gls{admixture} of the $n$\textsuperscript{th} island in the graph. With the corresponding matrices for the simulated data, the real data and also the geographical distances, the partial Mantel test can be done as such
 \begin{equation}
 	correlation = partial.Mantel(M_{Simulated}, M_{Real}, M_{geographical})
 \end{equation}
@@ -345,24 +343,28 @@ Examples are available in the appendix (see section \ref{app:ex-visu}) and are m
 
 Also, a common theme has been defined for all the visualisations to have consistent colours, fonts, and sizes among the different generated images. Finally, the images are saved in a raster format (PNG) but also in a vector format (PDF). Because of this vectorial output, changes can be applied to the images for publication, for example if a specific ratio is required or if changes need to be made to positioning of legends or scales. More importantly, this is the only way to have a lossless format that can be resized without quality loss.
 
-\chapter{Results}
+\chapter{Analyses and results}
 \label{chapter-results}
 \section{Grid search analysis}
-In order to reduce the parameter space, a grid search has been performed. It consists of going through the possible parameter sets by setting parameter values at regular steps throughout the space and running $n$ multiple simulations for every point in the space to obtain statistically meaningful results for every point. One hypothetical parameter grid search can be seen in Figure \ref{grid}.
+In order to reduce the parameter space, a grid search has been performed. It consists of going through the possible parameter sets by setting parameter values at regular steps throughout the space and running $n$ multiple simulations for every point in the space to obtain statistically meaningful results for every point. One parameter grid search can be seen in Figure \ref{grid}.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1\textwidth]{../data/grid.png}
+	\includegraphics[width=0.8\textwidth]{../data/grid.png}
 	\caption{Visual representation of a grid search on three parameters, $migrationProb$, $poissonMean$ and $marriageThres$. Each point represents a set of those parameters, that will be used for $n$ different simulations.}
 	\label{grid}
 \end{figure}
 
 Depending on the number of parameters and the step sizes, this has an important computational cost. This has been considered a necessary step though, in order to reduce the parameter space for the next analysis, the ABC analysis, that would be even more computationally consuming if run over a huge parameter space. The resulting parameter space that will be used after the grid search analysis is defined manually after selecting interesting and meaningful values that can either be a smaller space or a specific value, thus making a parameter a non-changing one.
 
+For example, because of this analysis, specific values of migration have been discarded. Really low migration ($migrationProb < 0.1$) or nearly systematic migration ($migrationProb > 0.8$) are conditions in which it gave clearly bad results. The parameter space for the migration probability has thus been reduced to $[0.1, 0.8]$ when doing further analyses.
+
 \subsubsection{Stability analysis}
 Multiple ways were used to analyse outputs from simulations with grid searches. The first one was to look at a specific point of the grid and assess the stability of the output generated with this parameter set.
 
-The stability analysis outputs different views of the data for this point in the grid. The first ones are 4 graphs, one for each type of observed DNA, for which box-plots for the \gls{admixture} values of each island are displayed (partial view in Fig. \ref {preview-boxplot}, complete view in Fig. \ref{app:stability}). The size and spread of the box-plots represent the variability of the data among the different simulations with the same input parameters. With “correct” parameters, the \gls{admixture} values are supposed to be less stable in the contact zones between the different populations than in the extremities of the graph, where the source populations live. Less stability is also expected when looking at \gls{admixture} values comprising fewer markers (mitochondrial and Y-chromosomal \gls{admixture}). And finally, lower stability is expected from islands that include fewer \glspl{deme}, and thus lower population sizes, like Alor, Aru or Bali that are composed of only one single \gls{deme} each. Any other behaviour leads to the view that the parameter set it comes from is not realistic, and thus induces abnormal model behaviour.
+The stability analysis outputs different views of the data for this point in the grid. The first ones are 4 graphs, one for each type of observed DNA, for which box-plots for the \gls{admixture} values of each island are displayed (partial view in Fig. \ref {preview-boxplot}, complete view in Fig. \ref{app:stability}). The size and spread of the box-plots represent the variability of the data among the different simulations with the same input parameters.
+
+With “correct” parameters, the \gls{admixture} values are supposed to be less stable in the contact zones between the different populations at the end of the simulation than in the extremities of the graph, where the source populations live. In the simulations used to create Figure \ref{preview-boxplot}, the Philippines were a contact zone between the two populations after the 4,500 years simulated. The corresponding box-plots (the fifth from the left) are indeed more spread than most of the others.
 
 \begin{figure}[H]
 	\centering
@@ -371,7 +373,13 @@ The stability analysis outputs different views of the data for this point in the
 	\label{preview-boxplot}
 \end{figure}
 
-Another view that is output by the stability analysis is the graph of \gls{admixture} values as a function of the types of DNA, and for every island (Fig. \ref{app:stability-admixGradient}). This graph aims to resemble Figure \ref{lansing-image} from \cite{Lan01} as a way to compare the real data in this paper to the data generated in the simulations.
+Less stability is also expected when looking at \gls{admixture} values comprising fewer markers. That is the case with mitochondrial and Y-chromosomal \gls{admixture} where the corresponding DNA only have one marker each, whereas X-chromosome and autosome have 25 makers each, leading to more stable admixtures.
+
+And finally, lower stability is expected from islands that include fewer \glspl{deme}, and thus lower population sizes, like Alor, Aru or Bali that are composed of only one single \gls{deme} each when New Guinea (Papu in the figures) has twenty.
+
+If the parameter value set induces abnormal behaviour, it thus means that it is not a realistic set of values.
+
+Another view that is output by the stability analysis is the graph of \gls{admixture} values as a function of the types of DNA, and for every island (Fig. \ref{app:stability-admixGradient}). This graph aims to resemble Figure \ref{lansing-image} (\cite{Lan01}) as a way to compare the real data in this paper to the data generated in the simulations.
 
 
 \subsubsection{Sensitivity analysis}
@@ -389,8 +397,6 @@ Then, comparisons to the real data are performed, for both the autosomal and X-c
 \section{ABC framework}
 Once an interesting subspace of parameters has been defined, it can be used to feed the ABC framework used later. Whereas a standard Bayesian analysis can be used to infer a single best value for every parameter, here the use of ABC gives a posterior distribution of parameters corresponding to the best values. The shape of the distributions can thus be appreciated and this offer better understanding of the output values of highly stochastic models run a large number of times. This technique, although quite recent, has been described in numerous studies (\cite{Sun01, Csi02}).
 
-At first, the R package “abc” \cite{Csi01} was used to understand how it worked and to be sure that the framework was used correctly. But in the end, to simplify the pipeline and to cope with the specifics of the project, custom code inspired by the R package was written. The main difference is that, instead of using the results of the comparison functions as summary statistics that would be fed into the package, these results are directly used to accept or reject a simulation. Also, changes have been done so that the ABC analysis fits better into the project and provides more useful information for this use case. For example, since the change to custom code there is no need to reshape the R data to run the rejection step, and the threshold for this step is also easier to change without rerunning the whole analysis.
-
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{../data/abc-landscape.png}
@@ -398,14 +404,19 @@ At first, the R package “abc” \cite{Csi01} was used to understand how it wor
 	\label{abc}
 \end{figure}
 
-The whole framework encompasses the steps from the choice of the parameter sets to the inference of the posterior distributions. Figure \ref{abc} summarises the successive steps of this process with hypothetical parameters $\alpha$, $\beta$ and $\gamma$ and summary statistics $SS1$ and $SS2$. In this project, the parameters used are the ones defined in Table \ref{parameters} even though the ones set after the grid search analyses will be ignored by the ABC as they are defined once and will not change. They are simply not defined by a distribution as they are constant, and running them through the ABC is useless. The summary statistics will be the four results of the comparison functions defined in section \ref{subsection:comparisons}. These are the MSD and the partial correlation for both the X-chromosome and the autosomes.
+The whole framework encompasses the steps from the choice of the parameter sets to the inference of the posterior distributions. Figure \ref{abc} summarises the successive steps of this process with hypothetical parameters $\alpha$, $\beta$ and $\gamma$ and summary statistics $SS1$ and $SS2$. The parameters will be used by the model to generate results. These results are, either directly or after transformation, the summary statistics that the ABC will use. By comparing those to the references, the framework is able to keep or discard a simulation during what is called the rejection step. the parameters whose simulations got accepted can be used and visualised in distributions.
 
-\subsection{Detailed steps of the ABC}
-The priors are defined as a set of distributions, one for each observed parameter. The distributions can be of any type but it is necessary to know them when doing the inference of the posterior distributions since, depending on the type chosen, they can induce a bias that will need to be corrected. Here, the distributions chosen are all uniform and the only bias can be if the correct parameters lay outside of the boundaries of the distributions (thus the importance of the previous grid search analysis). A visualisation of example simulation parameter sets that can be generated by the first step of an ABC framework can be seen in Figure \ref{abc-space}.
+
+\subsection{Description}
+In this project, the parameters used are the ones defined in Table \ref{parameters} even though the ones set after the grid search analyses will be ignored by the ABC as they are defined once and will not change. They are simply not defined by a distribution as they are constant, and running them through the ABC is useless. The summary statistics will be the four results of the comparison functions defined in section \ref{subsection:comparisons}: the MSD and the partial correlation for both the X-chromosome and the autosomes.
+
+At first, the R package “abc” \cite{Csi01} was used to understand how it worked and to be sure that the framework was used correctly. But in the end, to simplify the pipeline and to cope with the specifics of the project, custom code inspired by the R package was written. The main difference is that, instead of using the results of the comparison functions as summary statistics that would be fed into the package, these results are directly used to accept or reject a simulation. Also, changes have been done so that the ABC analysis fits better into the project and provides more useful information for this use case. For example, since the change to custom code there is no need to reshape the R data to run the rejection step, and the threshold for this step is also easier to change without rerunning the whole analysis.
+
+The priors are defined as a set of distributions, one for each observed parameter. The distributions can be of any type but it is necessary to know them when doing the inference of the posterior distributions since, depending on the type chosen, they can induce a bias that will need to be corrected. In general, for ABCs, uniform, Poisson or normal distributions are used. Here, the distributions chosen are all uniform and the only bias can be if the correct parameters lay outside of the boundaries of the distributions (thus the importance of the previous grid search analysis). A visualisation of example simulation parameter sets that can be generated by the first step of an ABC framework can be seen in Figure \ref{abc-space}.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1\textwidth]{../data/abc-space.png}
+	\includegraphics[width=0.8\textwidth]{../data/abc-space.png}
 	\caption{Visual representation of 5,000 sets of three parameters, $migrationProb$, $poissonMean$ and $marriageThres$ drawn from independent uniform distributions. As a result, the points are evenly spread inside a cuboid. Each point represents one set of parameters that will be used for one single simulation.}
 	\label{abc-space}
 \end{figure}
@@ -416,6 +427,8 @@ After the model has generated results for every parameter set, the ABC framework
 
 Finally, the parameter values for the selected simulations are retrieved and the corresponding distributions form the \glspl{posterior}. These inferred distributions are the actual result of the ABC and can be used to deduce which parameter values, and which ranges, are more likely to yield results close to the observed reality.
 
+\subsection{First results of the framework}
+MISSING PART
 
 
 \chapter{Discussion}
@@ -447,8 +460,8 @@ Until now, the graphs generated were limited to two-dimensional graphs, mainly f
 
 \chapter*{Conclusion}
 \addcontentsline{toc}{chapter}{Conclusion}
-The model used until is still undergoing changes, with the aim to make it more accurate and to take into account more factors. The problem of adding complexity would be to add enough complexity to keep the model relevant while still being computationally simple enough so that it can be run in an acceptable amount of time.
-Several aspects can be changed, ranging from the structure of the family and how it is managed in the model, to higher level tasks like the integration of resource management at different scales of the model to try to be more accurate and have more realistic behaviours.
+The model used until is still undergoing changes, with the aim to make it more accurate and to take into account more factors. The problem would be to add enough complexity to keep the model relevant while still being computationally simple enough so that it can be run in an acceptable amount of time.
+Several aspects can be changed, ranging from the structure of agents and how they are managed in the model, to higher level tasks like the integration of resource management at different scales of the model to try to be more accurate and have more realistic behaviours.
 
 This project will continue evolving and the work done until now will still be useful. The scripts written will still be able to handle the data output by the model, and even if the data changes, only slight changes will be necessary for them to continue working.
 
