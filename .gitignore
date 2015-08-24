@@ -9,6 +9,9 @@
 *.gl?
 *.ist
 *.xdy
+*.nav
+*.vrb
+*.snm
 *~
 *.out
 *.dvi
