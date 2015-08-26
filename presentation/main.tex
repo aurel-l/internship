@@ -1,0 +1,180 @@
+\documentclass[10pt,aspectratio=43]{beamer}
+\usepackage[utf8]{inputenc}
+
+\mode<presentation> {
+\usetheme{Massey}
+%\usecolortheme{DarkLetters}
+\usecolortheme{LightLetters}
+% Specify logo folder if different from default
+%\def\logoFolder{uniLogo}
+
+% Now load other modules
+\usefonttheme{professionalfonts}
+% To get running page numbers in all slides uncomment this line
+%\setbeamertemplate{footline}[page numbers] 
+% To get a header in all slides uncomment this line
+%\headlinecontent{Text left top corner}{Text top center}
+}
+\setbeamertemplate{footline}[frame number]
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title{Statistical Analysis Pipeline} 
+\suptitle{Admixture Data from a Human Population Settlement Model}
+\author{Aurélien \textsc{Luciani}}
+\department{Master 2 Bioinformatique}
+\institute{Université de Bordeaux}
+\contact{Your email}
+\date{11 September 2015}
+
+%=================================================  START DOCUMENT ======================================
+
+\begin{document}
+
+% Default values for the Massey branding will be used
+% \masseyBrand[fillcolour]{framedesign}[opacity]{picture}{masseylogo}{enginelogo}[frametitlecolour]
+\masseyBrand{}[0.7]{../data/background-2.png}{}{}
+
+% Massey styled title -------------------------------------------------------------------------
+
+%\masseyBrand{bar}{picturefilename}{blueletters}{blueletters}{}
+
+\begin{frame}[t, noframenumbering]  % The [t] is important!!!!
+\masseyTitlepage % Print the title page 
+
+\raggedleft
+\begin{mblock}[180pt]{0.7}{}
+\raggedleft
+\textbf{\insertauthor}\\
+\insertdepartment\\
+\insertinstitute\\
+%\insertcontact\\
+\insertdate
+\end{mblock}
+\vfill
+\end{frame}
+
+% Slides ---------------------------------------------------------------------------------
+
+\section*{Introduction}
+\masseyBrand{}{}{}{}
+\begin{frame}{}{Introduction}
+\end{frame}
+
+% Change background if needed
+%\masseyBrand[fillcolour]{full/bar}[opacity]{picture}{blueletters/whiteletters}{blueletters/whiteletters}[frametitlecolour]
+\section{Context}
+\masseyBrand{bar}{}{}{}
+\begin{frame}{}{Table of contents}
+%\frametitle{}
+%\framesubtitle{}
+%\circlepictext{picturesize}{image}{textwidth}{text}
+%\begin{mblock}[width]{opacity}{title} ... \end{mblock}
+%\begin{picblock}[width]{opacity}{title}{picture}...\end{picblock}
+%\begin{mexample}[width]{opacity}{title} ... \end{mexample}
+%\begin{malert}[width]{opacity}{title} ... \end{malert}
+\tableofcontents[currentsection, subsubsectionstyle=hide]
+\end{frame}
+
+\subsection{Geological and anthropological context}
+
+\masseyBrand{}{../data/background-3.png}{}{}
+\begin{frame}{}{Around 100,000 years ago}
+\end{frame}
+
+\addtocounter{framenumber}{-1}
+\masseyBrand{}{../data/background-3-first-wave.png}{}{}
+\begin{frame}{}{Around 45,000 years ago}
+\end{frame}
+
+\addtocounter{framenumber}{-1}
+\masseyBrand{}{../data/background-2.png}{}{}
+\begin{frame}{}{Around 12,000 years ago}
+\end{frame}
+
+\addtocounter{framenumber}{-1}
+\masseyBrand{}{../data/background-2-second-wave.png}{}{}
+\begin{frame}{}{Around 4,500 years ago}
+\end{frame}
+
+\subsection{Model}
+\masseyBrand{}{}{}{}
+\begin{frame}{Context}{model}
+\end{frame}
+
+
+\section{Measures and comparisons}
+\masseyBrand{bar}{}{}{}
+\begin{frame}{}{Table of contents}
+\tableofcontents[currentsection, subsectionstyle=show/show/hide]
+\end{frame}
+
+\masseyBrand{}{}{}{}
+\subsection{Observed data}
+\begin{frame}{Measures \& comparisons}{Observed data}
+\end{frame}
+
+\subsection{Comparison functions}
+\begin{frame}{Measures \& comparisons}{Comparison functions}
+\end{frame}
+
+\subsubsection{Mean Square Distance}
+\begin{frame}{Measures \& comparisons}{Comparison functions}
+\end{frame}
+
+\subsubsection{Partial Mantel Correlation}
+\begin{frame}{Measures \& comparisons}{Comparison functions}
+\end{frame}
+
+
+\section{Pipeline}
+\masseyBrand{bar}{}{}{}
+\begin{frame}{}{Table of contents}
+\tableofcontents[currentsection, subsectionstyle=show/show/hide]
+\end{frame}
+
+\masseyBrand{}{}{}{}
+\subsection{Overview}
+\begin{frame}{Pipeline}{Overview}
+\end{frame}
+
+
+\section{Statistical analysis}
+\masseyBrand{bar}{}{}{}
+\begin{frame}{}{Table of contents}
+\tableofcontents[currentsection, subsectionstyle=show/show/hide]
+\end{frame}
+
+\masseyBrand{}{}{}{}
+\subsection{Grid search}
+\begin{frame}{Statistical analysis}{Grid search}
+\end{frame}
+
+\subsection{Approximate Bayesian Computation}
+\begin{frame}{Statistical analysis}{ABC}
+\end{frame}
+
+% Closing ------------------------------------------------------------------------------------
+
+\masseyBrand{full}{uniLogo/masseyBlueCircles.jpg}{whiteback}{whiteletters}[masseyVolcano]
+\begin{frame}[plain]
+\masseyClose{Thank you}
+\begin{columns}
+  \column{0.4\textwidth}
+    \tableofcontents[subsectionstyle=hide]
+
+  \column{0.4\textwidth}
+    Any question?
+
+\end{columns}
+\end{frame}
+
+% Appendices
+
+\begin{frame}[noframenumbering]
+Appendix
+\end{frame}
+
+\end{document}
