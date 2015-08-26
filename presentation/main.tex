@@ -3,8 +3,8 @@
 
 \mode<presentation> {
 \usetheme{Massey}
-%\usecolortheme{DarkLetters}
-\usecolortheme{LightLetters}
+\usecolortheme{DarkLetters}
+%\usecolortheme{LightLetters}
 % Specify logo folder if different from default
 %\def\logoFolder{uniLogo}
 
@@ -45,7 +45,7 @@
 \masseyTitlepage % Print the title page 
 
 \raggedleft
-\begin{mblock}[180pt]{0.7}{}
+\begin{mblock}[140pt]{0.7}{}
 \raggedleft
 \textbf{\insertauthor}\\
 \insertdepartment\\
@@ -111,9 +111,18 @@
 \tableofcontents[currentsection, subsectionstyle=show/show/hide]
 \end{frame}
 
-\masseyBrand{}{}{}{}
+\masseyBrand{bar}[0.1]{}{}{}
 \subsection{Observed data}
 \begin{frame}{Measures \& comparisons}{Observed data}
+\begin{columns}
+  \column{0.6\textwidth}
+  \includegraphics[width=1\textwidth]{../data/markers.png}
+
+  \column{0.4\textwidth}
+  Different parts of the DNA\\
+  52 markers in total
+
+\end{columns}
 \end{frame}
 
 \subsection{Comparison functions}
@@ -135,9 +144,12 @@
 \tableofcontents[currentsection, subsectionstyle=show/show/hide]
 \end{frame}
 
-\masseyBrand{}{}{}{}
+\masseyBrand{bar}[0.1]{}{}{}
 \subsection{Overview}
 \begin{frame}{Pipeline}{Overview}
+\begin{center}
+  \includegraphics[width=0.94\textwidth]{../data/workflow-2.png}
+\end{center}
 \end{frame}
 
 
@@ -147,13 +159,16 @@
 \tableofcontents[currentsection, subsectionstyle=show/show/hide]
 \end{frame}
 
-\masseyBrand{}{}{}{}
+\masseyBrand{bar}[0.1]{}{}{}
 \subsection{Grid search}
 \begin{frame}{Statistical analysis}{Grid search}
 \end{frame}
 
 \subsection{Approximate Bayesian Computation}
 \begin{frame}{Statistical analysis}{ABC}
+\begin{center}
+  \includegraphics[width=0.94\textwidth]{../data/abc-landscape.png}
+\end{center}
 \end{frame}
 
 % Closing ------------------------------------------------------------------------------------
