@@ -35,7 +35,7 @@
 
 % Default values for the Massey branding will be used
 % \masseyBrand[fillcolour]{framedesign}[opacity]{picture}{masseylogo}{enginelogo}[frametitlecolour]
-\masseyBrand{}[0.7]{../data/background-2.png}{}{}
+\masseyBrand{}{../data/background-2.png}{}{}
 
 % Massey styled title -------------------------------------------------------------------------
 
@@ -59,8 +59,24 @@
 % Slides ---------------------------------------------------------------------------------
 
 \section*{Introduction}
-\masseyBrand{}{}{}{}
+\masseyBrand{}[1]{../data/nz.png}{}{}
 \begin{frame}{}{Introduction}
+\begin{columns}
+  \column{0.2\textwidth}
+  
+  \column{0.8\textwidth}
+  \color{white}
+  \begin{itemize}
+    \item Internship at Massey University (New Zealand)
+    \item Computational Biology Research Group
+    \item Part of a 2 years project
+    \item Supervisors:
+    \begin{itemize}
+      \item Murray Cox
+      \item Marie Noelle Beurton-Aimar
+    \end{itemize}
+  \end{itemize}
+\end{columns}
 \end{frame}
 
 % Change background if needed
@@ -99,9 +115,40 @@
 \begin{frame}{}{Around 4,500 years ago}
 \end{frame}
 
+\subsection{Previous papers}
+\masseyBrand{bar}[0.1]{}{}{}
+\begin{frame}{Context}{Previous papers}
+\begin{center}
+  \begin{figure}
+    \includegraphics[width=0.65\textwidth]{../data/cox-image.jpg}
+    \caption{Cox et al. [2010]}
+  \end{figure}
+\end{center}
+\end{frame}
+\masseyBrand{bar}[0.1]{}{}{}
+\begin{frame}{Context}{Previous papers}
+\begin{center}
+  \begin{figure}
+    \includegraphics[width=0.9\textwidth]{../data/lansing-image.jpg}
+    \caption{Lansing et al. [2011]}
+  \end{figure}
+\end{center}
+\end{frame}
+
 \subsection{Model}
-\masseyBrand{}{}{}{}
-\begin{frame}{Context}{model}
+\masseyBrand{}{../data/ISEA-node-map.png}{}{}
+\begin{frame}{}{Model}
+\begin{columns}
+  \column{0.6\textwidth}
+
+  \column{0.4\textwidth}
+  \begin{itemize}
+    \item Agent-Based Model
+    \item Written in Java
+    \item Use Repast framework
+  \end{itemize}
+
+\end{columns}
 \end{frame}
 
 
@@ -118,23 +165,137 @@
   \column{0.6\textwidth}
   \includegraphics[width=1\textwidth]{../data/markers.png}
 
-  \column{0.4\textwidth}
-  Different parts of the DNA\\
-  52 markers in total
+  \column{0.5\textwidth}
+  \begin{itemize}
+    \item Different parts of the DNA
+    \item Associated with different origins
+    \item 52 binary markers in total
+  \end{itemize}
 
 \end{columns}
 \end{frame}
 
+\subsection{Parameters}
+\begin{frame}{Measures \& comparisons}{Parameters}
+\begin{table}[H]
+	\hspace*{-1.05cm}
+	\begin{tabular}{c|l|l}
+ 		Parameter & Estimated & Comment \\ \hline \hline
+        Migration prob. & $\mathbb{R}_{0 < x \leq 1}$ & prob. to start migrating for a Melanesian agent \\ \hline
+        Migration prob. ratio & $\mathbb{R}_{1 \leq x \leq 4}$ & corresponding ratio for an Asian agent \\ \hline
+        Fecundity & $\mathbb{R}_{2.5 < x < 8}$ & Poisson law mean for a Melanesian agent \\ \hline
+        Fecundity ratio & $\mathbb{R}_{1 \leq x \leq 2}$ & corresponding ratio for an Asian agent \\ \hline
+        Marriage threshold & $\mathbb{R}_{0 \leq x \leq 0.25}$ & affects marriages rules \\ \hline
+        Growth rate & $\mathbb{R}_{0 < x < 0.001}$ & limiting rate of pop. growth \\ \hline
+        Number of agents & $\mathbb{Z}_{100 \leq x < 400}$ & pop. size in each deme, initially \\ \hline
+        Graph & \{...\} & composition of the graph (nodes and edges) \\ \hline
+        Starting distribution & \{...\} & distribution of pop. in the graph
+	\end{tabular}
+	\caption{Summary of the changeable model parameters.}
+\end{table}
+\end{frame}
+
 \subsection{Comparison functions}
 \begin{frame}{Measures \& comparisons}{Comparison functions}
+\begin{center}
+  \includegraphics[width=1\textwidth]{../data/comparison-general.png}
+\end{center}
 \end{frame}
 
 \subsubsection{Mean Square Distance}
 \begin{frame}{Measures \& comparisons}{Comparison functions}
+\begin{mblock}{0.7}{Mean Square Distance}
+  \centering  
+  $MSD = \frac{\sum\limits_{i=1}^{n} (AdRef_i - AdSim_i) ^ 2}{n}$\\~\\
+  $0 \le MSD \le 1$
+\end{mblock}
+\end{frame}
+
+\addtocounter{framenumber}{-1}
+\begin{frame}{Measures \& comparisons}{Comparison functions}
+\begin{mblock}{0.7}{Mean Square Distance}
+  \centering  
+  $MSD = \frac{\sum\limits_{i=1}^{n} (AdRef_i - AdSim_i) ^ 2}{n}$
+\end{mblock}
+\begin{mblock}{0.7}{Example}
+  \begin{center}
+    \begin{tabular}{l | c | c | c | c }
+      Islands & A & B & C & D \\
+      \hline \hline
+      Reference & 1.0 & 0.5 & 0.4 & 0.0 \\
+      Simulated & 1.0 & 0.4 & 0.3 & 0.2 \\
+      \hline
+      Distance & 0.0 & 0.1 & 0.1 & 0.2
+    \end{tabular}
+  \end{center}
+  \centering
+  $MSD = 0.1$
+\end{mblock}
 \end{frame}
 
 \subsubsection{Partial Mantel Correlation}
 \begin{frame}{Measures \& comparisons}{Comparison functions}
+\begin{mblock}{0.7}{Mantel Partial Correlation}
+  \centering  
+  $cor = mantel.partial(M_{Simulated}, M_{Reference}, M_{geographical})$\\~\\
+  $-1 \le cor \le 1$
+\end{mblock}
+\begin{mblock}{0.7}{distance matrices}
+  \centering  
+  $M = \begin{bmatrix}
+		d(Ad_0, Ad_0)	& \cdots & d(Ad_0, Ad_n) \\
+		\vdots			& \ddots & \vdots		 \\
+		d(Ad_n, Ad_0)	& \cdots & d(Ad_n, Ad_n)
+	\end{bmatrix}$
+\end{mblock}
+\end{frame}
+
+\addtocounter{framenumber}{-1}
+\begin{frame}{Measures \& comparisons}{Comparison functions}
+\begin{mblock}{0.7}{Mantel Partial Correlation}
+  \centering  
+  $cor = mantel.partial(M_{Simulated}, M_{Reference}, M_{geographical})$
+\end{mblock}
+\begin{mblock}{0.7}{Example}
+  \begin{center}
+    \fontsize{5pt}{8pt}
+    $mantel.partial(\begin{bmatrix}
+      0.0 & 0.5 & 0.6 & 1.0 \\
+      0.5 & 0.0 & 0.1 & 0.5 \\
+      0.6 & 0.1 & 0.0 & 0.4 \\
+      1.0 & 0.5 & 0.4 & 0.0 \\
+    \end{bmatrix}, \begin{bmatrix}
+      0.0 & 0.6 & 0.7 & 0.8 \\
+      0.6 & 0.0 & 0.1 & 0.2 \\
+      0.7 & 0.1 & 0.0 & 0.1 \\
+      0.8 & 0.2 & 0.1 & 0.0 \\
+    \end{bmatrix}, \begin{bmatrix}
+      0.0 & 300 & 250 & 400 \\
+      300 & 0.0 & 120 & 150 \\
+      250 & 120 & 0.0 & 100 \\
+      400 & 150 & 100 & 0.0 \\
+    \end{bmatrix})$
+  \end{center}
+  \centering
+  $cor = 0.72$
+\end{mblock}
+\end{frame}
+
+\subsubsection{Summary statistics}
+\begin{frame}{Measures \& comparisons}{Comparison functions}
+Summary statistics:
+\begin{itemize}
+  \item Mean Square Distance
+  \begin{itemize}
+    \item Autosomal admixture
+    \item X-Chromosomal admixture
+  \end{itemize}
+  \item Partial Mantel Correlation
+  \begin{itemize}
+    \item Autosomal admixture
+    \item X-Chromosomal admixture
+  \end{itemize}
+\end{itemize}
 \end{frame}
 
 
@@ -162,6 +323,18 @@
 \masseyBrand{bar}[0.1]{}{}{}
 \subsection{Grid search}
 \begin{frame}{Statistical analysis}{Grid search}
+\begin{center}
+  \includegraphics[width=0.7\textwidth]{../data/grid.png}
+\end{center}
+\end{frame}
+
+\begin{frame}{Statistical analysis}{Grid search}
+\begin{center}
+  \begin{figure}
+    \includegraphics[width=1\textwidth]{../data/sensit-comp-2d-preview.png}
+    \caption{Partial Mantel correlation in relation to fecundity and migration rates}
+  \end{figure}
+\end{center}
 \end{frame}
 
 \subsection{Approximate Bayesian Computation}
@@ -171,17 +344,38 @@
 \end{center}
 \end{frame}
 
+\begin{frame}{Statistical analysis}{ABC}
+\begin{center}
+  \includegraphics[width=0.7\textwidth]{../data/abc-space.png}
+\end{center}
+\end{frame}
+
+\begin{frame}{Statistical analysis}{ABC}
+\begin{center}
+  \begin{figure}
+    \includegraphics[width=0.8\textwidth]{../data/abc-priors-posteriors.png}
+    \caption{Example output from an ABC analysis}
+  \end{figure}
+\end{center}
+\end{frame}
+
 % Closing ------------------------------------------------------------------------------------
 
-\masseyBrand{full}{uniLogo/masseyBlueCircles.jpg}{whiteback}{whiteletters}[masseyVolcano]
+\masseyBrand{full}{uniLogo/masseyBlueCircles.jpg}{}{}
 \begin{frame}[plain]
-\masseyClose{Thank you}
+\masseyClose{Thank you~~~---~~~Kia ora}
 \begin{columns}
-  \column{0.4\textwidth}
-    \tableofcontents[subsectionstyle=hide]
+  \column{0.6\textwidth}
+    Table of contents:\\~\\
+    \tableofcontents[subsubsectionstyle=hide]
 
   \column{0.4\textwidth}
-    Any question?
+    \begin{Huge}
+      Questions?
+    \end{Huge}
+    \\~\\~\\~\\~\\
+    \color{lightgray}
+    map backgrounds from “HERE Satellite”
 
 \end{columns}
 \end{frame}
