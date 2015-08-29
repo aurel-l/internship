@@ -1,4 +1,4 @@
-\documentclass[a4paper, 12pt]{report}
+\documentclass[12pt, chapterprefix=true]{scrreprt}
 
 %packages
 \usepackage[utf8]{inputenc}
@@ -13,6 +13,9 @@
 \usepackage[hidelinks]{hyperref}
 \usepackage[section]{glossaries}
 \usepackage[square]{natbib}
+
+\setkomafont{disposition}{\normalfont\bfseries}
+\renewcommand{\baselinestretch}{1.5}
 
 \makeglossaries
 %<glossary>
@@ -63,11 +66,14 @@
   \vskip0pt plus 1fil 
   }%
 
-  \textbf{Aurélien \textsc{Luciani}}\centering\\ 
+  \LARGE
+  Aurélien \textsc{Luciani}\centering\\
+  \normalsize
   \vskip0pt plus 1fil 
   \hfill \hskip.25cm \vrule width.8pt \hskip.25cm 
   \vskip0pt plus 1fil {\centering Supervisor: Murray P. \textsc{Cox} \par }
   \vskip0pt {\centering Host: Institute of Fundamental Sciences, Massey University \par }
+  \vskip0pt plus 1fil {\centering Université de Bordeaux supervisor: Marie Noelle \textsc{Beurton-Aimar} \par }
   \vskip0pt plus 2fil 
   \includegraphics[width=0.45\textwidth]{../data/ub.jpg}
   \includegraphics[width=0.45\textwidth]{../data/mu.png}
@@ -75,10 +81,14 @@
   \hfill\bfseries{Year 2014-2015}\hfill\null 
 \end{titlepage}
 
-%\begin{spacing}{1.1}
+\clearpage\thispagestyle{empty}\null\newpage
+
+\begin{spacing}{1.21}
 \tableofcontents
-%\end{spacing}
+\end{spacing}
 %\addtocontents{toc}{\protect\enlargethispage{\baselineskip}}
+
+\clearpage\thispagestyle{empty}\null\newpage
 
 \chapter*{Acknowledgements}
 Special thanks to:
@@ -88,6 +98,9 @@ Special thanks to:
   \item Dr Marie Noelle Beurton-Aimar, as the Université de Bordeaux supervisor of this internship; \textit{and}
   \item all the Computational Biology Research Group, Dr Matthew “Mac” Campbell, Dr Pierre-Yves Dupont, Dr Elsa Guillot, and Jiří Moravec, for the help provided during this internship.
 \end{itemize}
+
+Computational Biology Research Group: \url{http://massey.genomicus.com}
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\textwidth]{../data/cbrg.jpg}
@@ -95,6 +108,9 @@ Special thanks to:
 
 This work is founded by the Rutherford Foundation Trust, part of the Royal Society of New Zealand.
 It is hosted at the Institute of Fundamental Sciences (IFS), Massey University, Palmerston North, New Zealand.
+
+\newpage
+\newpage
 
 \chapter*{Introduction}
 \addcontentsline{toc}{chapter}{Introduction}
@@ -190,7 +206,7 @@ Some of them are defined initially and the fact that they are immutable is to si
 The parameters that can actually be adjusted are listed in Table \ref{parameters} and can be put into different groups.
 Most of them are continuous parameters, whose values are numbers, and a few of them are discrete.
 The discrete parameters are the graphs used and the starting distributions.
-While the former corresponds to the topography of the graph used in the model, comprising the nodes and the edges between them, the latter is the distribution of the Melanesian and Asian populations in the graph at the initial step of the model.
+While the former corresponds to the topology of the graph used in the simulations, comprising the nodes and the edges between them, the latter is the distribution of the Melanesian and Asian populations in the graph at the initial step of a simulation.
 
 The model can work with a large number of different parameter values, corresponding to the “values” columns in Table \ref{parameters}.
 Knowing the context of the model, especially using previous anthropological studies, an estimation of possible realistic values can be found, but will need to be refined later on during the analysis processes.
@@ -612,9 +628,15 @@ And finally, lower stability is expected from islands that include fewer \glspl{
 
 If the parameter value set induces abnormal behaviour, it thus means that it is not a realistic set of values.
 
-Another view that is output by the stability analysis is the graph of \gls{admixture} values as a function of the types of DNA, and for every island (Fig. \ref{app:stability-admixGradient}).
+Another view that is output by the stability analysis is the graph of \gls{admixture} values as a function of the types of DNA, and for every island (Fig. \ref{stability-admixGradient}).
 This graph aims to resemble Figure \ref{lansing-image} (\cite{Lan01}) as a way to compare the real data in this paper to the data generated in the simulations.
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{../data/stability-admixGradient.png}
+	\caption{Admixture values by type of DNA, for every island.}
+	\label{stability-admixGradient}
+\end{figure}
 
 \subsubsection{Sensitivity analysis}
 When looking at lines or planes on the grid, the sensitivity of the output to changes in the corresponding parameters can be analysed.
@@ -642,6 +664,14 @@ The parameter space for the migration probability has thus been reduced to $[0.1
 Also, really low fecundity rates gave too many failed simulations. Because $poissonMean$ values below $3.5$ were thus considered unrealistic, the space was reduced to only include values higher than $3.5$.
 
 \section{ABC framework}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{../data/abc-priors-posteriors.png}
+	\caption{Prior and posterior distributions for an ABC analysis.}
+	\label{abc-prior-posterior}
+\end{figure}
+
 The implementation of the ABC framework being the last part of the internship, more useful results are to be expected in the future when more ABCs will be run.
 
 \chapter*{Conclusion}
@@ -666,18 +696,21 @@ The languages of the different scripts have been chosen to use the ones adapted 
 The code produced aims to easily handle the data generated by the model used for this project and to represent it in a way that conclusions can be made by looking at the visualisations of the data and not having to manually analyse the huge quantity of data generated by the numerous iterations of the model.
 All the data have been handled in a recent but recognised statistical context, an ABC framework, that guarantees that the interpretations made are not biased and can be found again using other implementations of the same statistical framework.
 
-\chapter*{Glossary}
-\addcontentsline{toc}{chapter}{Glossary}
+\newpage
+
+\glossarystyle{altlist}
 \printglossaries
+\addcontentsline{toc}{chapter}{Glossary}
 
 
-\bibliography{main}
+\bibliography{main_v2}
 \bibliographystyle{apalike}
+\addcontentsline{toc}{chapter}{Bibliography}
 
 \appendix
 % change section numbering to roman numbers
 \renewcommand{\thesection}{\Roman{section}}
-\addtocontents{toc}{\protect\setcounter{tocdepth}{-1}}
+\addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
 % example visualisations
 %\addtocontents{toc}{\setcounter{tocdepth}{-1}}
 \chapter{Examples of visualisation}
@@ -694,15 +727,7 @@ This appendix presents different visualisation examples that are generated by th
 	\label{app:stability}
 \end{figure}
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.18]{../data/stability-admixGradient.png}
-	\caption{Admixture values by type of DNA, for every island.}
-	\label{app:stability-admixGradient}
-\end{figure}
-
 \section{Sensitivity}
-
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.26]{../data/count-2d.png}
