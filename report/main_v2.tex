@@ -121,7 +121,8 @@ This expansion implied great changes for the people living in the islands, inclu
 The exact path these populations followed is unclear though, and it is believed they might have come through Taiwan, the Malay Peninsula, or from both places around the same time.
 
 Nowadays, people living in this area have mixed genomic ancestry and markers can be identified as either from Asian or Melanesian ancestry.
-These markers are based on single nucleotide polymorphisms (SNPs) located on different chromosomes and 37 markers can be used to define accurately the \gls{admixture} of the Asian ancestry in every individual (\cite{Cox01}).
+A measure of this is the \textbf{\gls{admixture}} rate that will be used throughout the project, providing a simple way to define the ancestry of an individual.
+The markers used are based on single nucleotide polymorphisms (SNPs) located on different chromosomes and 37 markers can be used to define accurately the \gls{admixture} of the Asian ancestry in every individual (\cite{Cox01}).
 The choice of this set of SNPs is the result of previous studies and the resulting set is defined as highly informative. With this, the ancestry of a person can be defined based on a small quantity of markers that are highly discriminant.
 
 Two specific patterns can be seen (\cite{Lan01}).
@@ -135,6 +136,7 @@ The data and discoveries made led to further questions, such as explaining the d
 
 The Computational Biology Research Group at Massey University (Manawat\={u} campus, in Palmerston North) is doing a follow-up two-year project.
 It consists of developing a model of the Austronesian expansion throughout the ISEA that could reproduce the same two patterns observed in the real data.
+A part of it, corresponding to this internship, will be to assess the quality of this model and to analyse its results.
 
 \chapter{Project presentation}
 The scope of this six-month internship is to create a statistical framework to handle the data created by the model.
@@ -142,7 +144,7 @@ The scope of this six-month internship is to create a statistical framework to h
 As the model is currently being implemented in the same research group, the first thing to do is to assess the quality of the model by looking at the returned data.
 This is done to guide the development of the model to have the best implementation possible.
 
-Once the model implementation is stable, it can be run to provide data for the statistical analysis. The final goal is thus to compare the simulated data to the reference data, from the previous papers, and to find the same patterns observed with the reference data in the simulations.
+Once the model implementation is stable, it can be run to provide data for the statistical analysis. The final goal is thus to compare the simulated data to the reference data, from the previous papers (\cite{Cox01, Lan01}), and to find the same patterns observed with the reference data in the simulations.
 
 This project will need to take into account what is already done to evaluate simulation data and to adapt it to this specific model in order to handle transparently all the simulation data generated.
 
@@ -174,7 +176,7 @@ These \gls{admixture} values will only be recorded for the last step of the simu
 
 \chapter{Existing context}
 \section{Agent-Based Model}
-The model is an Agent-Based Model (ABM) that comprises a graph of nodes, each node corresponding to a \gls{deme}, and each edge corresponding to a possible migration route between \glspl{deme} (see Figure \ref{nodesOnMap}).
+The model is an Agent-Based Model (ABM) that comprises a graph of nodes, each node corresponding to a \textbf{\gls{deme}}, and each edge corresponding to a possible migration route between \glspl{deme} (see Figure \ref{nodesOnMap}).
 The agents of the model are people living in the graph, in every node, and these agents are able to migrate and to create families.
 The graph and the agents living in it respond to a set of basic rules regulated by parameters and the goal is then to observe the emerging behaviours arising from it.
 
@@ -201,7 +203,9 @@ Therefore, the implementation of the model consists of agents evolving in a grap
 
 \subsection{Parameters}
 Numerous parameters can be set in the model.
-Some of them are defined initially and the fact that they are immutable is to simplify the model by limiting the number of parameters to set.
+Some of them are defined initially and never change because there is no need to do so.
+These parameters correspond to wanted characteristics of the model in the observed context like natality or mortality rates or the age distribution.
+The values used come from a wide variety of previous anthropological studies.
 
 The parameters that can actually be adjusted are listed in Table \ref{parameters} and can be put into different groups.
 Most of them are continuous parameters, whose values are numbers, and a few of them are discrete.
@@ -212,7 +216,7 @@ The model can work with a large number of different parameter values, correspond
 Knowing the context of the model, especially using previous anthropological studies, an estimation of possible realistic values can be found, but will need to be refined later on during the analysis processes.
 
 \begin{table}[H]
-	\hspace*{-2.25cm}
+	\hspace*{-1.5cm}
 	\begin{tabular}{|c|l|l|l|}
 		\hline
  		Parameter & Values & Estimated & Comment \\ \hline
@@ -233,14 +237,17 @@ Knowing the context of the model, especially using previous anthropological stud
 
 \subsection{Other existing models}
 This model is just one of the types of models that could have been chosen.
-For example, other models can have their time unit defined as a generation (roughly equivalent to 20 years).
-Here, the unit of time has been defined as one year to have more precise time steps in the model and to be closer to reality due to the higher time resolution.
 
-Coalescent models also exist.
-They take the problem the other way around by trying to rebuild the past, the ancestry of the individuals, based on the present data.
+This model is “forward-in-time”, meaning that the simulation starts in the past and evolves chronologically towards the future.
+This is by opposition to coalescent models where the model evolves from given point back to a previous state.
+These models take the problem the other way around by trying to rebuild the past, the ancestry of the individuals, based on the present data.
 They do it this way to try to reduce the amount of computation needed, as they therefore do not have to simulate agents whose lineage would have ended up extinct.
+
 It is not suited for this agent-based model though because parameters vary among agents and this is not trivial to do with coalescence.
-The fact that an agent has either a Melanesian or Asian ancestry leads to different behaviour and this is more straightforward to do in an ABM.
+The fact that an agent has either a Melanesian or Asian ancestry leads to different behaviour and this is more straightforward to do in an “forward-in-time” model.
+
+Also, other models can have their time unit defined as a generation (roughly equivalent to 20 years).
+Here, the unit of time has been defined as one year to have more precise time steps in the model and to be closer to reality due to the higher time resolution.
 
 \section{Statistical analysis framework}
 Because of the complexity of the model (number of agents, stochasticity, multiple parameters), it will need to be run thousands of times and with a lot of different changing values for the parameters.
@@ -335,7 +342,7 @@ A fairly recent statistical analysis framework has been used more and more in th
 This framework is called Approximate Bayesian Computation (ABC).
 Its use is recommended when using high dimensional data that makes it difficult to use standard statistical frameworks.
 ABC still relies highly on standard statistical tools but instead of giving one best result, it returns a distribution of best possible parameters.
-It answers the question: given a set of parameter distributions (called “\glspl{prior}”), what are the distributions (subsets of the \glspl{prior}), that give best results? This set of output distributions are then called “\glspl{posterior}”.
+It answers the question: given a set of parameter distributions (called “\textbf{\glspl{prior}}”), what are the distributions (subsets of the \glspl{prior}), that give best results? This set of output distributions are then called “\textbf{\glspl{posterior}}”.
 
 Its use has been increasing recently and some examples of recent papers using ABC in similar contexts are \cite{Gui01} or \cite{Keh01}.
 
@@ -356,7 +363,7 @@ the parameters whose simulations got accepted can be used and visualised in dist
 The \glspl{prior} are defined as a set of distributions, one for each observed parameter.
 The distributions can be of any type but it is necessary to know them when doing the inference of the \gls{posterior} distributions since, depending on the type chosen, they can induce a bias that will need to be corrected.
 In general, for ABCs, uniform, Poisson or normal distributions are used.
-Here, the distributions chosen are all uniform and the only bias can be if the correct parameters lay outside of the boundaries of the distributions (thus the importance of the previous grid search analysis).
+Here, the distributions chosen are all uniform and the only bias can be if the correct parameters lay outside of the boundaries of the distributions (thus the importance of doing other previous statistical analyses).
 A visualisation of example simulation parameter sets that can be generated by the first step of an ABC framework can be seen in Figure \ref{abc-space}.
 
 \begin{figure}[H]
@@ -367,7 +374,7 @@ A visualisation of example simulation parameter sets that can be generated by th
 \end{figure}
 
 Now that the required parts are defined, their implementation is needed, taking into account the specifics of the project.
-
+A pipeline is required to run the simulations and to process and analyse all the simulation data coming from the model.
 
 \chapter{Implementation}
 The different parts of the statistical analysis pipeline implementation are detailed in the next sections.
@@ -404,7 +411,7 @@ They provide servers specially designed for scientific computation and can be ta
 Each node is an IBM Power755 machine.
 
 The most powerful level used for this study is obviously the HPC but a trade-off of using this system is that, since it is shared by multiple users and is managed by a third-party, it requires specific settings and it cannot be used exactly as can a custom cluster of computers.
-The batches have to be submitted through a \gls{job-scheduler}, in this case called LoadLeveler.
+The batches have to be submitted through a \textbf{\gls{job-scheduler}}, in this case called LoadLeveler.
 Because of this, slight changes have been made to the way the model and the Repast framework are launched.
 Simulations run on this HPC use several nodes, with each of these nodes having multiple threads available for the simulations.
 This configuration leads to the parallel simulation of more than a hundred scenarios at the same time.
@@ -414,14 +421,14 @@ In this case 4 nodes were used, each of those having 32 threads.
 	\centering
 	\begin{subfigure}[t]{0.4\textwidth}
 		\centering
-		\includegraphics[scale=0.5]{../data/network:local.png}
+		\includegraphics[scale=0.35]{../data/network:local.png}
 		\caption{local}
 		\label{network:local}
 	\end{subfigure}
 	~
 	\begin{subfigure}[t]{0.4\textwidth}
 		\centering
-		\includegraphics[scale=0.5]{../data/network:office.png}
+		\includegraphics[scale=0.35]{../data/network:office.png}
 		\caption{local network}
 		\label{network:office}
 	\end{subfigure}
@@ -459,11 +466,12 @@ It has first been developed and tested locally and then, once it was working pro
 	\label{db}
 \end{figure}
 
-The use of the database can be done through phpMyAdmin but two scripts have been developed to interact with it directly.
+The use of the database can be done through phpMyAdmin but two scripts have been developed to interact with it directly (\texttt{db\_fill} and \texttt{db\_query} in Figure \ref{workflow-2}).
 The first one reads the two files output by the model (the \gls{admixture} data and the corresponding parameter values), merges them and adds the resulting data to the database.
 The other one queries the database according to conditions provided by the analyst and returns already merged parameter and admixture values.
 The scripts have been written in Python3, using the PyMySQL module to access the MySQL database.
 Internally, the first script to add data to the database uses another script, in R, that processes the data before adding them.
+This is the \texttt{merge} script in Figure \ref{workflow-2}.
 This way one process, the Python script, handles the connection with the database while another process, the R script, does the actual data processing at the same time, in parallel.
 
 \section{Statistical analyses}
@@ -482,6 +490,11 @@ One parameter grid search can be seen in Figure \ref{grid}.
 Depending on the number of parameters and the step sizes, this has an important computational cost.
 This has been considered a necessary step though, in order to reduce the parameter space for the next analysis, the ABC analysis, that would be even more computationally consuming if run over a huge parameter space.
 The resulting parameter space that will be used after the grid search analysis is defined manually after selecting interesting and meaningful values that can either be a smaller space or a specific value, thus making a parameter a non-changing one. Details of this will be presented in Section \ref{section:results:grid}.
+
+The corresponding visualisations are generated by the \texttt{stability}, \texttt{sensitivity} and \texttt{sensitivity2D} R scripts in Figure \ref{workflow-2}.
+These scripts only generate the graphical visualisations, in order to separate the logic in the pipeline between statistical analysis and data visualisation.
+The correct script is chosen automatically by the \texttt{analysis} script without the need for the analyst to specify it.
+The choice is done dynamically during the processing of the data by this script.
 
 \subsubsection{ABC framework}
 Once an interesting subspace of parameters has been defined, it can be used to feed the ABC framework used later.
@@ -512,6 +525,9 @@ The tolerance can be adjusted for every analysis and no perfect tolerance exists
 
 Finally, the parameter values for the selected simulations are retrieved and the corresponding distributions form the \glspl{posterior}.
 These inferred distributions are the actual result of the ABC and can be used to deduce which parameter values, and which ranges, are more likely to yield results close to the observed reality.
+
+While the analyses for the ABC are done in the \texttt{analysis} script in Figure \ref{workflow-2}, the specific visualisations are generated in the \texttt{ABC} script.
+This is also to separate the logic of the scripts by doing the analysis in a common script and the visualisations in an other.
 
 \section{Visualisations}
 As said in \cite{Wei01}, it is easy to represent data but hard to represent it so that the person visualising it does not need to dig into the huge quantity of data again to understand what is happening.
@@ -570,7 +586,7 @@ The improvement in time has been made possible by assuming that the results of o
 Actual execution times have been recorded and can be seen in appendix \ref{app:bench} in graphs \ref{app:bench-merging-time} for the treatment step and \ref{app:bench-analysis-time} for the analysis step.
 The corresponding maximum memory use values are shown in the graphs \ref{app:bench-merging-mem} and \ref{app:bench-analysis-mem}.
 
-There is effectively still a great amount of room to improve memory usage, especially seeing that the base memory usage is between 60 and 200 MB just when loading libraries, functions, global variables and set-up code.
+There is effectively still a great amount of room to improve memory usage, especially seeing that the base memory usage is between 60 and 200 MB, depending on the script run. The base memory usage includes loading libraries, functions, global variables and also set-up and clean-up code.
 
 The stream approach also allows the different steps of an analysis to be run simultaneously, by piping each step to the next, effectively making the whole process able to be in parallel.
 This is useful only if the computer used has at least $n$ cores if $n$ processes need to be run in parallel.
@@ -593,9 +609,11 @@ Actually, even though the random seed is supposed to be a 32 bit signed integer,
 The first way to handle this has been to alert the analyst when this happened so that they could remove the specific simulations if needed.
 Secondly, a way has been found to generate the random seeds for the ABC analysis beforehand using \textsc{unix}’s random source, \texttt{/dev/urandom/}, that can generate pseudo-random values which can be used for cryptographic purposes, meaning that it is good enough in this case to avoid collision.
 
-~\\
+~
 
-After implementing all of this, the results can be analysed and different interpretations can start to be given.
+At this point, all the pipeline is implemented.
+It has seen multiple refactoring processes to finally have the modular structure and to be able to handle data as a stream.
+Even though it will continue to evolve and adapt to the changes in the model and to the requirements of the statistical analyses, different interpretations can start to be given.
 
 \chapter{Statistical analysis results}
 \label{chapter:results}
@@ -626,7 +644,7 @@ That is the case with mitochondrial and Y-chromosomal \gls{admixture} where the 
 
 And finally, lower stability is expected from islands that include fewer \glspl{deme}, and thus lower population sizes, like Alor, Aru or Bali that are composed of only one single \gls{deme} each when New Guinea (Papu in the figures) has twenty.
 
-If the parameter value set induces abnormal behaviour, it thus means that it is not a realistic set of values.
+If the parameter value set induces abnormal behaviour, it can mean that it is not a realistic set of values or, since the goal is also to assess the model itself, it can also mean that there is a problem somewhere in the model's logic.
 
 Another view that is output by the stability analysis is the graph of \gls{admixture} values as a function of the types of DNA, and for every island (Fig. \ref{stability-admixGradient}).
 This graph aims to resemble Figure \ref{lansing-image} (\cite{Lan01}) as a way to compare the real data in this paper to the data generated in the simulations.
@@ -665,6 +683,18 @@ Also, really low fecundity rates gave too many failed simulations. Because $pois
 
 \section{ABC framework}
 
+The ABC will output multiple graphs, the most interesting being the graph seen in \ref{abc-prior-posterior}.
+It shows both the \glspl{prior} and the \glspl{posterior} of all the changing parameters in the simulations.
+
+The red density plot is only there to remind the kind of \gls{prior} distribution used and to be sure the right one was used.
+Indeed, if the distribution shown does not correspond to the one wanted, it can mean there was a problem somewhere in the pipeline.
+If the distribution does not exactly look like the one defined, then it means that the number of simulations is too low.
+The implementation allows the analyst to generate an other batch of simulations that they will be able to combine to the previous one in order to have more precise results.
+Also, it shows the range of values used for the ABC since it is essential, if the this range was previously reduced, that the \gls{posterior} distributions remain clearly inside these limits.
+
+The \glspl{posterior} are displayed in green and correspond to the parameter distributions of the accepted simulations in the rejection step of the ABC analysis.
+These \gls{posterior} distributions are the distributions that can be used by the analyst to make conclusions about the functioning of the modelled processes.
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{../data/abc-priors-posteriors.png}
@@ -672,7 +702,13 @@ Also, really low fecundity rates gave too many failed simulations. Because $pois
 	\label{abc-prior-posterior}
 \end{figure}
 
-The implementation of the ABC framework being the last part of the internship, more useful results are to be expected in the future when more ABCs will be run.
+Here, in Figure \ref{abc-prior-posterior}, by looking at the fecundity and migration ratios (\texttt{poissonMeanRatio} and \texttt{migrationProbRatio}), it can be deduced that, the Asian population had an advantage in fecundity and in migration (accepted ratios $< 1$) over the Melanesian populations.
+This is most likely due to the knowledge of rice agriculture and to better navigation techniques.
+
+Also, the \texttt{marriageThres} \gls{posterior} distribution is peaking close to the space upper limit, meaning that the interpopulation marriage rules were not neutral and likely favoured Asian women --- Melanesian men marriages.
+
+The implementation of the ABC framework being the last part of the internship, these interpretations might be subject to changes.
+More useful results are to be expected in the future when more ABCs will be run.
 
 \chapter*{Conclusion}
 \addcontentsline{toc}{chapter}{Conclusion}
@@ -716,13 +752,12 @@ All the data have been handled in a recent but recognised statistical context, a
 \chapter{Examples of visualisation}
 \label{app:ex-visu}
 %\addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
-
 This appendix presents different visualisation examples that are generated by the developed scripts.
 
 \section{Stability}
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.2]{../data/stability.png}
+	\includegraphics[width=0.897\textwidth]{../data/stability.png}
 	\caption{Box-plots of admixture by island, separated by type of DNA.}
 	\label{app:stability}
 \end{figure}
@@ -730,63 +765,57 @@ This appendix presents different visualisation examples that are generated by th
 \section{Sensitivity}
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.26]{../data/count-2d.png}
+	\includegraphics[width=1\textwidth]{../data/count-2d.png}
 	\caption{Heat-map of counts of simulations for a one-dimensional sweep of migrationProb and poissonMean values. Failed simulations are revealed for both high migrationProb and low poissonMean values (dark boxes).}
 	\label{app:count-2d}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.31]{../data/sensit-comp-1d.png}
+	\includegraphics[width=1\textwidth]{../data/sensit-comp-1d.png}
 	\caption{Box-plots of comparisons of simulations vs. real data for a one-dimensional sweep of marriageThres values. Additional lines corresponding to pre-defined extreme reference cases.}
 	\label{app:sensit-comp-1d}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.31]{../data/sensit-comp-2d.png}
+	\includegraphics[width=1\textwidth]{../data/sensit-comp-2d.png}
 	\caption{Heat-maps of comparisons and corresponding standard deviations of simulations vs. real data for a two-dimensional sweep of migrationProb and poissonMean values.}
 	\label{app:sensit-comp-2d}
 \end{figure}
 
-
 \chapter{Benchmarks}
 \label{app:bench}
+This appendix presents maximum memory and time usage at two points critical points in the pipeline (Figure \ref{workflow-2}).
 
 \section{Merging}
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.35]{../data/merge-timeByNSimulations.png}
-	\caption{Time used by the scripts in relation to the number of simulations merged. Corresponding, in the work-flow, to \texttt{merge.R}.}
+	\includegraphics[width=0.85\textwidth]{../data/merge-timeByNSimulations.png}
+	\caption{Time used by the scripts in relation to the number of simulations merged. Corresponding, in Figure \ref{workflow-2}, to the \texttt{merge} script.}
 	\label{app:bench-merging-time}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.35]{../data/merge-maxMemByNSimulations.png}
-	\caption{Maximum memory used by the scripts in relation to the number of simulations analysed. Corresponding, in the work-flow, to \texttt{merge.R}.}
+	\includegraphics[width=0.752\textwidth]{../data/merge-maxMemByNSimulations.png}
+	\caption{Maximum memory used by the scripts in relation to the number of simulations merged. Corresponding, in Figure \ref{workflow-2}, to the \texttt{merge} script.}
 	\label{app:bench-merging-mem}
 \end{figure}
 
-
 \section{Analysis}
-note: update with latest changes (hopefully, better values)
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.35]{../data/analysis-timeByNSimulations.png}
-	\caption{Time used by the scripts in relation to the number of simulations analysed. Corresponding, in the work-flow, to \texttt{analysis.R}, \texttt{sensitivity.R} and the creation of the corresponding output files.}
+	\includegraphics[width=0.752\textwidth]{../data/analysis-timeByNSimulations.png}
+	\caption{Time used by the scripts in relation to the number of simulations analysed. Corresponding, in Figure \ref{workflow-2}, to the \texttt{analysis} and \texttt{ABC} scripts and to the creation of the corresponding output files.}
 	\label{app:bench-analysis-time}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.35]{../data/analysis-maxMemByNSimulations.png}
-	\caption{Maximum memory used by the scripts in relation to the number of simulations analysed. Corresponding, in the work-flow, to \texttt{analysis.R}, \texttt{sensitivity.R} and the creation of the corresponding output files.}
+	\includegraphics[width=1\textwidth]{../data/analysis-maxMemByNSimulations.png}
+	\caption{Maximum memory used by the scripts in relation to the number of simulations analysed. Corresponding, in Figure \ref{workflow-2}, to the \texttt{analysis} and \texttt{ABC} scripts and to the creation of the corresponding output files.}
 	\label{app:bench-analysis-mem}
 \end{figure}
 
-% overview
-
 \end{document}
-
-
