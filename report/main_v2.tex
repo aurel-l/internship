@@ -13,6 +13,10 @@
 \usepackage[hidelinks]{hyperref}
 \usepackage[section]{glossaries}
 \usepackage[square]{natbib}
+\usepackage{booktabs}
+\usepackage{tabu}
+
+\renewcommand{\arraystretch}{1.2}
 
 \setkomafont{disposition}{\normalfont\bfseries}
 \renewcommand{\baselinestretch}{1.5}
@@ -117,7 +121,7 @@ It is hosted at the Institute of Fundamental Sciences (IFS), Massey University, 
 Two main ancestral populations can be identified in the genomes of people living nowadays in the Islands of South-East Asia (ISEA).
 The first one is the Melanesian population, whose settlement in this area is believed to have taken place around 45 thousand years ago.
 The other arrived more recently, during a period often called the Austronesian expansion, between 5 and 4 thousand years ago, when people from what is now mainland China settled in the islands.
-This expansion implied great changes for the people living in the islands, including the development of rice agriculture and better navigation knowledge.
+This expansion implied great changes for the people living in these islands, including the development of rice agriculture and better navigation knowledge.
 The exact path these populations followed is unclear though, and it is believed they might have come through Taiwan, the Malay Peninsula, or from both places around the same time.
 
 Nowadays, people living in this area have mixed genomic ancestry and markers can be identified as either from Asian or Melanesian ancestry.
@@ -129,7 +133,7 @@ Two specific patterns can be seen (\cite{Lan01}).
 One is the non-linear gradient of Asian \gls{admixture} along the longitudinal axis in the different islands in the area, that could correspond more or less to how the Austronesian expansion wave propagated from the mainland.
 The second is the difference of \gls{admixture} when looking at specific parts of the genomes associated with male or female ancestry, implying a gender-biased expansion.
 
-These are based on data coming from studies made on population currently living in the ISEA.
+These are based on data coming from studies made on populations currently living in the ISEA.
 These studies were made jointly at Massey University (New Zealand), the University of Arizona (USA), the Santa Fe Institute (USA), and the Eijkman Institute (Indonesia).
 They provided the set of SNPs used, determined after the genotyping of 1,430 individuals from 60 populations.
 The data and discoveries made led to further questions, such as explaining the different \gls{admixture} patterns.
@@ -151,7 +155,7 @@ This project will need to take into account what is already done to evaluate sim
 The first of the two observed patterns can be seen in Figure \ref{cox-image}.
 It is a non-linear gradient in Asian \gls{admixture} that declines abruptly around the eastern part of Indonesia.
 The second one, represented in Figure \ref{lansing-image}, shows the difference in \gls{admixture} on distinct parts of the DNA for different islands.
-These latter differences would tend to appear in a context where marriages between Asian women and Melanesian men would be favoured.
+These latter differences would tend to appear in a contexts where marriages between Asian women and Melanesian men would be favoured.
 
 \begin{figure}[H]
 	\centering
@@ -167,7 +171,7 @@ These latter differences would tend to appear in a context where marriages betwe
 	\label{lansing-image}
 \end{figure}
 
-The whole idea of the project is thus to try to reproduce the same patterns and to determine which sets of parameters lead to outputs similar to what is observed.
+The whole idea of the project is thus to reproduce the same patterns and to determine which sets of parameters lead to outputs similar to what is observed.
 The model is set to run from the beginning of the Austronesian expansion, around 4,500 years ago, to the present.
 
 The simulated data from the model will be the observed \gls{admixture} rates of the populations in the area covered by the model.
@@ -197,7 +201,7 @@ Arbitrarily, two rules have been set to define that a simulation has failed:
 \end{itemize}
 
 The model itself has been developed in Java using the Repast Simphony framework (\cite{Nor01}), a cross-platform framework made to write flexible agent-based models.
-The agents correspond either to a single person or a couple that evolve in the \glspl{deme}.
+The agents correspond either to a single person or to a couple that evolve in the \glspl{deme}.
 Each \gls{deme} is a node in the graph and possible migration paths between \glspl{deme} are edges of this graph.
 Therefore, the implementation of the model consists of agents evolving in a graph.
 
@@ -210,27 +214,28 @@ The values used come from a wide variety of previous anthropological studies.
 The parameters that can actually be adjusted are listed in Table \ref{parameters} and can be put into different groups.
 Most of them are continuous parameters, whose values are numbers, and a few of them are discrete.
 The discrete parameters are the graphs used and the starting distributions.
-While the former corresponds to the topology of the graph used in the simulations, comprising the nodes and the edges between them, the latter is the distribution of the Melanesian and Asian populations in the graph at the initial step of a simulation.
+While the former correspond to the topology of the graph used in the simulations, comprising the nodes and the edges between them, the latter are the distributions of the Melanesian and Asian populations in the graph at the initial step of a simulation.
 
 The model can work with a large number of different parameter values, corresponding to the “values” columns in Table \ref{parameters}.
 Knowing the context of the model, especially using previous anthropological studies, an estimation of possible realistic values can be found, but will need to be refined later on during the analysis processes.
 
 \begin{table}[H]
 	\hspace*{-1.5cm}
-	\begin{tabular}{|c|l|l|l|}
-		\hline
- 		Parameter & Values & Estimated & Comment \\ \hline
-        Migration prob. & $\mathbb{R}_{0 \leq x \leq 1}$ & $\mathbb{R}_{0 < x \leq 1}$ & prob. to start migrating for a Melanesian agent \\ \hline
-        Migration prob. ratio & $\mathbb{R}_{\geq 0}$ & $\mathbb{R}_{1 \leq x \leq 4}$ & corresponding ratio for an Asian agent \\ \hline
-        Fecundity & $\mathbb{R}_{\geq 0}$ & $\mathbb{R}_{2.5 < x < 8}$ & Poisson law mean for a Melanesian agent \\ \hline
-        Fecundity ratio & $\mathbb{R}_{\geq 0}$ & $\mathbb{R}_{1 \leq x \leq 2}$ & corresponding ratio for an Asian agent \\ \hline
-        Marriage threshold & $\mathbb{R}_{-0.25 \leq x \leq 0.25}$ & $\mathbb{R}_{0 \leq x \leq 0.25}$ & affects marriages rules \\ \hline
-        Growth rate & $\mathbb{R}_{0 \leq x \leq 1}$ & $\mathbb{R}_{0 < x < 0.001}$ & limiting rate of pop. growth \\ \hline
-        Number of agents & $\mathbb{Z}_{\geq 0}$ & $\mathbb{Z}_{100 \leq x < 400}$ & pop. size in each \gls{deme}, initially \\ \hline
-        Graph & \{...\} & \{...\} & composition of the graph (nodes and edges) \\ \hline
-        Starting distribution & \{...\} & \{...\} & distribution of pop. in the graph \\ \hline
-        % Model rules & \{...\} & \{...\} & different model rules, mainly marriages rules \\ \hline
-	\end{tabular}
+	\begin{tabu}{@{}llll@{}}
+	  \toprule[1pt]
+ 	  Parameter & Values & Estimated & Comment \\
+ 	  \midrule
+    Migration prob. & $\mathbb{R}_{0 \leq x \leq 1}$ & $\mathbb{R}_{0 < x \leq 1}$ & prob. to start migrating for a Melanesian agent \\
+    Migration prob. ratio & $\mathbb{R}_{\geq 0}$ & $\mathbb{R}_{1 \leq x \leq 4}$ & corresponding ratio for an Asian agent \\
+    Fecundity & $\mathbb{R}_{\geq 0}$ & $\mathbb{R}_{2.5 < x < 8}$ & Poisson law mean for a Melanesian agent \\
+    Fecundity ratio & $\mathbb{R}_{\geq 0}$ & $\mathbb{R}_{1 \leq x \leq 2}$ & corresponding ratio for an Asian agent \\
+    Marriage threshold & $\mathbb{R}_{-0.25 \leq x \leq 0.25}$ & $\mathbb{R}_{0 \leq x \leq 0.25}$ & affects marriages rules \\
+    Growth rate & $\mathbb{R}_{0 \leq x \leq 1}$ & $\mathbb{R}_{0 < x < 0.001}$ & limiting rate of pop. growth \\
+    Number of agents & $\mathbb{Z}_{\geq 0}$ & $\mathbb{Z}_{100 \leq x < 400}$ & pop. size in each \gls{deme}, initially \\
+    Graph & \{...\} & \{...\} & composition of the graph (nodes and edges) \\
+    Starting distribution & \{...\} & \{...\} & distribution of pop. in the graph \\
+    \bottomrule[2pt]
+	\end{tabu}
 	\caption{Summary of the changeable model parameters.}
 	\label{parameters}
 \end{table}
@@ -239,7 +244,7 @@ Knowing the context of the model, especially using previous anthropological stud
 This model is just one of the types of models that could have been chosen.
 
 This model is “forward-in-time”, meaning that the simulation starts in the past and evolves chronologically towards the future.
-This is by opposition to coalescent models where the model evolves from given point back to a previous state.
+This is by opposition to coalescent models where the model evolves from a given point in time back to a previous state.
 These models take the problem the other way around by trying to rebuild the past, the ancestry of the individuals, based on the present data.
 They do it this way to try to reduce the amount of computation needed, as they therefore do not have to simulate agents whose lineage would have ended up extinct.
 
@@ -260,28 +265,30 @@ These functions will be able to provide a value of similarity or dissimilarity w
 In this case, the comparison is done between the real observed data and the output of one simulation.
 Every simulation output has to be treated in the same way than the observed data.
 Doing so allows them to be compared.
-The observed data does not include values for specific islands even though they are included in the simulations (see Table \ref{islands}).
+The observed data do not include values for specific islands even though they are included in the simulations (see Table \ref{islands}).
 This is because nodes had to be placed in the model so that the agents could migrate, even though the empirical studies did not get samples from the corresponding areas.
 The \gls{admixture} values for mitochondrion and Y-chromosome are also not available for every island.
 Those values in the model outputs can thus be dropped as they cannot be compared.
 
 \begin{table}[H]
 	\centering
-	\begin{tabular}{|l|c|c||l|c|c|}
-		\hline
- 	  Island & Simulated & Observed & Island & Simulated & Observed \\ \hline
-    Alor & \checkmark & \checkmark & Philippines & \checkmark & \checkmark \\ \hline
-    Aru & \checkmark &  & Seram & \checkmark & \\ \hline
-    Bali & \checkmark & \checkmark & Sulawesi & \checkmark & \checkmark \\ \hline
-    Borneo & \checkmark & \checkmark & Sumatra & \checkmark & \checkmark \\ \hline
-    Bougainville &  & \checkmark & Sumba & \checkmark & \checkmark \\ \hline
-    China & \checkmark & \checkmark & Taiwan & \checkmark & \checkmark \\ \hline
-    Flores & \checkmark & \checkmark & Tanimbar & \checkmark &  \\ \hline
-    Halmahera & \checkmark & \checkmark & Thailand & \checkmark &  \\ \hline
-    Java & \checkmark & \checkmark & Timor & \checkmark & \checkmark \\ \hline
-    Laos & \checkmark &  & Vanuatu &  & \checkmark \\ \hline
-    Malaysia & \checkmark & \checkmark & Vietnam & \checkmark & \checkmark \\ \hline
-    New Guinea & \checkmark & \checkmark &  &  & \\ \hline
+	\begin{tabular}{@{}lcc|lcc@{}}
+		\toprule[1pt]
+ 	  Island & Simulated & Observed & Island & Simulated & Observed \\
+ 	  \midrule
+    Alor & \checkmark & \checkmark & Philippines & \checkmark & \checkmark \\
+    Aru & \checkmark &  & Seram & \checkmark & \\
+    Bali & \checkmark & \checkmark & Sulawesi & \checkmark & \checkmark \\
+    Borneo & \checkmark & \checkmark & Sumatra & \checkmark & \checkmark \\
+    Bougainville &  & \checkmark & Sumba & \checkmark & \checkmark \\
+    China & \checkmark & \checkmark & Taiwan & \checkmark & \checkmark \\
+    Flores & \checkmark & \checkmark & Tanimbar & \checkmark &  \\
+    Halmahera & \checkmark & \checkmark & Thailand & \checkmark &  \\
+    Java & \checkmark & \checkmark & Timor & \checkmark & \checkmark \\
+    Laos & \checkmark &  & Vanuatu &  & \checkmark \\
+    Malaysia & \checkmark & \checkmark & Vietnam & \checkmark & \checkmark \\
+    New Guinea & \checkmark & \checkmark &  &  & \\
+    \bottomrule[2pt]
 	\end{tabular}
 	\caption{List of islands (or areas) in the model and in the reference data.}
 	\label{islands}
@@ -308,7 +315,7 @@ They are complementary, and using them both gives a better overview of the compa
 The mean square distance is the mean value of all of the distances between observed and simulated values of \gls{admixture} for every $n$ island.
 
 \begin{equation}
-MSD = \frac{\sum\limits_{i=1}^{n} (AdReal_i - AdSim_i) ^ 2}{n}
+\mathit{MSD} = \frac{\sum\limits_{i=1}^{n} \left( AdReal_i - AdSim_i \right) ^ 2}{n}
 \end{equation}
 where $AdReal$ is the array of \gls{admixture} data observed in the real values and $AdSim$ the corresponding values in the simulated model.
 
@@ -323,18 +330,18 @@ The partial Mantel test also uses a third matrix, holding constant geographical 
 In this case, the first two matrices contain the values of distances in \gls{admixture} between every island in the graph and a matrix $M$ is calculated as
 \begin{equation}
 	M = \begin{bmatrix}
-		d(Ad_0, Ad_0)	& \cdots & d(Ad_0, Ad_n) \\
+		d \left( Ad_0, Ad_0 \right)	& \cdots & d \left( Ad_0, Ad_n \right) \\
 		\vdots			& \ddots & \vdots		 \\
-		d(Ad_n, Ad_0)	& \cdots & d(Ad_n, Ad_n)
+		d \left( Ad_n, Ad_0 \right)	& \cdots & d \left( Ad_n, Ad_n \right)
 	\end{bmatrix}
 \end{equation}
 where $d$ is the function returning the distance between the two arguments and $Ad_{n}$ is the \gls{admixture} of the $n$\textsuperscript{th} island in the graph.
 With the corresponding matrices for the simulated data, the real data and also the geographical distances, the partial Mantel test can be done as such
 \begin{equation}
-	correlation = partial.Mantel(M_{Simulated}, M_{Real}, M_{geographical})
+	correlation = partial.Mantel \left( M_{Simulated}, M_{Real}, M_{geographical} \right)
 \end{equation}
 
-The partial Mantel test returns a correlation value between -1 and 1 with a value of 0 meaning that the two matrices are not correlated at all and 1 if they are completely correlated.
+The partial Mantel test returns a correlation value between -1 and 1 with a value of 0 meaning that the two matrices are not correlated at all and of 1 if they are completely correlated.
 
 
 \subsection{Approximate Bayesian Computation}
@@ -342,11 +349,11 @@ A fairly recent statistical analysis framework has been used more and more in th
 This framework is called Approximate Bayesian Computation (ABC).
 Its use is recommended when using high dimensional data that makes it difficult to use standard statistical frameworks.
 ABC still relies highly on standard statistical tools but instead of giving one best result, it returns a distribution of best possible parameters.
-It answers the question: given a set of parameter distributions (called “\textbf{\glspl{prior}}”), what are the distributions (subsets of the \glspl{prior}), that give best results? This set of output distributions are then called “\textbf{\glspl{posterior}}”.
+It answers the question: given a set of parameter distributions (called “\textbf{\glspl{prior}}”), what are the distributions (subsets of the \glspl{prior}), that give best results? This set of output distributions is then called “\textbf{\glspl{posterior}}”.
 
 Its use has been increasing recently and some examples of recent papers using ABC in similar contexts are \cite{Gui01} or \cite{Keh01}.
 
-The whole framework encompasses the steps from the choice of the parameter sets to the inference of the posterior distributions.
+The whole framework encompasses the steps from the choice of the parameter sets to the inference of the \gls{posterior} distributions.
 Figure \ref{abc} summarises the successive steps of this process with hypothetical parameters $\alpha$, $\beta$ and $\gamma$ and summary statistics $SS1$ and $SS2$.
 The parameters will be used by the model to generate results.
 These results are, either directly or after transformation, the summary statistics that the ABC will use.
@@ -415,7 +422,7 @@ The batches have to be submitted through a \textbf{\gls{job-scheduler}}, in this
 Because of this, slight changes have been made to the way the model and the Repast framework are launched.
 Simulations run on this HPC use several nodes, with each of these nodes having multiple threads available for the simulations.
 This configuration leads to the parallel simulation of more than a hundred scenarios at the same time.
-In this case 4 nodes were used, each of those having 32 threads.
+In this case, 4 nodes were used, each of those having 32 threads.
 
 \begin{figure}[H]
 	\centering
@@ -588,7 +595,7 @@ The corresponding maximum memory use values are shown in the graphs \ref{app:ben
 
 There is effectively still a great amount of room to improve memory usage, especially seeing that the base memory usage is between 60 and 200 MB, depending on the script run. The base memory usage includes loading libraries, functions, global variables and also set-up and clean-up code.
 
-The stream approach also allows the different steps of an analysis to be run simultaneously, by piping each step to the next, effectively making the whole process able to be in parallel.
+The stream approach also allows the different steps of an analysis to be run simultaneously, by piping each step to the next, effectively making the whole process runnable in parallel.
 This is useful only if the computer used has at least $n$ cores if $n$ processes need to be run in parallel.
 In this case, the time of the whole process is the time needed to run the longest step.
 

@@ -1,5 +1,9 @@
 \documentclass[10pt,aspectratio=43]{beamer}
 \usepackage[utf8]{inputenc}
+\usepackage{booktabs}
+\usepackage{tabu}
+
+\renewcommand{\arraystretch}{1.2}
 
 \mode<presentation> {
 \usetheme{Massey}
@@ -16,6 +20,7 @@
 %\headlinecontent{Text left top corner}{Text top center}
 }
 \setbeamertemplate{footline}[frame number]
+\setbeamercolor{subsection in toc}{fg=masseyWhite}
 
 %----------------------------------------------------------------------------------------
 %	TITLE PAGE
@@ -91,28 +96,23 @@
 %\begin{picblock}[width]{opacity}{title}{picture}...\end{picblock}
 %\begin{mexample}[width]{opacity}{title} ... \end{mexample}
 %\begin{malert}[width]{opacity}{title} ... \end{malert}
-\tableofcontents[currentsection, subsubsectionstyle=hide]
+\tableofcontents[currentsection, subsectionstyle=show/show/hide]
 \end{frame}
 
 \subsection{Geological and anthropological context}
 
-\masseyBrand{}{../data/background-3.png}{}{}
-\begin{frame}{}{Around 100,000 years ago}
+\masseyBrand{}{../data/background-2.png}{}{}
+\begin{frame}{}{}
 \end{frame}
 
 \addtocounter{framenumber}{-1}
 \masseyBrand{}{../data/background-3-first-wave.png}{}{}
-\begin{frame}{}{Around 45,000 years ago}
-\end{frame}
-
-\addtocounter{framenumber}{-1}
-\masseyBrand{}{../data/background-2.png}{}{}
-\begin{frame}{}{Around 12,000 years ago}
+\begin{frame}{}{First settlement wave Around 45,000 years ago}
 \end{frame}
 
 \addtocounter{framenumber}{-1}
 \masseyBrand{}{../data/background-2-second-wave.png}{}{}
-\begin{frame}{}{Around 4,500 years ago}
+\begin{frame}{}{Second settlement wave Around 4,500 years ago}
 \end{frame}
 
 \subsection{Previous papers}
@@ -178,19 +178,26 @@
 \subsection{Parameters}
 \begin{frame}{Measures \& comparisons}{Parameters}
 \begin{table}[H]
-	\hspace*{-1.05cm}
-	\begin{tabular}{c|l|l}
- 		Parameter & Estimated & Comment \\ \hline \hline
-        Migration prob. & $\mathbb{R}_{0 < x \leq 1}$ & prob. to start migrating for a Melanesian agent \\ \hline
-        Migration prob. ratio & $\mathbb{R}_{1 \leq x \leq 4}$ & corresponding ratio for an Asian agent \\ \hline
-        Fecundity & $\mathbb{R}_{2.5 < x < 8}$ & Poisson law mean for a Melanesian agent \\ \hline
-        Fecundity ratio & $\mathbb{R}_{1 \leq x \leq 2}$ & corresponding ratio for an Asian agent \\ \hline
-        Marriage threshold & $\mathbb{R}_{0 \leq x \leq 0.25}$ & affects marriages rules \\ \hline
-        Growth rate & $\mathbb{R}_{0 < x < 0.001}$ & limiting rate of pop. growth \\ \hline
-        Number of agents & $\mathbb{Z}_{100 \leq x < 400}$ & pop. size in each deme, initially \\ \hline
-        Graph & \{...\} & composition of the graph (nodes and edges) \\ \hline
-        Starting distribution & \{...\} & distribution of pop. in the graph
-	\end{tabular}
+	\hspace*{-1.0cm}
+	\begin{tabu}{@{}l>{\footnotesize}ll@{}}
+	  \toprule
+ 	  Parameter & \normalsize Estimated & Comment \\
+ 	  \midrule
+    Migration prob. & $0.0 < x \leq 1.0$ & prob. to start migrating for a Melanesian agent \\
+    Migration prob. ratio & $1.0 \leq x \leq 4.0$ & corresponding ratio for an Asian agent \\
+    Fecundity & $2.5 < x < 8.0$ & Poisson law mean for a Melanesian agent \\
+    Fecundity ratio & $1.0 \leq x \leq 2.0$ & corresponding ratio for an Asian agent \\
+    Marriage threshold & $0.0 \leq x \leq 0.25$ & affects marriages rules \\
+	  \rowfont{\color{gray}}
+    Growth rate & $0.0 < x < 0.001$ & limiting rate of pop. growth \\
+	  \rowfont{\color{gray}}
+    Number of agents & $100 \leq x < 400$ & pop. size in each deme, initially \\
+	  \rowfont{\color{gray}}
+    Graph & \{...\} & composition of the graph (nodes and edges) \\
+	  \rowfont{\color{gray}}
+    Starting distribution & \{...\} & distribution of pop. in the graph \\ 
+    \bottomrule
+	\end{tabu}
 	\caption{Summary of the changeable model parameters.}
 \end{table}
 \end{frame}
@@ -206,30 +213,24 @@
 \begin{frame}{Measures \& comparisons}{Comparison functions}
 \begin{mblock}{0.7}{Mean Square Distance}
   \centering  
-  $MSD = \frac{\sum\limits_{i=1}^{n} (AdRef_i - AdSim_i) ^ 2}{n}$\\~\\
-  $0 \le MSD \le 1$
+  $\mathit{MSD} = \frac{\sum\limits_{i=1}^{n} \left( AdRef_i - AdSim_i \right) ^ 2}{n}$\\~\\
+  $0 \le \mathit{MSD} \le 1$
 \end{mblock}
-\end{frame}
-
-\addtocounter{framenumber}{-1}
-\begin{frame}{Measures \& comparisons}{Comparison functions}
-\begin{mblock}{0.7}{Mean Square Distance}
-  \centering  
-  $MSD = \frac{\sum\limits_{i=1}^{n} (AdRef_i - AdSim_i) ^ 2}{n}$
-\end{mblock}
+\pause
 \begin{mblock}{0.7}{Example}
   \begin{center}
-    \begin{tabular}{l | c | c | c | c }
-      Islands & A & B & C & D \\
-      \hline \hline
+    \begin{tabu}{@{}lcccc@{}}
+      \toprule[1pt]
+      Island & A & B & C & D \\
+      \midrule
       Reference & 1.0 & 0.5 & 0.4 & 0.0 \\
       Simulated & 1.0 & 0.4 & 0.3 & 0.2 \\
-      \hline
-      Distance & 0.0 & 0.1 & 0.1 & 0.2
-    \end{tabular}
+      Distance & 0.0 & 0.1 & 0.1 & 0.2 \\
+      \bottomrule[1pt]
+    \end{tabu}
   \end{center}
   \centering
-  $MSD = 0.1$
+  $\mathit{MSD} = 0.1$
 \end{mblock}
 \end{frame}
 
@@ -237,29 +238,15 @@
 \begin{frame}{Measures \& comparisons}{Comparison functions}
 \begin{mblock}{0.7}{Mantel Partial Correlation}
   \centering  
-  $cor = mantel.partial(M_{Simulated}, M_{Reference}, M_{geographical})$\\~\\
+  $cor = mantel.partial \left( M_{Simulated}, M_{Reference}, M_{geographical} \right)\ $\\~\\
   $-1 \le cor \le 1$
 \end{mblock}
-\begin{mblock}{0.7}{distance matrices}
-  \centering  
-  $M = \begin{bmatrix}
-		d(Ad_0, Ad_0)	& \cdots & d(Ad_0, Ad_n) \\
-		\vdots			& \ddots & \vdots		 \\
-		d(Ad_n, Ad_0)	& \cdots & d(Ad_n, Ad_n)
-	\end{bmatrix}$
-\end{mblock}
-\end{frame}
-
-\addtocounter{framenumber}{-1}
-\begin{frame}{Measures \& comparisons}{Comparison functions}
-\begin{mblock}{0.7}{Mantel Partial Correlation}
-  \centering  
-  $cor = mantel.partial(M_{Simulated}, M_{Reference}, M_{geographical})$
-\end{mblock}
+\pause
 \begin{mblock}{0.7}{Example}
   \begin{center}
-    \fontsize{5pt}{8pt}
-    $mantel.partial(\begin{bmatrix}
+    \hspace*{-0.5cm}
+    \fontsize{5.5pt}{8pt}
+    $mantel.partial \left( \begin{bmatrix}
       0.0 & 0.5 & 0.6 & 1.0 \\
       0.5 & 0.0 & 0.1 & 0.5 \\
       0.6 & 0.1 & 0.0 & 0.4 \\
@@ -274,7 +261,7 @@
       300 & 0.0 & 120 & 150 \\
       250 & 120 & 0.0 & 100 \\
       400 & 150 & 100 & 0.0 \\
-    \end{bmatrix})$
+    \end{bmatrix} \right) $
   \end{center}
   \centering
   $cor = 0.72$
@@ -374,16 +361,32 @@ Summary statistics:
       Questions?
     \end{Huge}
     \\~\\~\\~\\~\\
-    \color{lightgray}
-    map backgrounds from “HERE Satellite”
+    \begin{small}
+      \color{lightgray}
+      map backgrounds from “HERE Satellite”
+    \end{small}
+    \\~\\
+    Computational Biology Research Group: \href{http://massey.genomicus.com}{\texttt{massey.genomicus.com}}
 
 \end{columns}
 \end{frame}
 
 % Appendices
 
-\begin{frame}[noframenumbering]
-Appendix
+\begin{frame}[noframenumbering]{}{Benchmark \texttt{merge}}
+\begin{figure}
+  \hspace*{-1cm}
+  \includegraphics[width=0.59\textwidth]{../data/merge-timeByNSimulations.png}%
+  \includegraphics[width=0.59\textwidth]{../data/merge-maxMemByNSimulations.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}[noframenumbering]{}{Benchmark \texttt{analysis} \& \texttt{ABC}}
+\begin{figure}
+  \hspace*{-1cm}
+  \includegraphics[width=0.59\textwidth]{../data/analysis-timeByNSimulations.png}%
+  \includegraphics[width=0.59\textwidth]{../data/analysis-maxMemByNSimulations.png}
+\end{figure}
 \end{frame}
 
 \end{document}
