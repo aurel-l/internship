@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 import numpy as np
 from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
@@ -23,7 +25,8 @@ ax.set_xlim(0, 1.0)
 ax.set_ylim(3, 4.6)
 ax.set_zlim(0, 0.25)
 
-plt.show()
+fig.savefig('grid.png', transparent = True)
+#plt.show()
 
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
@@ -42,5 +45,7 @@ ax.set_xlabel('migrationProb')
 ax.set_ylabel('poissonMean')
 ax.set_zlabel('marriageThres')
 
-plt.show()
+fig.savefig('abc-space.png', transparent = True)
+#plt.show()
+
 

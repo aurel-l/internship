@@ -1,4 +1,4 @@
-\documentclass[10pt,aspectratio=43]{beamer}
+\documentclass[10pt, aspectratio=43]{beamer}
 \usepackage[utf8]{inputenc}
 \usepackage{booktabs}
 \usepackage{tabu}
@@ -8,14 +8,10 @@
 \mode<presentation> {
 \usetheme{Massey}
 \usecolortheme{DarkLetters}
-%\usecolortheme{LightLetters}
-% Specify logo folder if different from default
-%\def\logoFolder{uniLogo}
 
 % Now load other modules
 \usefonttheme{professionalfonts}
 % To get running page numbers in all slides uncomment this line
-%\setbeamertemplate{footline}[page numbers] 
 % To get a header in all slides uncomment this line
 %\headlinecontent{Text left top corner}{Text top center}
 }
@@ -31,7 +27,6 @@
 \author{Aurélien \textsc{Luciani}}
 \department{Master 2 Bioinformatique}
 \institute{Université de Bordeaux}
-\contact{Your email}
 \date{11 September 2015}
 
 %=================================================  START DOCUMENT ======================================
@@ -47,7 +42,7 @@
 %\masseyBrand{bar}{picturefilename}{blueletters}{blueletters}{}
 
 \begin{frame}[t, noframenumbering]  % The [t] is important!!!!
-\masseyTitlepage % Print the title page 
+\masseyTitlepage
 
 \raggedleft
 \begin{mblock}[140pt]{0.7}{}
@@ -55,7 +50,6 @@
 \textbf{\insertauthor}\\
 \insertdepartment\\
 \insertinstitute\\
-%\insertcontact\\
 \insertdate
 \end{mblock}
 \vfill
@@ -89,13 +83,6 @@
 \section{Context}
 \masseyBrand{bar}{}{}{}
 \begin{frame}{}{Table of contents}
-%\frametitle{}
-%\framesubtitle{}
-%\circlepictext{picturesize}{image}{textwidth}{text}
-%\begin{mblock}[width]{opacity}{title} ... \end{mblock}
-%\begin{picblock}[width]{opacity}{title}{picture}...\end{picblock}
-%\begin{mexample}[width]{opacity}{title} ... \end{mexample}
-%\begin{malert}[width]{opacity}{title} ... \end{malert}
 \tableofcontents[currentsection, subsectionstyle=show/show/hide]
 \end{frame}
 
@@ -296,7 +283,16 @@ Summary statistics:
 \subsection{Overview}
 \begin{frame}{Pipeline}{Overview}
 \begin{center}
-  \includegraphics[width=0.94\textwidth]{../data/workflow-2.png}
+  \begin{tikzpicture}
+    \node[anchor=south west, inner sep=0] at (0, 0) {
+      \includegraphics[width=1\textheight]{../data/workflow-2.png}
+    };
+    \draw<2>[masseyGold, ultra thick, rounded corners] (0, 3.5) rectangle (5, 6.1);
+    \draw<3>[masseyGold, ultra thick, rounded corners] (3.3, 2.5) rectangle (9.2, 6.1);
+    \draw<4>[masseyGold, ultra thick, rounded corners] (5.5, 0) rectangle (9.2, 3.8);
+    \draw<5>[masseyGold, ultra thick, rounded corners] (0, 0) rectangle (7, 3.2);
+    \draw<6>;
+  \end{tikzpicture}
 \end{center}
 \end{frame}
 
@@ -311,7 +307,7 @@ Summary statistics:
 \subsection{Grid search}
 \begin{frame}{Statistical analysis}{Grid search}
 \begin{center}
-  \includegraphics[width=0.7\textwidth]{../data/grid.png}
+  \includegraphics[width=0.8\textwidth]{../data/grid.png}
 \end{center}
 \end{frame}
 
@@ -319,7 +315,6 @@ Summary statistics:
 \begin{center}
   \begin{figure}
     \includegraphics[width=1\textwidth]{../data/sensit-comp-2d-preview.png}
-    \caption{Partial Mantel correlation in relation to fecundity and migration rates}
   \end{figure}
 \end{center}
 \end{frame}
@@ -333,14 +328,15 @@ Summary statistics:
 
 \begin{frame}{Statistical analysis}{Approximate Bayesian Computation}
 \begin{center}
-  \includegraphics[width=0.7\textwidth]{../data/abc-space.png}
+  \includegraphics[width=0.8\textwidth]{../data/abc-space.png}
 \end{center}
 \end{frame}
 
 \begin{frame}{Statistical analysis}{Approximate Bayesian Computation}
 \begin{center}
   \begin{figure}
-    \includegraphics[width=0.8\textwidth]{../data/abc-priors-posteriors.png}
+    \hspace*{-0.85cm}
+    \includegraphics[width=1.15\textwidth]{../data/abc-priors-posteriors.png}
     \caption{Example output from an ABC analysis}
   \end{figure}
 \end{center}
@@ -352,11 +348,10 @@ Summary statistics:
 \begin{frame}[plain]
 \masseyClose{Thank you}
 \begin{columns}
-  \column{0.6\textwidth}
-    Table of contents:\\~\\
+  \column{0.58\textwidth}
     \tableofcontents[subsubsectionstyle=hide]
 
-  \column{0.4\textwidth}
+  \column{0.56\textwidth}
     \begin{Huge}
       Questions?
     \end{Huge}
