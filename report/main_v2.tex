@@ -428,28 +428,28 @@ In this case, 4 nodes were used, each of those having 32 threads.
 	\centering
 	\begin{subfigure}[t]{0.4\textwidth}
 		\centering
-		\includegraphics[scale=0.35]{../data/network:local.png}
+		\includegraphics[scale=0.34]{../data/network:local.png}
 		\caption{local}
 		\label{network:local}
 	\end{subfigure}
 	~
 	\begin{subfigure}[t]{0.4\textwidth}
 		\centering
-		\includegraphics[scale=0.35]{../data/network:office.png}
+		\includegraphics[scale=0.34]{../data/network:office.png}
 		\caption{local network}
 		\label{network:office}
 	\end{subfigure}
 	\\
 	\begin{subfigure}[t]{0.4\textwidth}
 		\centering
-		\includegraphics[scale=0.8]{../data/network:azure.png}
+		\includegraphics[scale=0.78]{../data/network:azure.png}
 		\caption{local network and Azure}
 		\label{network:azure}
 	\end{subfigure}
 	~
 	\begin{subfigure}[t]{0.4\textwidth}
 		\centering
-		\includegraphics[scale=0.8]{../data/network:nesi.png}
+		\includegraphics[scale=0.78]{../data/network:nesi.png}
 		\caption{NeSI}
 		\label{network:nesi}
 	\end{subfigure}
@@ -459,7 +459,7 @@ In this case, 4 nodes were used, each of those having 32 threads.
 
 \section{Data processing, storage and querying}
 Since running a lot of simulations, with a lot of different parameters, can generate a lot of output files whose original parameters can be hard to track, a way to keep them organised was needed.
-Doing so, it would also be possible to use results from different batches and to analyse them together, thus avoiding having to redo simulations for parameter values already tested and reducing the computation resources used.
+Doing so, it would also be possible to use results from different batches and to analyse them together, thus avoiding having to redo simulations for parameter values already tested and reducing the computational resources used.
 
 The organised way to store this is naturally in a database.
 The choice has been made to use a relational database.
@@ -505,7 +505,7 @@ The choice is done dynamically during the processing of the data by this script.
 
 \subsubsection{ABC framework}
 Once an interesting subspace of parameters has been defined, it can be used to feed the ABC framework used later.
-Whereas a standard Bayesian analysis can be used to infer a single best value for every parameter, here the use of ABC gives a posterior distribution of parameters corresponding to the best values.
+Whereas a standard Bayesian analysis can be used to infer a single best value for every parameter, here the use of ABC gives a \gls{posterior} distribution of parameters corresponding to the best values.
 The shape of the distributions can thus be appreciated and this offer better understanding of the output values of highly stochastic models run a large number of times.
 This technique, although quite recent, has been described in numerous studies (\cite{Sun01, Csi02}).
 
@@ -527,7 +527,7 @@ The randomness of the generated values among the distributions is very important
 After the model has generated results for every parameter set, the ABC framework needs to choose which simulations are closest to the reference data.
 In this case a rejection step with a tolerance has been implemented.
 For a tolerance $\tau=10\%$ for example, the ABC will keep the $10\%$ of the simulations whose results are closest to the reference.
-It is important to have a low tolerance taking into account that most of the parameter space is expected to give “bad” results.
+It is important to have a low tolerance taking into account that most of the parameter space (the borders of the space) is expected to give “bad” results.
 The tolerance can be adjusted for every analysis and no perfect tolerance exists; this instead has to be defined by the analyst using the ABC.
 
 Finally, the parameter values for the selected simulations are retrieved and the corresponding distributions form the \glspl{posterior}.
@@ -544,7 +544,7 @@ A trade-off has been found between showing as much data as possible and doing vi
 For this, an important part was to try to avoid simplistic visualisations when they would not show enough information.
 For example, a simple mean or median value is not enough when there are alternative ways to represent these data.
 Whenever possible, notched box-plots were used to show the distributions and shapes of the data.
-The box-plot centre of the box-plot represents the median, the interquartile range is represented by the box and outside of the whiskers are possible outliers from the data.
+The centre of the box-plot represents the median, the interquartile range is represented by the box and outside of the whiskers are possible outliers from the data.
 
 In some cases, too many box-plots would overwhelm the analyst so, as an alternative, mean values are used but with additional error bars corresponding to the standard deviation in order to quickly evaluate the significance of the differences between the displayed values.
 
@@ -563,7 +563,7 @@ A strip of high correlations is visible and reveals a trade-off between these tw
 	\label{preview-heatmap}
 \end{figure}
 
-Examples are available in the appendix (see section \ref{app:ex-visu}) and are made in R using the ggplot2 library \cite{Wic01} to get nice looking graphs while having simpler and thus more maintainable code.
+Examples are available in the appendix (see section \ref{app:ex-visu}) and are made in R using the ggplot2 library (\cite{Wic01}) to get nice looking graphs while having simpler and thus more maintainable code.
 They will be detailed while presenting the results in chapter \ref{chapter:results}.
 
 Also, a common theme has been defined for all the visualisations to have consistent colours, fonts, and sizes among the different generated images.
@@ -572,7 +572,7 @@ Because of this vectorial output, changes can be applied to the images for publi
 More importantly, this is the only way to have a lossless format that can be resized without quality loss.
 
 \subsubsection{Other visualisations}
-The visualisations were made and adapted on the fly so that they could be used to help make decisions and choices.
+The visualisations were made and adapted as the project evolved so that they could be used to help make decisions and choices.
 They can still change and be adapted to new needs and that is supposed to be made easier through the use of adapted R libraries like ggplot2 that add a layer of abstraction above standard R code.
 The code responsible for the visualisations is also restricted to specific parts of the pipeline, making it highly modular and easy to change or to replace.
 
@@ -595,7 +595,7 @@ The corresponding maximum memory use values are shown in the graphs \ref{app:ben
 
 There is effectively still a great amount of room to improve memory usage, especially seeing that the base memory usage is between 60 and 200 MB, depending on the script run. The base memory usage includes loading libraries, functions, global variables and also set-up and clean-up code.
 
-The stream approach also allows the different steps of an analysis to be run simultaneously, by piping each step to the next, effectively making the whole process runnable in parallel.
+The stream approach also allows the different steps of an analysis to be run simultaneously, by piping each step into the next one, effectively making the whole process runnable in parallel.
 This is useful only if the computer used has at least $n$ cores if $n$ processes need to be run in parallel.
 In this case, the time of the whole process is the time needed to run the longest step.
 
@@ -614,7 +614,7 @@ The risk of both the random seed and the parameter set used for the simulations 
 Actually, even though the random seed is supposed to be a 32 bit signed integer, meaning that there are more that 4 billion possibilities, collisions happened more than once during this project.
 
 The first way to handle this has been to alert the analyst when this happened so that they could remove the specific simulations if needed.
-Secondly, a way has been found to generate the random seeds for the ABC analysis beforehand using \textsc{unix}’s random source, \texttt{/dev/urandom/}, that can generate pseudo-random values which can be used for cryptographic purposes, meaning that it is good enough in this case to avoid collision.
+Secondly, a way has been found to generate the random seeds for the ABC analysis beforehand using \textsc{unix}’s random source, \texttt{/dev/urandom/}, that can generate pseudo-random values which can be used for cryptographic purposes, meaning that it is good enough in this case to avoid collisions.
 
 ~
 
@@ -651,7 +651,7 @@ That is the case with mitochondrial and Y-chromosomal \gls{admixture} where the 
 
 And finally, lower stability is expected from islands that include fewer \glspl{deme}, and thus lower population sizes, like Alor, Aru or Bali that are composed of only one single \gls{deme} each when New Guinea (Papu in the figures) has twenty.
 
-If the parameter value set induces abnormal behaviour, it can mean that it is not a realistic set of values or, since the goal is also to assess the model itself, it can also mean that there is a problem somewhere in the model's logic.
+If the parameter value set induces abnormal behaviour, it can mean that it is not a realistic set of values or, since the goal is also to assess the model itself, it can also mean that there is a problem somewhere in the model’s logic.
 
 Another view that is output by the stability analysis is the graph of \gls{admixture} values as a function of the types of DNA, and for every island (Fig. \ref{stability-admixGradient}).
 This graph aims to resemble Figure \ref{lansing-image} (\cite{Lan01}) as a way to compare the real data in this paper to the data generated in the simulations.
@@ -680,11 +680,11 @@ This is done to be sure that, during the further steps, similar number of simula
 Otherwise, and especially when there are low numbers of simulations, results can be biased and the standard deviations can be non-comparable.
 An example of this visualisation can be seen in Figure \ref{app:count-2d}.
 
-Then, comparisons to the real data are performed, for both the autosomal and X-chromosomal DNA data (see section \ref{subsection:comparisons}) and the resulting values are displayed so they can be analysed by the analyst as seen in Figure \ref{app:sensit-comp-1d} and \ref{app:sensit-comp-2d}.
+Then, comparisons to the real data are performed, for both the autosomal and X-chromosomal DNA data (see section \ref{subsection:comparisons}) and the resulting values are displayed as seen in Figure \ref{app:sensit-comp-1d} and \ref{app:sensit-comp-2d} so they can be analysed by the analyst.
 
 Because of this analysis, specific values of migration have been discarded.
 Really low migration ($migrationProb < 0.1$) or nearly systematic migration ($migrationProb > 0.8$) are conditions in which it gave clearly bad results.
-The parameter space for the migration probability has thus been reduced to $[0.1, 0.8]$ when doing further analyses.
+The parameter space for the migration probability has thus been reduced to $\left[0.1, 0.8\right]$ when doing further analyses.
 
 Also, really low fecundity rates gave too many failed simulations. Because $poissonMean$ values below $3.5$ were thus considered unrealistic, the space was reduced to only include values higher than $3.5$.
 
@@ -694,7 +694,7 @@ The ABC will output multiple graphs, the most interesting being the graph seen i
 It shows both the \glspl{prior} and the \glspl{posterior} of all the changing parameters in the simulations.
 
 The red density plot is only there to remind the kind of \gls{prior} distribution used and to be sure the right one was used.
-Indeed, if the distribution shown does not correspond to the one wanted, it can mean there was a problem somewhere in the pipeline.
+Indeed, if the distribution shown does not correspond to the one wanted, it can mean that there was a problem somewhere in the pipeline.
 If the distribution does not exactly look like the one defined, then it means that the number of simulations is too low.
 The implementation allows the analyst to generate an other batch of simulations that they will be able to combine to the previous one in order to have more precise results.
 Also, it shows the range of values used for the ABC since it is essential, if the this range was previously reduced, that the \gls{posterior} distributions remain clearly inside these limits.
@@ -709,7 +709,7 @@ These \gls{posterior} distributions are the distributions that can be used by th
 	\label{abc-prior-posterior}
 \end{figure}
 
-Here, in Figure \ref{abc-prior-posterior}, by looking at the fecundity and migration ratios (\texttt{poissonMeanRatio} and \texttt{migrationProbRatio}), it can be deduced that, the Asian population had an advantage in fecundity and in migration (accepted ratios $< 1$) over the Melanesian populations.
+Here, in Figure \ref{abc-prior-posterior}, by looking at the fecundity and migration ratios (\texttt{poissonMeanRatio} and \texttt{migrationProbRatio}), it can be deduced that, the Asian population had an advantage in fecundity and in migration (accepted ratios $> 1$) over the Melanesian populations.
 This is most likely due to the knowledge of rice agriculture and to better navigation techniques.
 
 Also, the \texttt{marriageThres} \gls{posterior} distribution is peaking close to the space upper limit, meaning that the interpopulation marriage rules were not neutral and likely favoured Asian women --- Melanesian men marriages.
@@ -719,7 +719,7 @@ More useful results are to be expected in the future when more ABCs will be run.
 
 \chapter*{Conclusion}
 \addcontentsline{toc}{chapter}{Conclusion}
-The model used until is still undergoing changes, with the aim to make it more accurate and to take into account more factors.
+The model used is still undergoing changes, with the aim to make it more accurate and to take into account more factors.
 The problem would be to add enough complexity to keep the model relevant while still being computationally simple enough so that it can be run in an acceptable amount of time.
 Several aspects can be changed, ranging from the structure of agents and how they are managed in the model, to higher level tasks like the integration of resource management at different scales of the model to try to be more accurate and have more realistic behaviours.
 
