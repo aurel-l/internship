@@ -95,11 +95,37 @@
 \addtocounter{framenumber}{-1}
 \masseyBrand{}{../data/background-3-first-wave.png}{}{}
 \begin{frame}{}{First settlement wave Around 45,000 years ago}
+\begin{columns}
+  \column{0.7\textwidth}
+
+  \column{0.5\textwidth}
+  \color{masseyWhite}
+  \begin{itemize}
+    \item First humans
+    \item Ancestral Melanesian population
+    \item Hunter-gatherers
+  \end{itemize}
+\end{columns}
 \end{frame}
 
 \addtocounter{framenumber}{-1}
 \masseyBrand{}{../data/background-2-second-wave.png}{}{}
 \begin{frame}{}{Second settlement wave Around 4,500 years ago}
+\begin{columns}
+  \column{0.7\textwidth}
+
+  \column{0.5\textwidth}
+  \color{masseyWhite}
+  \begin{itemize}
+    \item “Austronesian expansion”
+    \item Two possible waves
+    \item What started it?
+    \begin{itemize}
+      \item Agriculture knowledge?
+      \item Better navigation?
+    \end{itemize}
+  \end{itemize}
+\end{columns}
 \end{frame}
 
 \subsection{Previous papers}
@@ -107,8 +133,9 @@
 \begin{frame}{Context}{Previous papers}
 \begin{center}
   \begin{figure}
-    \includegraphics[width=0.65\textwidth]{../data/cox-image.jpg}
-    \caption{Cox et al. [2010]}
+    \includegraphics[width=0.6\textwidth]{../data/cox-image.jpg}
+    \caption{Cox et al. [2010]. \textit{Proceedings of
+the Royal Society of London B: Biological Sciences}}
   \end{figure}
 \end{center}
 \end{frame}
@@ -117,7 +144,8 @@
 \begin{center}
   \begin{figure}
     \includegraphics[width=0.9\textwidth]{../data/lansing-image.jpg}
-    \caption{Lansing et al. [2011]}
+    \caption{Lansing et al. [2011]. \textit{Journal of
+Anthropological Archaeology}}
   \end{figure}
 \end{center}
 \end{frame}
@@ -126,13 +154,15 @@
 \masseyBrand{}{../data/ISEA-node-map.png}{}{}
 \begin{frame}{}{Model}
 \begin{columns}
-  \column{0.6\textwidth}
+  \column{0.7\textwidth}
 
-  \column{0.4\textwidth}
+  \column{0.5\textwidth}
   \begin{itemize}
+    \item Written in Java (Repast)
     \item Agent-Based Model
-    \item Written in Java
-    \item Use Repast framework
+    \item Nodes $\rightarrow$ demes ($\simeq$ villages)
+    \item Edges $\rightarrow$ migration paths
+    \item Agent $\rightarrow$ individual or couple
   \end{itemize}
 
 \end{columns}
@@ -368,19 +398,50 @@ Summary statistics:
 
 % Appendices
 
-\begin{frame}[noframenumbering]{}{Benchmark \texttt{merge}}
+\begin{frame}[plain, noframenumbering]{}{Comparison functions}
 \begin{figure}
   \hspace*{-1cm}
-  \includegraphics[width=0.59\textwidth]{../data/merge-timeByNSimulations.png}%
-  \includegraphics[width=0.59\textwidth]{../data/merge-maxMemByNSimulations.png}
+  \includegraphics[width=1.17\textwidth]{../data/comparisonFunctions.png}
 \end{figure}
 \end{frame}
 
-\begin{frame}[noframenumbering]{}{Benchmark \texttt{analysis} \& \texttt{ABC}}
+\begin{frame}[plain, noframenumbering]{}{Database structure}
+\begin{figure}
+  \includegraphics[width=1\textwidth]{../data/DB.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}[plain, noframenumbering]{}{Sensitivity 1D - comparisons}
+\begin{figure}
+  \includegraphics[width=0.48\textwidth]{../data/sensit-comp-1d.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}[plain, noframenumbering]{}{Sensitivity 2D - comparisons}
+\begin{figure}
+  \includegraphics[width=0.48\textwidth]{../data/sensit-comp-2d.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}[plain, noframenumbering]{}{ABC scatter score}
+\begin{figure}
+  \includegraphics[width=0.9\textwidth]{../data/abc-scatter-score.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}[plain, noframenumbering]{}{Benchmark \texttt{merge}}
 \begin{figure}
   \hspace*{-1cm}
-  \includegraphics[width=0.59\textwidth]{../data/analysis-timeByNSimulations.png}%
-  \includegraphics[width=0.59\textwidth]{../data/analysis-maxMemByNSimulations.png}
+  \includegraphics[width=0.585\textwidth]{../data/merge-timeByNSimulations.png}%
+  \includegraphics[width=0.585\textwidth]{../data/merge-maxMemByNSimulations.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}[plain, noframenumbering]{}{Benchmark \texttt{analysis} \& \texttt{ABC}}
+\begin{figure}
+  \hspace*{-1cm}
+  \includegraphics[width=0.585\textwidth]{../data/analysis-timeByNSimulations.png}%
+  \includegraphics[width=0.585\textwidth]{../data/analysis-maxMemByNSimulations.png}
 \end{figure}
 \end{frame}
 
