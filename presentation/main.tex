@@ -1,5 +1,6 @@
 \documentclass[10pt, aspectratio=43]{beamer}
 \usepackage[utf8]{inputenc}
+\usepackage{wasysym}
 \usepackage{booktabs}
 \usepackage{tabu}
 
@@ -75,6 +76,7 @@
       \item Marie Noelle Beurton-Aimar
     \end{itemize}
   \end{itemize}
+
 \end{columns}
 \end{frame}
 
@@ -87,7 +89,6 @@
 \end{frame}
 
 \subsection{Geological and anthropological context}
-
 \masseyBrand{}{../data/background-2.png}{}{}
 \begin{frame}{}{}
 \end{frame}
@@ -95,74 +96,128 @@
 \addtocounter{framenumber}{-1}
 \masseyBrand{}{../data/background-3-first-wave.png}{}{}
 \begin{frame}{}{First settlement wave Around 45,000 years ago}
+\vspace*{-0.8cm}
 \begin{columns}
-  \column{0.7\textwidth}
+  \column{0.65\textwidth}
 
-  \column{0.5\textwidth}
+  \column{0.52\textwidth}
   \color{masseyWhite}
   \begin{itemize}
     \item First humans
     \item Ancestral Melanesian population
     \item Hunter-gatherers
   \end{itemize}
+
 \end{columns}
 \end{frame}
 
 \addtocounter{framenumber}{-1}
 \masseyBrand{}{../data/background-2-second-wave.png}{}{}
 \begin{frame}{}{Second settlement wave Around 4,500 years ago}
+\vspace*{-0.8cm}
 \begin{columns}
-  \column{0.7\textwidth}
+  \column{0.65\textwidth}
 
-  \column{0.5\textwidth}
+  \column{0.52\textwidth}
   \color{masseyWhite}
   \begin{itemize}
     \item “Austronesian expansion”
     \item Two possible waves
+    \item Admixture between populations
     \item What started it?
     \begin{itemize}
       \item Agriculture knowledge?
       \item Better navigation?
     \end{itemize}
   \end{itemize}
+
 \end{columns}
 \end{frame}
 
 \subsection{Previous papers}
 \masseyBrand{bar}[0.1]{}{}{}
 \begin{frame}{Context}{Previous papers}
-\begin{center}
+\begin{columns}
+  \column{0.6\textwidth}
   \begin{figure}
-    \includegraphics[width=0.6\textwidth]{../data/cox-image.jpg}
+    \includegraphics[width=1\textwidth]{../data/cox-image-modified.jpg}
     \caption{Cox et al. [2010]. \textit{Proceedings of
 the Royal Society of London B: Biological Sciences}}
   \end{figure}
-\end{center}
+
+  \column{0.5\textwidth}
+  \begin{itemize}
+    \item Non-linear admixture changes
+  \end{itemize}
+
+\end{columns}
 \end{frame}
+
 \masseyBrand{bar}[0.1]{}{}{}
 \begin{frame}{Context}{Previous papers}
-\begin{center}
+\begin{columns}
+  \column{0.6\textwidth}
   \begin{figure}
-    \includegraphics[width=0.9\textwidth]{../data/lansing-image.jpg}
+    \includegraphics[width=1\textwidth]{../data/lansing-image.jpg}
     \caption{Lansing et al. [2011]. \textit{Journal of
 Anthropological Archaeology}}
   \end{figure}
-\end{center}
+
+  \column{0.5\textwidth}
+  \begin{itemize}
+    \item Difference of admixture by type of DNA
+    \item Gender-biaised admixture
+    \item Implicit marriage rule?
+    \item Melanesian~\mars{} --- Asian~\female{} marriages favoured?
+  \end{itemize}
+
+\end{columns}
+\end{frame}
+
+\masseyBrand{bar}{}{}{}
+\begin{frame}{}{Previous papers}
+\color{masseyWhite}
+Questions:
+\begin{itemize}
+  \item Why the steep admixture gradient?
+  \item Why the gender-biased admixture?
+  \item What differences between the populations?
+\end{itemize}
+\vspace*{2em}
+First step towards understanding $\rightarrow$ reproduce the scenario
 \end{frame}
 
 \subsection{Model}
 \masseyBrand{}{../data/ISEA-node-map.png}{}{}
 \begin{frame}{}{Model}
+\vspace*{-0.8cm}
 \begin{columns}
-  \column{0.7\textwidth}
+  \column{0.65\textwidth}
 
-  \column{0.5\textwidth}
+  \column{0.52\textwidth}
   \begin{itemize}
     \item Written in Java (Repast)
     \item Agent-Based Model
     \item Nodes $\rightarrow$ demes ($\simeq$ villages)
     \item Edges $\rightarrow$ migration paths
     \item Agent $\rightarrow$ individual or couple
+  \end{itemize}
+
+\end{columns}
+\end{frame}
+
+\masseyBrand{}{../data/ISEA-node-map.png}{}{}
+\begin{frame}{}{Model}
+\vspace*{-0.8cm}
+\begin{columns}
+  \column{0.65\textwidth}
+
+  \column{0.52\textwidth}
+  My goals:
+  \begin{itemize}
+    \item Assess the quality of the model
+    \item Compare the results to the observed data (reference)
+    \item Provide a statistical framework to analyse the results
   \end{itemize}
 
 \end{columns}
@@ -175,8 +230,8 @@ Anthropological Archaeology}}
 \tableofcontents[currentsection, subsectionstyle=show/show/hide]
 \end{frame}
 
-\masseyBrand{bar}[0.1]{}{}{}
 \subsection{Observed data}
+\masseyBrand{bar}[0.1]{}{}{}
 \begin{frame}{Measures \& comparisons}{Observed data}
 \begin{columns}
   \column{0.6\textwidth}
@@ -309,8 +364,8 @@ Summary statistics:
 \tableofcontents[currentsection, subsectionstyle=show/show/hide]
 \end{frame}
 
-\masseyBrand{bar}[0.1]{}{}{}
 \subsection{Overview}
+\masseyBrand{bar}[0.1]{}{}{}
 \begin{frame}{Pipeline}{Overview}
 \begin{center}
   \begin{tikzpicture}
@@ -318,9 +373,9 @@ Summary statistics:
       \includegraphics[width=1\textheight]{../data/workflow-2.png}
     };
     \draw<2>[masseyGold, ultra thick, rounded corners] (0, 3.5) rectangle (5, 6.1);
-    \draw<3>[masseyGold, ultra thick, rounded corners] (3.3, 2.5) rectangle (9.2, 6.1);
+    \draw<3>[masseyGold, ultra thick, rounded corners] (3.3, 2.5) rectangle (9.2, 6.2);
     \draw<4>[masseyGold, ultra thick, rounded corners] (5.5, 0) rectangle (9.2, 3.8);
-    \draw<5>[masseyGold, ultra thick, rounded corners] (0, 0) rectangle (7, 3.2);
+    \draw<5>[masseyGold, ultra thick, rounded corners] (0, 0) rectangle (6.8, 3.2);
     \draw<6>;
   \end{tikzpicture}
 \end{center}
@@ -333,8 +388,8 @@ Summary statistics:
 \tableofcontents[currentsection, subsectionstyle=show/show/hide]
 \end{frame}
 
-\masseyBrand{bar}[0.1]{}{}{}
 \subsection{Grid search}
+\masseyBrand{bar}[0.1]{}{}{}
 \begin{frame}{Statistical analysis}{Grid search}
 \begin{center}
   \includegraphics[width=0.8\textwidth]{../data/grid.png}
@@ -370,6 +425,44 @@ Summary statistics:
     \caption{Example output from an ABC analysis}
   \end{figure}
 \end{center}
+\end{frame}
+
+\section*{Conclusion}
+\masseyBrand{bar}{}{}{}
+\begin{frame}{}{Conclusion}
+\begin{columns}
+  \column{0.5\textwidth}
+  \color{masseyWhite}
+  \begin{itemize}
+    \item Pipeline:
+    \begin{itemize}
+      \item Modular pipeline
+      \item Stream processing
+      \item Database use
+    \end{itemize}
+  \end{itemize}
+  \vspace*{1em}
+  \begin{itemize}
+    \item Statistically powerful approach:
+    \begin{itemize}
+      \item Approximate Bayesian Computation
+      \item Accept good results
+      \item Discard bad results
+    \end{itemize}
+  \end{itemize}
+
+  \column{0.5\textwidth}
+  \color{masseyWhite}
+  \begin{itemize}
+    \item “Austronesian Expansion”:
+    \begin{itemize}
+      \item Higher fecundity
+      \item Higher migration rates
+      \item Melanesian~\mars{} --- Asian~\female{} marriages favoured
+    \end{itemize}
+  \end{itemize}
+
+\end{columns}
 \end{frame}
 
 % Closing ------------------------------------------------------------------------------------
