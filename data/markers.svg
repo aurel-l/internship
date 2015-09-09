@@ -13,7 +13,7 @@
    height="744.09448"
    id="svg2"
    version="1.1"
-   inkscape:version="0.48.4 r9939"
+   inkscape:version="0.91 r13725"
    sodipodi:docname="markers.svg">
   <defs
      id="defs4">
@@ -30,15 +30,15 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.5"
-     inkscape:cx="613.5564"
-     inkscape:cy="366.85422"
+     inkscape:cx="116.5564"
+     inkscape:cy="362.85422"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1301"
-     inkscape:window-height="744"
-     inkscape:window-x="65"
-     inkscape:window-y="24"
+     inkscape:window-width="1920"
+     inkscape:window-height="1163"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
      inkscape:window-maximized="1" />
   <metadata
      id="metadata7">
@@ -48,7 +48,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -893,7 +893,7 @@
        sodipodi:cy="374.80878"
        sodipodi:rx="39.285713"
        sodipodi:ry="40.714287"
-       d="m 668.57142,374.80878 a 39.285713,40.714287 0 1 1 -78.57143,0 39.285713,40.714287 0 1 1 78.57143,0 z"
+       d="m 668.57142,374.80878 a 39.285713,40.714287 0 0 1 -39.28571,40.71428 39.285713,40.714287 0 0 1 -39.28572,-40.71428 39.285713,40.714287 0 0 1 39.28572,-40.71429 39.285713,40.714287 0 0 1 39.28571,40.71429 z"
        transform="translate(0,308.2677)"
        inkscape:export-filename="/home/aurelien/Documents/internship/data/markers.png"
        inkscape:export-xdpi="90"
@@ -936,27 +936,23 @@
        inkscape:export-ydpi="90" />
     <text
        xml:space="preserve"
-       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
        x="719.6875"
-       y="505.79578"
+       y="531.79578"
        id="text6428"
        sodipodi:linespacing="125%"
        inkscape:export-filename="/home/aurelien/Documents/internship/data/markers.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90"><tspan
          sodipodi:role="line"
-         id="tspan6430"
          x="719.6875"
-         y="505.79578">Autosome</tspan><tspan
-         sodipodi:role="line"
-         x="719.6875"
-         y="555.79578"
-         id="tspan6481">25 markers</tspan></text>
+         y="531.79578"
+         id="tspan6481">Autosome</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
        x="716.07422"
-       y="689.79077"
+       y="711.79077"
        id="text6432"
        sodipodi:linespacing="125%"
        inkscape:export-filename="/home/aurelien/Documents/internship/data/markers.png"
@@ -964,48 +960,36 @@
        inkscape:export-ydpi="90"><tspan
          sodipodi:role="line"
          x="716.07422"
-         y="689.79077"
-         id="tspan6436">Mitochondria</tspan><tspan
-         sodipodi:role="line"
-         x="716.07422"
-         y="739.79077"
-         id="tspan6479">1 marker</tspan></text>
+         y="711.79077"
+         id="tspan6479">Mitochondria</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
        x="718.80859"
-       y="929.79077"
+       y="949.79077"
        id="text6440"
        sodipodi:linespacing="125%"
        inkscape:export-filename="/home/aurelien/Documents/internship/data/markers.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90"><tspan
          sodipodi:role="line"
-         id="tspan6442"
          x="718.80859"
-         y="929.79077">X Chromosome</tspan><tspan
-         sodipodi:role="line"
-         x="718.80859"
-         y="979.79077"
-         id="tspan6475">25 markers</tspan></text>
+         y="949.79077"
+         id="tspan6475">X Chromosome</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
        x="720.07812"
-       y="821.79077"
+       y="841.79077"
        id="text6444"
        sodipodi:linespacing="125%"
        inkscape:export-filename="/home/aurelien/Documents/internship/data/markers.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90"><tspan
          sodipodi:role="line"
-         id="tspan6446"
          x="720.07812"
-         y="821.79077">Y Chromosome</tspan><tspan
-         sodipodi:role="line"
-         x="720.07812"
-         y="871.79077"
-         id="tspan6477">1 marker</tspan></text>
+         y="841.79077"
+         id="tspan6477">Y Chromosome</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 704,214.09448 -242,42"

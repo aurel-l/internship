@@ -61,6 +61,7 @@
 \section*{Introduction}
 \masseyBrand{}[1]{../data/nz.png}{}{}
 \begin{frame}{}{Introduction}
+\vspace*{0.5cm}
 \begin{columns}
   \column{0.2\textwidth}
   
@@ -74,6 +75,10 @@
     \begin{itemize}
       \item Murray Cox
       \item Marie Noelle Beurton-Aimar
+    \end{itemize}
+    \item Research assistant for the project:
+    \begin{itemize}
+      \item François Vallée
     \end{itemize}
   \end{itemize}
 
@@ -140,14 +145,15 @@
 \begin{columns}
   \column{0.6\textwidth}
   \begin{figure}
-    \includegraphics[width=1\textwidth]{../data/cox-image-modified.jpg}
+    \includegraphics[width=0.95\textwidth]{../data/cox-image-modified.jpg}
     \caption{Cox et al. [2010]. \textit{Proceedings of
-the Royal Society of London B: Biological Sciences}}
+the Royal Society of London B: Biological Sciences}, modified}
   \end{figure}
 
   \column{0.5\textwidth}
   \begin{itemize}
-    \item Non-linear admixture changes
+  	\item Expected: linear admixture change
+    \item Observed: Non-linear admixture changes
   \end{itemize}
 
 \end{columns}
@@ -158,8 +164,8 @@ the Royal Society of London B: Biological Sciences}}
 \begin{columns}
   \column{0.6\textwidth}
   \begin{figure}
-    \includegraphics[width=1\textwidth]{../data/lansing-image.jpg}
-    \caption{Lansing et al. [2011]. \textit{Journal of
+    \includegraphics[width=0.85\textwidth]{../data/lansing-modified.png}
+    \caption{Data from Lansing et al. [2011]. \textit{Journal of
 Anthropological Archaeology}}
   \end{figure}
 
@@ -195,6 +201,7 @@ First step towards understanding $\rightarrow$ reproduce the scenario
   \column{0.65\textwidth}
 
   \column{0.52\textwidth}
+  \color{masseyWhite}
   \begin{itemize}
     \item Written in Java (Repast)
     \item Agent-Based Model
@@ -213,6 +220,7 @@ First step towards understanding $\rightarrow$ reproduce the scenario
   \column{0.65\textwidth}
 
   \column{0.52\textwidth}
+  \color{masseyWhite}
   My goals:
   \begin{itemize}
     \item Assess the quality of the model
@@ -250,14 +258,14 @@ First step towards understanding $\rightarrow$ reproduce the scenario
 \subsection{Parameters}
 \begin{frame}{Measures \& comparisons}{Parameters}
 \begin{table}[H]
-	\hspace*{-1.0cm}
+	\hspace*{-0.5cm}
 	\begin{tabu}{@{}l>{\footnotesize}ll@{}}
 	  \toprule
  	  Parameter & \normalsize Estimated & Comment \\
  	  \midrule
-    Migration prob. & $0.0 < x \leq 1.0$ & prob. to start migrating for a Melanesian agent \\
+    Migration prob. & $0.0 < x \leq 1.0$ & for a Melanesian agent \\
     Migration prob. ratio & $1.0 \leq x \leq 4.0$ & corresponding ratio for an Asian agent \\
-    Fecundity & $2.5 < x < 8.0$ & Poisson law mean for a Melanesian agent \\
+    Fecundity & $2.5 < x < 8.0$ & for a Melanesian agent \\
     Fecundity ratio & $1.0 \leq x \leq 2.0$ & corresponding ratio for an Asian agent \\
     Marriage threshold & $0.0 \leq x \leq 0.25$ & affects marriages rules \\
 	  \rowfont{\color{gray}}
@@ -265,7 +273,7 @@ First step towards understanding $\rightarrow$ reproduce the scenario
 	  \rowfont{\color{gray}}
     Number of agents & $100 \leq x < 400$ & pop. size in each deme, initially \\
 	  \rowfont{\color{gray}}
-    Graph & \{...\} & composition of the graph (nodes and edges) \\
+    Graph & \{...\} & nodes and edges of the graph \\
 	  \rowfont{\color{gray}}
     Starting distribution & \{...\} & distribution of pop. in the graph \\ 
     \bottomrule
@@ -407,13 +415,13 @@ Summary statistics:
 \subsection{Approximate Bayesian Computation}
 \begin{frame}{Statistical analysis}{Approximate Bayesian Computation}
 \begin{center}
-  \includegraphics[width=0.94\textwidth]{../data/abc-landscape.png}
+  \includegraphics[width=0.8\textwidth]{../data/abc-space.png}
 \end{center}
 \end{frame}
 
 \begin{frame}{Statistical analysis}{Approximate Bayesian Computation}
 \begin{center}
-  \includegraphics[width=0.8\textwidth]{../data/abc-space.png}
+  \includegraphics[width=0.94\textwidth]{../data/abc-landscape.png}
 \end{center}
 \end{frame}
 
@@ -470,11 +478,11 @@ Summary statistics:
 \masseyBrand{full}{uniLogo/masseyBlueCircles.jpg}{}{}
 \begin{frame}[plain]
 \masseyClose{Thank you}
-\begin{columns}
-  \column{0.58\textwidth}
-    \tableofcontents[subsubsectionstyle=hide]
+%\begin{columns}
+  %\column{0.58\textwidth}
+    %\tableofcontents[subsubsectionstyle=hide]
 
-  \column{0.56\textwidth}
+  %\column{0.56\textwidth}
     \begin{Huge}
       Questions?
     \end{Huge}
@@ -486,7 +494,7 @@ Summary statistics:
     \\~\\
     Computational Biology Research Group: \href{http://massey.genomicus.com}{\texttt{massey.genomicus.com}}
 
-\end{columns}
+%\end{columns}
 \end{frame}
 
 % Appendices
