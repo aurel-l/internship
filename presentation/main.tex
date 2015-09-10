@@ -17,7 +17,8 @@
 %\headlinecontent{Text left top corner}{Text top center}
 }
 \setbeamertemplate{footline}[frame number]
-\setbeamercolor{subsection in toc}{fg=masseyWhite}
+\setbeamercolor{subsubsection in toc}{fg=black}
+\setbeamertemplate{section in toc shaded}[default][90]
 
 %----------------------------------------------------------------------------------------
 %	TITLE PAGE
@@ -54,6 +55,10 @@
 \insertdate
 \end{mblock}
 \vfill
+\begin{mblock}[300pt]{0.7}{}
+\includegraphics[width=0.5\textwidth]{uniLogo/MasseyLogoBlueLetters.png}%
+\includegraphics[width=0.5\textwidth]{../data/ub.jpg}
+\end{mblock}
 \end{frame}
 
 % Slides ---------------------------------------------------------------------------------
@@ -71,14 +76,14 @@
     \item Internship at Massey University (New Zealand)
     \item Computational Biology Research Group
     \item Part of a 2 years project
+    \item Research assistant for the project:
+    \begin{itemize}
+      \item François Vallée
+    \end{itemize}
     \item Supervisors:
     \begin{itemize}
       \item Murray Cox
       \item Marie Noelle Beurton-Aimar
-    \end{itemize}
-    \item Research assistant for the project:
-    \begin{itemize}
-      \item François Vallée
     \end{itemize}
   \end{itemize}
 
@@ -88,9 +93,9 @@
 % Change background if needed
 %\masseyBrand[fillcolour]{full/bar}[opacity]{picture}{blueletters/whiteletters}{blueletters/whiteletters}[frametitlecolour]
 \section{Context}
-\masseyBrand{bar}{}{}{}
+\masseyBrand{bar}[0.1]{}{}{}
 \begin{frame}{}{Table of contents}
-\tableofcontents[currentsection, subsectionstyle=show/show/hide]
+\tableofcontents[currentsection, sectionstyle=show/shaded, subsectionstyle=show/show/hide]
 \end{frame}
 
 \subsection{Geological and anthropological context}
@@ -152,7 +157,8 @@ the Royal Society of London B: Biological Sciences}, modified}
 
   \column{0.5\textwidth}
   \begin{itemize}
-  	\item Expected: linear admixture change
+    \item Admixture measured on each island	
+  	  \item Expected: linear admixture change
     \item Observed: Non-linear admixture changes
   \end{itemize}
 
@@ -171,8 +177,8 @@ Anthropological Archaeology}}
 
   \column{0.5\textwidth}
   \begin{itemize}
-    \item Difference of admixture by type of DNA
-    \item Gender-biaised admixture
+    \item Difference of admixture by category of DNA
+    \item Sex-biased admixture
     \item Implicit marriage rule?
     \item Melanesian~\mars{} --- Asian~\female{} marriages favoured?
   \end{itemize}
@@ -180,13 +186,11 @@ Anthropological Archaeology}}
 \end{columns}
 \end{frame}
 
-\masseyBrand{bar}{}{}{}
 \begin{frame}{}{Previous papers}
-\color{masseyWhite}
 Questions:
 \begin{itemize}
   \item Why the steep admixture gradient?
-  \item Why the gender-biased admixture?
+  \item Why the sex-biased admixture?
   \item What differences between the populations?
 \end{itemize}
 \vspace*{2em}
@@ -203,8 +207,8 @@ First step towards understanding $\rightarrow$ reproduce the scenario
   \column{0.52\textwidth}
   \color{masseyWhite}
   \begin{itemize}
-    \item Written in Java (Repast)
     \item Agent-Based Model
+    \item Written in Java (Repast)
     \item Nodes $\rightarrow$ demes ($\simeq$ villages)
     \item Edges $\rightarrow$ migration paths
     \item Agent $\rightarrow$ individual or couple
@@ -224,7 +228,7 @@ First step towards understanding $\rightarrow$ reproduce the scenario
   My goals:
   \begin{itemize}
     \item Assess the quality of the model
-    \item Compare the results to the observed data (reference)
+    \item Compare the results to the real data (reference)
     \item Provide a statistical framework to analyse the results
   \end{itemize}
 
@@ -233,13 +237,12 @@ First step towards understanding $\rightarrow$ reproduce the scenario
 
 
 \section{Measures and comparisons}
-\masseyBrand{bar}{}{}{}
+\masseyBrand{bar}[0.1]{}{}{}
 \begin{frame}{}{Table of contents}
-\tableofcontents[currentsection, subsectionstyle=show/show/hide]
+\tableofcontents[currentsection, subsectionstyle=show/show/hide, subsubsectionstyle=show/show/show/shaded]
 \end{frame}
 
 \subsection{Observed data}
-\masseyBrand{bar}[0.1]{}{}{}
 \begin{frame}{Measures \& comparisons}{Observed data}
 \begin{columns}
   \column{0.6\textwidth}
@@ -247,9 +250,11 @@ First step towards understanding $\rightarrow$ reproduce the scenario
 
   \column{0.5\textwidth}
   \begin{itemize}
+    \item Discriminant markers
     \item Different parts of the DNA
     \item Associated with different origins
-    \item 52 binary markers in total
+    \item Inside the model: values by agent
+    \item Output of the model: values by deme
   \end{itemize}
 
 \end{columns}
@@ -278,7 +283,7 @@ First step towards understanding $\rightarrow$ reproduce the scenario
     Starting distribution & \{...\} & distribution of pop. in the graph \\ 
     \bottomrule
 	\end{tabu}
-	\caption{Summary of the changeable model parameters.}
+	\caption{Summary of the changing model parameters.}
 \end{table}
 \end{frame}
 
@@ -367,37 +372,87 @@ Summary statistics:
 
 
 \section{Pipeline}
-\masseyBrand{bar}{}{}{}
 \begin{frame}{}{Table of contents}
 \tableofcontents[currentsection, subsectionstyle=show/show/hide]
 \end{frame}
 
 \subsection{Overview}
-\masseyBrand{bar}[0.1]{}{}{}
 \begin{frame}{Pipeline}{Overview}
 \begin{center}
   \begin{tikzpicture}
     \node[anchor=south west, inner sep=0] at (0, 0) {
       \includegraphics[width=1\textheight]{../data/workflow-2.png}
     };
-    \draw<2>[masseyGold, ultra thick, rounded corners] (0, 3.5) rectangle (5, 6.1);
-    \draw<3>[masseyGold, ultra thick, rounded corners] (3.3, 2.5) rectangle (9.2, 6.2);
-    \draw<4>[masseyGold, ultra thick, rounded corners] (5.5, 0) rectangle (9.2, 3.8);
-    \draw<5>[masseyGold, ultra thick, rounded corners] (0, 0) rectangle (6.8, 3.2);
-    \draw<6>;
+  \end{tikzpicture}
+\end{center}
+\end{frame}
+
+\addtocounter{framenumber}{-1}
+\begin{frame}{Pipeline}{Model runs}
+\begin{center}
+  \begin{tikzpicture}
+    \node[anchor=south west, inner sep=0] at (0, 0) {
+      \includegraphics[width=1\textheight]{../data/workflow-2.png}
+    };
+    \draw[masseyGold, ultra thick, rounded corners] (0, 3.5) rectangle (5, 6.1);
+  \end{tikzpicture}
+\end{center}
+\end{frame}
+
+\addtocounter{framenumber}{-1}
+\begin{frame}{Pipeline}{Data merging, aggregating and storage}
+\begin{center}
+  \begin{tikzpicture}
+    \node[anchor=south west, inner sep=0] at (0, 0) {
+      \includegraphics[width=1\textheight]{../data/workflow-2.png}
+    };
+    \draw[masseyGold, ultra thick, rounded corners] (3.3, 2.5) rectangle (9.2, 6.2);
+  \end{tikzpicture}
+\end{center}
+\end{frame}
+
+\addtocounter{framenumber}{-1}
+\begin{frame}{Pipeline}{Data querying}
+\begin{center}
+  \begin{tikzpicture}
+    \node[anchor=south west, inner sep=0] at (0, 0) {
+      \includegraphics[width=1\textheight]{../data/workflow-2.png}
+    };
+    \draw[masseyGold, ultra thick, rounded corners] (5.5, 0) rectangle (9.2, 3.8);
+  \end{tikzpicture}
+\end{center}
+\end{frame}
+
+\addtocounter{framenumber}{-1}
+\begin{frame}{Pipeline}{Analyses}
+\begin{center}
+  \begin{tikzpicture}
+    \node[anchor=south west, inner sep=0] at (0, 0) {
+      \includegraphics[width=1\textheight]{../data/workflow-2.png}
+    };
+    \draw[masseyGold, ultra thick, rounded corners] (0, 0) rectangle (6.8, 3.2);
+  \end{tikzpicture}
+\end{center}
+\end{frame}
+
+\addtocounter{framenumber}{-1}
+\begin{frame}{Pipeline}{Overview}
+\begin{center}
+  \begin{tikzpicture}
+    \node[anchor=south west, inner sep=0] at (0, 0) {
+      \includegraphics[width=1\textheight]{../data/workflow-2.png}
+    };
   \end{tikzpicture}
 \end{center}
 \end{frame}
 
 
 \section{Statistical analysis}
-\masseyBrand{bar}{}{}{}
 \begin{frame}{}{Table of contents}
 \tableofcontents[currentsection, subsectionstyle=show/show/hide]
 \end{frame}
 
 \subsection{Grid search}
-\masseyBrand{bar}[0.1]{}{}{}
 \begin{frame}{Statistical analysis}{Grid search}
 \begin{center}
   \includegraphics[width=0.8\textwidth]{../data/grid.png}
@@ -436,11 +491,9 @@ Summary statistics:
 \end{frame}
 
 \section*{Conclusion}
-\masseyBrand{bar}{}{}{}
 \begin{frame}{}{Conclusion}
 \begin{columns}
   \column{0.5\textwidth}
-  \color{masseyWhite}
   \begin{itemize}
     \item Pipeline:
     \begin{itemize}
@@ -460,7 +513,6 @@ Summary statistics:
   \end{itemize}
 
   \column{0.5\textwidth}
-  \color{masseyWhite}
   \begin{itemize}
     \item “Austronesian Expansion”:
     \begin{itemize}
@@ -475,7 +527,6 @@ Summary statistics:
 
 % Closing ------------------------------------------------------------------------------------
 
-\masseyBrand{full}{uniLogo/masseyBlueCircles.jpg}{}{}
 \begin{frame}[plain]
 \masseyClose{Thank you}
 %\begin{columns}
@@ -483,12 +534,13 @@ Summary statistics:
     %\tableofcontents[subsubsectionstyle=hide]
 
   %\column{0.56\textwidth}
+    \color{masseyBlue}
     \begin{Huge}
       Questions?
     \end{Huge}
     \\~\\~\\~\\~\\
     \begin{small}
-      \color{lightgray}
+      \color{gray}
       map backgrounds from “HERE Satellite”
     \end{small}
     \\~\\
@@ -499,6 +551,7 @@ Summary statistics:
 
 % Appendices
 
+\masseyBrand{full}{uniLogo/masseyBlueCircles.jpg}{}{}
 \begin{frame}[plain, noframenumbering]{}{Comparison functions}
 \begin{figure}
   \hspace*{-1cm}
